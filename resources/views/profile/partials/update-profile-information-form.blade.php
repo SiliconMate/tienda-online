@@ -18,15 +18,41 @@
         @method('patch')
 
         <div>
-            <x-input-label for="username" :value="__('Username')" />
-            <x-text-input id="username" name="username" type="text" class="mt-1 block w-full" :value="old('username', $user->username)" required autofocus autocomplete="username" />
-            <x-input-error class="mt-2" :messages="$errors->get('username')" />
+            <x-input type="text" name="firstname" :value="old('firstname', $user->firstname)" aria-placeholder="First Name" required autofocus autocomplete="firstname">
+                {{ __('First Name') }}
+            </x-input>
+            <x-input-error :messages="$errors->updateProfileInformation->get('firstname')" class="mt-2" />
         </div>
 
         <div>
-            <x-input-label for="email" :value="__('Email')" />
-            <x-text-input id="email" name="email" type="email" class="mt-1 block w-full" :value="old('email', $user->email)" required autocomplete="username" />
-            <x-input-error class="mt-2" :messages="$errors->get('email')" />
+            <x-input type="text" name="lastname" :value="old('lastname', $user->lastname)" aria-placeholder="Last Name" required autofocus autocomplete="lastname">
+                {{ __('Last Name') }}
+            </x-input>
+            <x-input-error :messages="$errors->updateProfileInformation->get('lastname')" class="mt-2" />
+        </div>
+
+        <div>
+            <x-input type="text" name="username" :value="old('username', $user->username)" aria-placeholder="Username" required autofocus autocomplete="username">
+                {{ __('Username') }}
+            </x-input>
+            <x-input-error :messages="$errors->updateProfileInformation->get('username')" class="mt-2" />
+        </div>
+
+        <div>
+            <x-input type="text" name="phone" :value="old('phone', $user->phone)" aria-placeholder="phone" required autofocus autocomplete="phone">
+                {{ __('Phone') }}
+            </x-input>
+            {{-- <x-input-error :messages="$errors->updateProfileInformation->get('phone')" class="mt-2" /> --}}
+            @error('phone')
+                <span class="text-sm text-red-600 dark:text-red-400">{{ $message }}</span>
+            @enderror
+        </div>
+
+        <div>
+            <x-input type="email" name="email" :value="old('email', $user->email)" aria-placeholder="Email" required autofocus autocomplete="email">
+                {{ __('Email') }}
+            </x-input>
+            <x-input-error :messages="$errors->updateProfileInformation->get('email')" class="mt-2" />
 
             @if ($user instanceof \Illuminate\Contracts\Auth\MustVerifyEmail && ! $user->hasVerifiedEmail())
                 <div>
@@ -48,8 +74,7 @@
         </div>
 
         <div class="flex items-center gap-4">
-            {{-- <x-primary-button>{{ __('Save') }}</x-primary-button> --}}
-            <x-button style="primary">{{ __('Save') }}</x-button>
+            <x-button type="submit" style="primary">{{ __('Save') }}</x-button>
 
             @if (session('status') === 'profile-updated')
                 <p

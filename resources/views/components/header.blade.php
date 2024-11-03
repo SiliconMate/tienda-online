@@ -81,25 +81,14 @@
                             <i class="ti ti-user text-gray-500 text-xl "></i>
                             <p class="text-sm text-gray-500">My Profile</p>
                         </a>
-                        {{-- <a href="javscript:void(0)" class="flex gap-2 items-center px-4 py-[6px] hover:bg-blue-500">
-                            <i class="ti ti-mail text-gray-500 text-xl"></i>
-                            <p class="text-sm text-gray-500">My Account</p>
-                        </a>
-                        <a href="javscript:void(0)" class="flex gap-2 items-center px-4 py-[6px] hover:bg-blue-500">
-                            <i class="ti ti-list-check text-gray-500 text-xl "></i>
-                            <p class="text-sm text-gray-500">My Task</p>
-                        </a> --}}
-                        <div class="px-4 mt-[7px] grid">
-                            {{-- <a href="../../pages/authentication-login.html" class="btn-outline-primary w-full hover:bg-blue-600 hover:text-white">Logout</a> --}}
+                        <div class="px-4 mt-[5px] grid">
                             <form method="POST" action="{{ route('logout') }}">
                                 @csrf
             
-                                <x-responsive-nav-link :href="route('logout')"
-                                        onclick="event.preventDefault();
-                                                    this.closest('form').submit();"
-                                        class="btn-outline-primary w-full bg-blue-600 text-white text-sm">
-                                    {{ __('Log Out') }}
-                                </x-responsive-nav-link>
+                                <x-button type="submit" style="link">
+                                    {{__('Logout')}}
+                                </x-button>
+                                
                             </form>
                         </div>
                     </div>
