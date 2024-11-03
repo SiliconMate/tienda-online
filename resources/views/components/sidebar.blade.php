@@ -5,7 +5,7 @@
     <!-- Logo de la barra lateral -->
     <div class="p-5 flex items-center justify-start">
         <a href="{{ route('dashboard') }}" class="text-nowrap flex items-center gap-2">
-            <img src="./assets/images/logos/logo-UTN.png" alt="Logo" class="w-auto h-11 object-cover" />
+            <img src="{{ asset('assets/images/logos/logo-UTN.png') }}" alt="Logo" class="w-auto h-11 object-cover" />
         </a>
     </div>
 
