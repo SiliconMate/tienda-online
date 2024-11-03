@@ -1,4 +1,24 @@
-<x-app-layout>
+<x-app-layout title="Editar Perfil">
+    <x-section title="Editar Perfil">
+        <div class="max-w-xl">
+            @include('profile.partials.update-profile-information-form')
+        </div>
+    </x-section>
+    <x-section title="Cambiar Contraseña">
+        <div class="max-w-xl">
+            @include('profile.partials.update-password-form')
+        </div>
+    </x-section>
+    <x-section title="Eliminar Usuario">
+        <div class="max-w-xl">
+            @include('profile.partials.delete-user-form')
+        </div>
+    </x-section>
+</x-app-layout>
+
+
+
+{{-- <x-app-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">
             {{ __('Profile') }}
@@ -26,4 +46,4 @@
             </div>
         </div>
     </div>
-</x-app-layout>
+</x-app-layout> --}}
