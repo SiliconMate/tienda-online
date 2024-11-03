@@ -25,18 +25,24 @@ class PermissionController extends Controller
         return redirect()->route('permissions.index');
     }
 
-    public function edit($permission)
+    public function edit(Permission $permission)
     {
-        return view('permissions.edit');
+        return view('permissions.edit', compact('permission'));
     }
 
-    public function update(Request $request, $id)
+    public function update(Request $request, $permission)
     {
-        //
+        $permission = Permission::find($permission);
+        $permission->update($request->all());
+
+        return redirect()->route('permissions.index');
     }
 
     public function destroy($permission)
     {
-        //
+        $permission = Permission::find($permission);
+        $permission->delete();
+
+        return redirect()->route('permissions.index');
     }
 }
