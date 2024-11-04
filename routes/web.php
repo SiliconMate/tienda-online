@@ -2,7 +2,9 @@
 
 use App\Http\Controllers\PermissionController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\RoleController;
 use Illuminate\Support\Facades\Route;
+use Spatie\Permission\Contracts\Role;
 
 Route::get('/', function () {
     return redirect()->route('dashboard');
@@ -20,6 +22,10 @@ Route::middleware('auth')->group(function () {
     Route::resource('permissions', PermissionController::class)
         ->only(['index', 'store', 'update', 'destroy'])
         ->names('permissions');
+
+    Route::resource('roles', RoleController::class)
+        ->only(['index', 'store', 'update', 'destroy'])
+        ->names('roles');
 });
 
 require __DIR__.'/auth.php';
