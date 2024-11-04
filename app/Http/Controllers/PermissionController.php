@@ -13,21 +13,11 @@ class PermissionController extends Controller
         return view('permissions.index', compact('permissions'));
     }
 
-    public function create()
-    {
-        return view('permissions.create');
-    }
-
     public function store(Request $request)
     {
         Permission::create($request->all());
 
         return redirect()->route('permissions.index');
-    }
-
-    public function edit(Permission $permission)
-    {
-        return view('permissions.edit', compact('permission'));
     }
 
     public function update(Request $request, $permission)

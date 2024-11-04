@@ -18,7 +18,7 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 
     Route::resource('permissions', PermissionController::class)
-        ->except('show')
+        ->only(['index', 'store', 'update', 'destroy'])
         ->names('permissions');
 });
 

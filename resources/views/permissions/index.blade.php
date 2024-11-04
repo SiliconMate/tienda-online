@@ -3,9 +3,31 @@
         <x-slot name="title">
             <div class="flex items-center justify-between">
                 <h2 class="font-semibold text-xl text-gray-800 leading-tight">Permisos</h2>
-                <x-button type="button" style='link'>
-                    <a href="{{ route('permissions.create') }}">Crear permiso</a>
+                
+                <x-button x-data="" x-on:click.prevent="$dispatch('open-modal', 'create-perm')">
+                    Crear permiso
                 </x-button>
+
+                <x-modal name="create-perm" :show="$errors->userDeletion->isNotEmpty()" focusable>
+                    <form action="{{ route('permissions.store') }}" method="POST" class='p-6'>
+                        @csrf
+                        <div class="grid grid-cols-1 gap-3">
+                            <div class="grid grid-cols-1 gap-6">
+                                <div>
+                                    <x-input id="name" class="block w-full" type="text" name="name" :value="old('name')" required autofocus>
+                                        Nombre
+                                    </x-input>
+                                </div>
+                            </div>
+                            <div class="flex items-center justify-end">
+                                <x-button type="submit" style="primary">
+                                    Actualizar
+                                </x-button>
+                            </div>
+                        </div>
+                    </form>
+                </x-modal>
+                
             </div>
         </x-slot>
 
@@ -15,6 +37,9 @@
                     <tr>
                         <th scope="col" class="px-6 py-3">
                             Nombre
+                        </th>
+                        <th scope="col" class="px-6 py-3">
+                            Roles
                         </th>
                         <th scope="col" class="px-6 py-3">
                             Acciones
@@ -28,9 +53,39 @@
                                 {{ $permission->name }}
                             </th>
                             <td class="px-6 py-4">
-                                <a href="{{ route('permissions.edit', $permission) }}" class="font-medium text-blue-600 dark:text-blue-500 hover:underline">
-                                    Editar
-                                </a>
+                                @foreach ($permission->roles as $role)
+                                    <span class="px-2 py-1 text-xs font-semibold leading-tight text-green-700 bg-green-100 rounded-full dark:bg-green-700 dark:text-green-100">
+                                        {{ $role->name }}
+                                    </span>
+                                @endforeach
+                            </td>
+                            <td class="px-6 py-4">
+
+                                <button x-data="" x-on:click.prevent="$dispatch('open-modal', 'edit-perm-{{ $permission->id }}')" class="text-blue-600 hover:underline">
+                                    Editar permiso
+                                </button>
+                
+                                <x-modal name="edit-perm-{{ $permission->id }}" :show="$errors->userDeletion->isNotEmpty()" focusable>
+                                    <form action="{{ route('permissions.update', $permission->id) }}" method="POST" class='p-6'>
+                                        @csrf
+                                        @method('PUT')
+                                        <div class="grid grid-cols-1 gap-3">
+                                            <div class="grid grid-cols-1 gap-6">
+                                                <div>
+                                                    <x-input id="name" class="block w-full" type="text" name="name" :value="$permission->name" required autofocus>
+                                                        Nombre
+                                                    </x-input>
+                                                </div>
+                                            </div>
+                                            <div class="flex items-center justify-end">
+                                                <x-button type="submit" style="primary">
+                                                    Guardar
+                                                </x-button>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </x-modal>
+
                                 <form action="{{ route('permissions.destroy', $permission) }}" method="POST" class="inline">
                                     @csrf
                                     @method('DELETE')
