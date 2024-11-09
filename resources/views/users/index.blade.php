@@ -45,9 +45,9 @@
                                 
                                 <a href="{{ route('users.show', $user) }}" class="text-blue-600 hover:underline">Detallar</a>
                                 
-                                <button x-data="" x-on:click.prevent="$dispatch('open-modal', 'edit-user-{{ $user->id }}')" class="text-blue-600 hover:underline">
+                                <a href="#" x-data="" x-on:click.prevent="$dispatch('open-modal', 'edit-user-{{ $user->id }}')" class="text-blue-600 hover:underline">
                                     Editar
-                                </button>
+                                </a>
                                 @include('users.partials.edit-user-modal', ['user' => $user])
                                 
                                 <form action="{{ route('users.destroy', $user) }}" method="POST" class="inline">

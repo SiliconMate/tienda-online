@@ -54,16 +54,37 @@ class UserController extends Controller
         return redirect()->route('users.index');
     }
 
-    public function edit($user)
-    {
-        $user = User::find($user);
-        return view('users.edit', compact('user'));
-    }
+    // public function edit($user)
+    // {
+    // }
 
     public function update(Request $request, $user)
     {
+        $request->validate([
+            'username' => 'unique:users,username,'.$user,
+            'email' => 'email|unique:users,email,'.$user,
+            'phone' => 'numeric',
+            'password' => ['nullable', 'confirmed', Rules\Password::defaults()],
+            'avatar' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+        ]);
+
         $user = User::find($user);
-        $user->update($request->all());
+
+        if ($request->filled('password')) {
+            $data['password'] = Hash::make($request->password);
+        } else {
+            $data = $request->except(['password']);
+        }
+
+        $user->update($data);
+
+        if ($request->hasFile('avatar')) {
+            $avatar = $request->file('avatar');
+            $filename = time() . $user->username . '.' . $avatar->getClientOriginalExtension();
+            $avatar->storeAs('avatars', $filename, 'public');
+            $user->avatar = $filename;
+            $user->save();
+        }
 
         return redirect()->route('users.index');
     }
