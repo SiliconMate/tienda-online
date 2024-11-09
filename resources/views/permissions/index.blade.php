@@ -8,25 +8,7 @@
                     Crear permiso
                 </x-button>
 
-                <x-modal name="create-perm" :show="$errors->userDeletion->isNotEmpty()" focusable>
-                    <form action="{{ route('permissions.store') }}" method="POST" class='p-6'>
-                        @csrf
-                        <div class="grid grid-cols-1 gap-3">
-                            <div class="grid grid-cols-1 gap-6">
-                                <div>
-                                    <x-input id="name" class="block w-full" type="text" name="name" :value="old('name')" required autofocus>
-                                        Nombre
-                                    </x-input>
-                                </div>
-                            </div>
-                            <div class="flex items-center justify-end">
-                                <x-button type="submit" style="primary">
-                                    Actualizar
-                                </x-button>
-                            </div>
-                        </div>
-                    </form>
-                </x-modal>
+                @include('permissions.partials.create-perm-modal')
                 
             </div>
         </x-slot>
@@ -65,26 +47,7 @@
                                     Editar permiso
                                 </button>
                 
-                                <x-modal name="edit-perm-{{ $permission->id }}" :show="$errors->userDeletion->isNotEmpty()" focusable>
-                                    <form action="{{ route('permissions.update', $permission->id) }}" method="POST" class='p-6'>
-                                        @csrf
-                                        @method('PUT')
-                                        <div class="grid grid-cols-1 gap-3">
-                                            <div class="grid grid-cols-1 gap-6">
-                                                <div>
-                                                    <x-input id="name" class="block w-full" type="text" name="name" :value="$permission->name" required autofocus>
-                                                        Nombre
-                                                    </x-input>
-                                                </div>
-                                            </div>
-                                            <div class="flex items-center justify-end">
-                                                <x-button type="submit" style="primary">
-                                                    Guardar
-                                                </x-button>
-                                            </div>
-                                        </div>
-                                    </form>
-                                </x-modal>
+                                @include('permissions.partials.edit-perm-modal', ['permission' => $permission])
 
                                 <form action="{{ route('permissions.destroy', $permission) }}" method="POST" class="inline">
                                     @csrf

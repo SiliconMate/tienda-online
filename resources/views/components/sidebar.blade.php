@@ -1,6 +1,6 @@
 <!-- Barra lateral izquierda -->
 <aside id="application-sidebar-brand"
-    class="hs-overlay hs-overlay-open:translate-x-0 -translate-x-full  transform hidden xl:block xl:translate-x-0 xl:end-auto xl:bottom-0 fixed top-0 with-vertical h-screen z-40 flex-shrink-0 border-r-[1px] w-[270px] border-gray-400  bg-white left-sidebar   transition-all duration-300">
+    class="hs-overlay hs-overlay-open:translate-x-0 -translate-x-full  transform hidden xl:block xl:translate-x-0 xl:end-auto xl:bottom-0 fixed top-0 with-vertical h-screen z-[999] flex-shrink-0 border-r-[1px] w-[270px] border-gray-400  bg-white left-sidebar   transition-all duration-300">
 
     <!-- Logo de la barra lateral -->
     <div class="p-5 flex items-center justify-start">
@@ -53,7 +53,7 @@
 
                     <x-sidebar-section-title> USUARIOS </x-sidebar-section-title>
 
-                    <x-sidebar-section-link href="#">
+                    <x-sidebar-section-link href="{{ route('users.index') }}">
                         <i class="ti ti-user text-xl"></i> Usuarios
                     </x-sidebar-section-link>
 
@@ -61,7 +61,7 @@
                         <i class="ti ti-license text-xl"></i> Permisos
                     </x-sidebar-section-link>
 
-                    <x-sidebar-section-link href="#">
+                    <x-sidebar-section-link href="{{ route('roles.index') }}">
                         <i class="ti ti-lock text-xl"></i> Roles
                     </x-sidebar-section-link>
                 </ul>

@@ -3,6 +3,7 @@
 use App\Http\Controllers\PermissionController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\RoleController;
+use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 use Spatie\Permission\Contracts\Role;
 
@@ -26,6 +27,10 @@ Route::middleware('auth')->group(function () {
     Route::resource('roles', RoleController::class)
         ->only(['index', 'store', 'update', 'destroy'])
         ->names('roles');
+
+    Route::resource('users', UserController::class)
+        ->except(['create', 'edit'])
+        ->names('users');
 });
 
 require __DIR__.'/auth.php';
