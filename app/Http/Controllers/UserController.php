@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Spatie\Permission\Models\Role;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Validation\Rules;
 
 class UserController extends Controller
 {
@@ -22,7 +24,32 @@ class UserController extends Controller
 
     public function store(Request $request)
     {
-        User::create($request->all());
+        $request->validate([
+            'firstname' => 'required',
+            'lastname' => 'required',
+            'username' => 'required|unique:users',
+            'email' => 'required|email|unique:users',
+            'phone' => 'required|numeric',
+            'password' => ['required', 'confirmed', Rules\Password::defaults()],
+            'avatar' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+        ]);
+
+        $user = User::create([
+            'firstname' => $request->firstname,
+            'lastname' => $request->lastname,
+            'username' => $request->username,
+            'email' => $request->email,
+            'phone' => $request->phone,
+            'password' => Hash::make($request->password),
+        ]);
+
+        if($request->hasFile('avatar')) {
+            $avatar = $request->file('avatar');
+            $filename = time() . $user->username . '.' . $avatar->getClientOriginalExtension();
+            $avatar->storeAs('avatars', $filename, 'public');
+            $user->avatar = $filename;
+            $user->save();
+        }
 
         return redirect()->route('users.index');
     }

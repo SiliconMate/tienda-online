@@ -72,7 +72,7 @@
 
             <div class="hs-dropdown relative inline-flex [--placement:bottom-right] sm:[--trigger:hover]">
                 <a class="relative hs-dropdown-toggle cursor-pointer align-middle rounded-full">
-                    <img class="object-cover w-9 h-9 rounded-full" src="{{ asset('assets/images/profile/user-1.jpg')}}"
+                    <img class="object-cover w-9 h-9 rounded-full" src="{{ asset('storage/avatars/'.Auth::user()->avatar) }}"
                         alt="" aria-hidden="true">
                 </a>
                 <div class="card hs-dropdown-menu transition-[opacity,margin] border border-gray-400 rounded-[7px] duration hs-dropdown-open:opacity-100 opacity-0 mt-2 min-w-max  w-[200px] hidden z-[12]" aria-labelledby="hs-dropdown-custom-icon-trigger">

@@ -1,5 +1,5 @@
 <x-modal name="create-user" :show="$errors->any()" focusable>
-    <form action="{{ route('users.store') }}" method="POST">
+    <form action="{{ route('users.store') }}" method="POST" enctype="multipart/form-data">
         @csrf
         <div class="grid grid-cols-1 gap-3">
             <div class="grid grid-cols-1 p-6 pb-0">
@@ -11,21 +11,21 @@
 
             <div class="grid grid-cols-1 py-0 px-6">
                 <div class="flex flex-row">
-                    {{-- first name --}}
+                    {{-- firstname --}}
                     <div class="w-1/2 ">
-                        <x-input id="first_name" class="block w-full" type="text" name="first_name" :value="old('first_name')"
+                        <x-input id="firstname" class="block w-full" type="text" name="firstname" :value="old('firstname')"
                             required autofocus>
                             Nombre
                         </x-input>
-                        <x-input-error :messages="$errors->get('first_name')" class="mt-2" />
+                        <x-input-error :messages="$errors->get('firstname')" class="mt-2" />
                     </div>
                     {{-- lastname --}}
                     <div class="w-1/2 pl-3">
-                        <x-input id="last_name" class="block w-full" type="text" name="last_name" :value="old('last_name')"
+                        <x-input id="lastname" class="block w-full" type="text" name="lastname" :value="old('lastname')"
                             required>
                             Apellido
                         </x-input>
-                        <x-input-error :messages="$errors->get('last_name')" class="mt-2" />
+                        <x-input-error :messages="$errors->get('lastname')" class="mt-2" />
                     </div>
                 </div>
                 {{-- username --}}
@@ -58,6 +58,7 @@
                         <x-input id="password" class="block w-full" type="password" name="password" required>
                             Contraseña
                         </x-input>
+                        <x-input-error :messages="$errors->get('password')" class="mt-2" />
                     </div>
                     {{-- confirm password --}}
                     <div class="w-1/2 pl-3">
@@ -65,14 +66,15 @@
                             required>
                             Confirmar Contraseña
                         </x-input>
+                        <x-input-error :messages="$errors->get('password_confirmation')" class="mt-2" />
                     </div>
                 </div>
                 {{-- imagen perfil --}}
                 <div class="w-full">
-                    <x-file-select id="profile_photo_path" class="block w-full" name="profile_photo_path" required>
-                        Imagen de Perfil
+                    <x-file-select id="avatar" class="block w-full" name="avatar">
+                        Avatar
                     </x-file-select>
-                    <x-input-error :messages="$errors->get('profile_photo_path')" class="mt-2" />
+                    <x-input-error :messages="$errors->get('avatar')" class="mt-2" />
                 </div>
             </div>
 

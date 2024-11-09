@@ -1,4 +1,4 @@
-<x-modal name="edit-user-{{ $user->id }}" :show="$errors->any()" focusable>
+{{-- <x-modal name="edit-user-{{ $user->id }}" :show="$errors->any()" focusable>
     <form action="{{ route('users.update', $user->id) }}" method="POST">
         @csrf
         @method('PUT')
@@ -26,4 +26,4 @@
             </div>
         </div>
     </form>
-</x-modal>
+</x-modal> --}}
