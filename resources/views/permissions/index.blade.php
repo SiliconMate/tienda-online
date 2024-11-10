@@ -36,9 +36,7 @@
                             </th>
                             <td class="px-6 py-4">
                                 @foreach ($permission->roles as $role)
-                                    <span class="px-2 py-1 text-xs font-semibold leading-tight text-green-700 bg-green-100 rounded-full dark:bg-green-700 dark:text-green-100">
-                                        {{ $role->name }}
-                                    </span>
+                                <span class="px-2 py-1 text-xs font-semibold leading-tight text-gray-700 bg-emerald-200 rounded-md dark:bg-emerald-700 dark:text-gray-100">{{ $role->name }}</span>
                                 @endforeach
                             </td>
                             <td class="px-6 py-4">

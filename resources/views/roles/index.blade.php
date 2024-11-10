@@ -33,8 +33,7 @@
                             <td class="px-6 py-4">{{ $role->name }}</td>
                             <td class="px-6 py-4">
                                 @foreach ($role->permissions as $permission)
-                                    <span
-                                        class="px-2 py-1 text-xs font-semibold leading-tight text-gray-700 bg-gray-200 rounded-full dark:bg-gray-700 dark:text-gray-100">{{ $permission->name }}</span>
+                                <span class="px-2 py-1 text-xs font-semibold leading-tight text-gray-700 bg-sky-200 rounded-md dark:bg-sky-700 dark:text-gray-100">{{ $permission->name }}</span>
                                 @endforeach
                             </td>
                             <td class="px-6 py-4">
