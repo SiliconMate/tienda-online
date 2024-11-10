@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use Spatie\Permission\Models\Role;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\Rules;
+use Spatie\Permission\Models\Permission;
 
 class UserController extends Controller
 {
@@ -101,5 +102,41 @@ class UserController extends Controller
     {
         $user = User::find($user);
         return view('users.show', compact('user'));
+    }
+
+    public function addRole(Request $request, $user)
+    {
+        $user = User::find($user);
+        $role = Role::findByName($request->role, 'web');
+        $user->assignRole($role);
+
+        return redirect()->route('users.index');
+    }
+
+    public function removeRole(Request $request, $user)
+    {
+        $user = User::find($user);
+        $role = Role::findByName($request->role, 'web');
+        $user->removeRole($role);
+
+        return redirect()->route('users.index');
+    }
+
+    public function addPermission(Request $request, $user)
+    {
+        $user = User::find($user);
+        $perm = Permission::findByName($request->perm, 'web');
+        $user->givePermissionTo($perm);
+
+        return redirect()->route('users.index');
+    }
+
+    public function removePermission(Request $request, $user)
+    {
+        $user = User::find($user);
+        $perm = Permission::findByName($request->permission, 'web');
+        $user->revokePermissionTo($perm);
+
+        return redirect()->route('users.index');
     }
 }

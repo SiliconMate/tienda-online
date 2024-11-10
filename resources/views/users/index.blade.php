@@ -33,13 +33,25 @@
                             <td class="px-6 py-4">{{ $user->email }}</td>
                             <td class="px-6 py-4">
                                 @foreach ($user->roles as $role)
-                                    <span class="px-2 py-1 text-xs font-semibold leading-tight text-gray-700 bg-gray-200 rounded-full dark:bg-gray-700 dark:text-gray-100">{{ $role->name }}</span>
+                                    <span class="px-2 py-1 text-xs font-semibold leading-tight text-gray-700 bg-emerald-200 rounded-md dark:bg-emerald-700 dark:text-gray-100">{{ $role->name }}</span>
                                 @endforeach
+
+                                <a href="#" x-data="" x-on:click.prevent="$dispatch('open-modal', 'add-role-{{ $user->id }}')">
+                                    <i class="ti ti-plus text-lg"></i>
+                                </a>
+                                @include('users.partials.add-role-modal', ['user' => $user])
+
                             </td>
                             <td class="px-6 py-4">
                                 @foreach ($user->permissions as $permission)
-                                    <span class="px-2 py-1 text-xs font-semibold leading-tight text-gray-700 bg-gray-200 rounded-full dark:bg-gray-700 dark:text-gray-100">{{ $permission->name }}</span>
+                                <span class="px-2 py-1 text-xs font-semibold leading-tight text-gray-700 bg-sky-200 rounded-md dark:bg-sky-700 dark:text-gray-100">{{ $permission->name }}</span>
                                 @endforeach
+
+                                <a href="#" x-data="" x-on:click.prevent="$dispatch('open-modal', 'add-perm-{{ $user->id }}')">
+                                    <i class="ti ti-plus text-lg"></i>
+                                </a>
+                                @include('users.partials.add-perm-modal', ['user' => $user])
+
                             </td>
                             <td class="px-6 py-1 flex flex-col">
                                 

@@ -31,6 +31,12 @@ Route::middleware('auth')->group(function () {
     Route::resource('users', UserController::class)
         ->except(['create', 'edit'])
         ->names('users');
+
+    Route::post('users/{user}/addrole', [UserController::class, 'addRole'])
+        ->name('users.addrole');
+
+    Route::post('users/{user}/addpermission', [UserController::class, 'addPermission'])
+        ->name('users.addpermission');
 });
 
 require __DIR__.'/auth.php';
