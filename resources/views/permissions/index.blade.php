@@ -24,6 +24,9 @@
                             Roles
                         </th>
                         <th scope="col" class="px-6 py-3">
+                            Usuarios
+                        </th>
+                        <th scope="col" class="px-6 py-3">
                             Acciones
                         </th>
                     </tr>
@@ -40,10 +43,15 @@
                                 @endforeach
                             </td>
                             <td class="px-6 py-4">
+                                @foreach ($permission->users as $user)
+                                <span class="px-2 py-1 text-xs font-semibold leading-tight text-gray-700 bg-sky-200 rounded-md dark:bg-sky-700 dark:text-gray-100">{{ $user->username.' ('.$user->id.')' }}</span>
+                                @endforeach
+                            </td>
+                            <td class="px-6 py-4 flex flex-col">
 
-                                <button x-data="" x-on:click.prevent="$dispatch('open-modal', 'edit-perm-{{ $permission->id }}')" class="text-blue-600 hover:underline">
-                                    Editar permiso
-                                </button>
+                                <a x-data="" x-on:click.prevent="$dispatch('open-modal', 'edit-perm-{{ $permission->id }}')" class="text-blue-600 hover:underline cursor-pointer">
+                                    Editar
+                                </a>
                 
                                 @include('permissions.partials.edit-perm-modal', ['permission' => $permission])
 

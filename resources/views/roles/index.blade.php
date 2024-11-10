@@ -36,10 +36,10 @@
                                 <span class="px-2 py-1 text-xs font-semibold leading-tight text-gray-700 bg-sky-200 rounded-md dark:bg-sky-700 dark:text-gray-100">{{ $permission->name }}</span>
                                 @endforeach
                             </td>
-                            <td class="px-6 py-4">
-                                <button x-data="" x-on:click.prevent="$dispatch('open-modal', 'edit-role-{{ $role->id }}')" class="text-blue-600 hover:underline">
+                            <td class="px-6 py-4 flex flex-col">
+                                <a x-data="" x-on:click.prevent="$dispatch('open-modal', 'edit-role-{{ $role->id }}')" class="text-blue-600 hover:underline cursor-pointer">
                                     Editar
-                                </button>
+                                </a>
 
                                 @include('roles.partials.edit-role-modal', ['role' => $role])
                                 
