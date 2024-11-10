@@ -7,6 +7,40 @@
 <a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
 </p>
 
+## Instalación
+1. Clonar repositorio y entrar a la carpeta
+```bash
+git clone https://github.com/SiliconMate/tienda-online
+cd tienda-online
+```
+
+2. Instalar dependencias de PHP y JS
+```bash
+composer install
+npm install
+```
+
+3. Copiar archivo de configuración y configurarlo.
+```bash
+cp .env.example .env
+```
+
+4. Generar clave de aplicación
+```bash
+php artisan key:generate
+```
+
+5. Migrar la base de datos
+```bash
+php artisan migrate
+```
+
+6. Iniciar el servidor local
+```bash
+php artisan serve
+npm run dev
+```
+
 ## About Laravel
 
 Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
