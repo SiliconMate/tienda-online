@@ -27,17 +27,17 @@
     <main>
         <div id="main-wrapper" class=" flex">
             
-            <x-sidebar />
+            <x-dashboard.sidebar />
 
             <div class=" w-full page-wrapper overflow-hidden">            
                 
-                <x-header />
+                <x-dashboard.header />
             
                 <main class="h-full overflow-y-auto max-w-full pt-4">
                     <div class="container full-container py-5 flex flex-col gap-6">
                         {{ $slot }}
                     </div>
-                    <x-footer />
+                    <x-dashboard.footer />
                 </main>
 
             </div>
