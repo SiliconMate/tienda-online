@@ -9,7 +9,7 @@
                 </a>
             </li>
 
-            <li class="relative">
+            {{-- <li class="relative">
                 <div class="hs-dropdown relative inline-flex [--placement:bottom-left] sm:[--trigger:hover]">
                     <a class="relative hs-dropdown-toggle inline-flex  icon-hover text-gray-600" href="#">
                         <i class="ti ti-bell-ringing text-xl relative z-[1]"></i>
@@ -56,7 +56,7 @@
                     </div>
                 </div>
 
-            </li>
+            </li> --}}
 
         </ul>
         <div class="flex items-center gap-4">
