@@ -25,7 +25,7 @@
 
                     <x-sidebar-section-title> PRODUCTOS/CATEGORIAS </x-sidebar-section-title>
 
-                    <x-sidebar-section-link href="#">
+                    <x-sidebar-section-link href="{{ route('categories.index') }}">
                         <i class="ti ti-article text-xl"></i> Categorias
                     </x-sidebar-section-link>
 

@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\PermissionController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\RoleController;
@@ -37,6 +38,10 @@ Route::middleware('auth')->group(function () {
 
     Route::post('users/{user}/addpermission', [UserController::class, 'addPermission'])
         ->name('users.addpermission');
+
+    Route::resource('categories', CategoryController::class)
+        ->only(['index', 'store', 'update', 'destroy'])
+        ->names('categories');
 });
 
 require __DIR__.'/auth.php';
