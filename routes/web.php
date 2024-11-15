@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\PermissionController;
+use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\RoleController;
 use App\Http\Controllers\UserController;
@@ -42,6 +43,10 @@ Route::middleware('auth')->group(function () {
     Route::resource('categories', CategoryController::class)
         ->only(['index', 'store', 'update', 'destroy'])
         ->names('categories');
+
+    Route::resource('products', ProductController::class)
+        ->except(['create', 'edit'])
+        ->names('products');
 });
 
 require __DIR__.'/auth.php';

@@ -29,7 +29,7 @@
                         <i class="ti ti-article text-xl"></i> Categorias
                     </x-sidebar-section-link>
 
-                    <x-sidebar-section-link href="#">
+                    <x-sidebar-section-link href="{{ route('products.index') }}">
                         <i class="ti ti-shopping-cart text-xl"></i> Productos
                     </x-sidebar-section-link>
 
