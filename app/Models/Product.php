@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Database\Eloquent\Casts\Attribute;
 
 class Product extends Model
 {
@@ -52,5 +53,23 @@ class Product extends Model
     public function images(): HasMany
     {
         return $this->hasMany(Image::class);
+    }
+
+    public function name(): Attribute
+    {
+        return Attribute::make(
+            get: function($value){
+                return ucfirst($value);
+            }
+        );
+    }
+
+    public function description(): Attribute
+    {
+        return Attribute::make(
+            get: function($value){
+                return ucfirst($value);
+            }
+        );
     }
 }

@@ -6,16 +6,47 @@ $images = [
 ];
 @endphp
 
+<div class="bg-yellow-500 text-center py-2 text-white font-bold">
+    ENVIOS GRATIS A PARTIR DE $10000
+</div>
 <x-home-layout>
     <x-home.carousel :images="$images" />
-
+    <section>
+        <div class="container py-16">
+            <div class="w-10/12 grid grid-cols-1 md:grid-cols-3 gap-6 mx-auto justify-center">
+                <div class="border border-primary rounded-sm px-3 py-6 flex justify-center items-center gap-5">
+                    <img src="{{ asset('storage/icons/delivery-van.svg') }}"class="w-12 h-12 object-contain">
+                    <div>
+                        <h4 class="font-medium capitalize text-lg">Envio gratis</h4>
+                        <p class="text-gray-500 text-sm">Sobre compras mayores a $10000</p>
+                    </div>
+                </div>
+                <div class="border border-primary rounded-sm px-3 py-6 flex justify-center items-center gap-5">
+                    <img src="{{ asset('storage/icons/money-back.svg')}}" alt="Delivery" class="w-12 h-12 object-contain">
+                    <div>
+                        <h4 class="font-medium capitalize text-lg">Reembolso de dinero</h4>
+                        <p class="text-gray-500 text-sm">Reembolso disponibles en 30 dias</p>
+                    </div>
+                </div>
+                <div class="border border-primary rounded-sm px-3 py-6 flex justify-center items-center gap-5">
+                    <img src="{{ asset('storage/icons/service-hours.svg')}}" alt="Delivery" class="w-12 h-12 object-contain">
+                    <div>
+                        <h4 class="font-medium capitalize text-lg">Soporte 24/7</h4>
+                        <p class="text-gray-500 text-sm">Soporte al cliente</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+        {{-- categorias --}}
     <section class="container mx-auto py-8">
-        <h2 class="text-3xl font-bold text-gray-900 mb-6 pl-3">Explora nuestras categorías</h2>
-        <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
-            @foreach (App\Models\Category::all() as $category)
-                <a href="{{-- route('categories.show', $category->id) --}}" class="block mx-4 bg-gray-800 shadow-md rounded-sm overflow-hidden transform transition duration-300 hover:scale-105 text-center p-4 no-underline">
-                    <h3 class="text-2xl font-semibold text-slate-200">{{ $category->name }}</h3>
-                    <p class="text-slate-300 text-md">{{ $category->description }}</p>
+        <h2 class="text-2xl font-medium text-gray-800 uppercase mb-6">Explora nuestras categorías</h2>
+        <div class="grid grid-cols-3 gap-3">
+            @foreach (App\Models\Category::all()->take(6) as $category)
+                <a href="route('categories.show', $category->id)" class="block mx-4 bg-gray-800 shadow-md rounded-sm overflow-hidden transform transition duration-300 hover:scale-105 text-center relative no-underline">
+                    <img src="{{ asset('storage/categories/' . $category->name . '.webp') }}" alt="{{ $category->name }}" class="w-full h-64 object-cover opacity-50">
+                    <h3 class="absolute inset-0 flex items-center justify-center text-2xl font-semibold text-slate-200">{{ $category->name }}</h3>
                 </a>
             @endforeach
         </div>
@@ -24,11 +55,13 @@ $images = [
     {{-- productos destacados --}}
     <section class="container mx-auto py-8">
         <h2 class="text-3xl font-bold text-gray-900 mb-6 pl-3">Productos destacados</h2>
-        <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
-            @foreach (App\Models\Product::all()->take(6) as $product)
-                <x-product-card :product="$product" />
-            @endforeach
+        <div class="border-2 border-blue-900 rounded-lg p-4">
+            <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+                @foreach (App\Models\Product::all()->take(4) as $product)
+                    <x-product-card :product="$product" />
+                @endforeach
+            </div>
         </div>
     </section>
-
 </x-home-layout>
+

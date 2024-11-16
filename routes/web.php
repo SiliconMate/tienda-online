@@ -39,4 +39,18 @@ Route::middleware('auth')->group(function () {
         ->name('users.addpermission');
 });
 
+Route::get('/produtos', [ProductController::class, 'index'])->name('products.index');
+
+Route::get('/produtos/{product}', [ProductController::class, 'show'])->name('products.show');
+
+Route::get('/categorias', [CategoryController::class, 'index'])->name('categories.index');
+
+Route::get('/categorias/{category}', [CategoryController::class, 'show'])->name('categories.show');
+
+Route::get('/carrito', [CartController::class, 'index'])->name('cart.index');
+
+Route::get('/checkout', [CheckoutController::class, 'index'])->name('checkout.index');
+
+Route::get('/checkout/completado', [CheckoutController::class, 'completed'])->name('checkout.completed');
+
 require __DIR__.'/auth.php';
