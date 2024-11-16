@@ -47,6 +47,9 @@ Route::middleware('auth')->group(function () {
     Route::resource('products', ProductController::class)
         ->except(['create', 'edit'])
         ->names('products');
+
+    Route::delete('products/{product}/image/{image}', [ProductController::class, 'destroyImage'])
+        ->name('products.image.destroy');
 });
 
 require __DIR__.'/auth.php';

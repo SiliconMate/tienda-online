@@ -19,24 +19,26 @@
                 </div>
                 {{-- description --}}
                 <div class="w-full">
-                    <x-input id="description" class="block w-full" type="text" name="description" :value="old('description')" required>
+                    <x-textarea class="block w-full" name="description" :value="old('description', '')" rows="3" required>
                         Descripción
-                    </x-input>
+                    </x-textarea>
                     <x-input-error :messages="$errors->get('description')" class="mt-2" />
                 </div>
-                {{-- price --}}
-                <div class="w-full">
-                    <x-input id="price" class="block w-full" type="number" name="price" :value="old('price')" required>
-                        Precio
-                    </x-input>
-                    <x-input-error :messages="$errors->get('price')" class="mt-2" />
-                </div>
-                {{-- code --}}
-                <div class="w-full">
-                    <x-input id="code" class="block w-full" type="text" name="code" :value="old('code')" required>
-                        Código
-                    </x-input>
-                    <x-input-error :messages="$errors->get('code')" class="mt-2" />
+                <div class="grid grid-cols-2 gap-3">
+                    {{-- price --}}
+                    <div class="w-full">
+                        <x-input id="price" class="block w-full" type="number" name="price" :value="old('price')" required>
+                            Precio
+                        </x-input>
+                        <x-input-error :messages="$errors->get('price')" class="mt-2" />
+                    </div>
+                    {{-- code --}}
+                    <div class="w-full">
+                        <x-input id="code" class="block w-full" type="text" name="code" :value="old('code')" required>
+                            Código
+                        </x-input>
+                        <x-input-error :messages="$errors->get('code')" class="mt-2" />
+                    </div>
                 </div>
                 {{-- category id --}}
                 <div class="w-full">
@@ -46,9 +48,9 @@
                     <x-input-error :messages="$errors->get('category_id')" class="mt-2" />
                 </div>
                 {{-- imagen --}}
-                <div class="w-full">
-                    <x-file-select id="image" class="block w-full" name="image">
-                        Imagen
+                <div class="w-full mt-2">
+                    <x-file-select id="image" class="block w-full" name="image[]" multiple>
+                        Imagenes
                     </x-file-select>
                     <x-input-error :messages="$errors->get('image')" class="mt-2" />
                 </div>
