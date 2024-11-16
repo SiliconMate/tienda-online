@@ -44,9 +44,9 @@ class Product extends Model
         return $this->hasOne(Inventory::class);
     }
 
-    public function orderItems(): HasOne
+    public function orderItems(): HasMany
     {
-        return $this->hasOne(OrderItem::class);
+        return $this->hasMany(OrderItem::class);
     }
 
     public function images(): HasMany
