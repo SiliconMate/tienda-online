@@ -4,6 +4,9 @@ use App\Http\Controllers\PermissionController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\RoleController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\Shop\ProductController as ShopProductController;
+use App\Http\Controllers\CheckoutController;
+use App\Http\Controllers\Shop\CategoryController as ShopCategoryController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -39,13 +42,9 @@ Route::middleware('auth')->group(function () {
         ->name('users.addpermission');
 });
 
-Route::get('/produtos', [ProductController::class, 'index'])->name('products.index');
+Route::resource('produtos', ProductController::class)-> only(['index', 'show'])->names('products');
 
-Route::get('/produtos/{product}', [ProductController::class, 'show'])->name('products.show');
-
-Route::get('/categorias', [CategoryController::class, 'index'])->name('categories.index');
-
-Route::get('/categorias/{category}', [CategoryController::class, 'show'])->name('categories.show');
+Route::resource('categorias', CategoryController::class)-> only(['index', 'show'])->names('categories');
 
 Route::get('/carrito', [CartController::class, 'index'])->name('cart.index');
 

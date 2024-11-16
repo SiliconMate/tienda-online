@@ -1,35 +1,32 @@
 @php
 $images = [
-    ['src' => 'home-carousel/DC_20241018174428_XdEjhTqS.png', 'alt' => 'Image 1 description'],
-    ['src' => 'home-carousel/DC_20241018174550_a2KBtWsN.png', 'alt' => 'Image 2 description'],
-    ['src' => 'home-carousel/DC_20241022151949_kdqhRLmI.png', 'alt' => 'Image 3 description']
+    ['src' => 'images/home-carousel/DC_20241018174428_XdEjhTqS.png', 'alt' => 'Image 1 description'],
+    ['src' => 'images/home-carousel/DC_20241018174550_a2KBtWsN.png', 'alt' => 'Image 2 description'],
+    ['src' => 'images/home-carousel/DC_20241022151949_kdqhRLmI.png', 'alt' => 'Image 3 description']
 ];
 @endphp
 
-<div class="bg-yellow-500 text-center py-2 text-white font-bold">
-    ENVIOS GRATIS A PARTIR DE $10000
-</div>
 <x-home-layout>
     <x-home.carousel :images="$images" />
     <section>
         <div class="container py-16">
             <div class="w-10/12 grid grid-cols-1 md:grid-cols-3 gap-6 mx-auto justify-center">
                 <div class="border border-primary rounded-sm px-3 py-6 flex justify-center items-center gap-5">
-                    <img src="{{ asset('storage/icons/delivery-van.svg') }}"class="w-12 h-12 object-contain">
+                    <img src="{{ asset('images/icons/delivery-van.svg') }}"class="w-12 h-12 object-contain">
                     <div>
                         <h4 class="font-medium capitalize text-lg">Envio gratis</h4>
-                        <p class="text-gray-500 text-sm">Sobre compras mayores a $10000</p>
+                        <p class="text-gray-500 text-sm">Sobre compras mayores a $60.000</p>
                     </div>
                 </div>
                 <div class="border border-primary rounded-sm px-3 py-6 flex justify-center items-center gap-5">
-                    <img src="{{ asset('storage/icons/money-back.svg')}}" alt="Delivery" class="w-12 h-12 object-contain">
+                    <img src="{{ asset('images/icons/money-back.svg')}}" alt="Delivery" class="w-12 h-12 object-contain">
                     <div>
                         <h4 class="font-medium capitalize text-lg">Reembolso de dinero</h4>
                         <p class="text-gray-500 text-sm">Reembolso disponibles en 30 dias</p>
                     </div>
                 </div>
                 <div class="border border-primary rounded-sm px-3 py-6 flex justify-center items-center gap-5">
-                    <img src="{{ asset('storage/icons/service-hours.svg')}}" alt="Delivery" class="w-12 h-12 object-contain">
+                    <img src="{{ asset('images/icons/service-hours.svg')}}" alt="Delivery" class="w-12 h-12 object-contain">
                     <div>
                         <h4 class="font-medium capitalize text-lg">Soporte 24/7</h4>
                         <p class="text-gray-500 text-sm">Soporte al cliente</p>
@@ -45,7 +42,7 @@ $images = [
         <div class="grid grid-cols-3 gap-3">
             @foreach (App\Models\Category::all()->take(6) as $category)
                 <a href="route('categories.show', $category->id)" class="block mx-4 bg-gray-800 shadow-md rounded-sm overflow-hidden transform transition duration-300 hover:scale-105 text-center relative no-underline">
-                    <img src="{{ asset('storage/categories/' . $category->name . '.webp') }}" alt="{{ $category->name }}" class="w-full h-64 object-cover opacity-50">
+                    <img src="{{ asset('images/categories/' . $category->name . '.webp') }}" alt="{{ $category->name }}" class="w-full h-64 object-cover opacity-50">
                     <h3 class="absolute inset-0 flex items-center justify-center text-2xl font-semibold text-slate-200">{{ $category->name }}</h3>
                 </a>
             @endforeach
