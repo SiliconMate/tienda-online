@@ -97,10 +97,10 @@ class ProductController extends Controller
         return back();
     }
 
-    // public function destroyImage(Product $product, string $image)
-    // {
-    //     $product->images()->where('path', $image)->delete();
+    public function destroyImage(Product $product, string $image)
+    {
+        $product->images()->where('id', $image)->delete();
         
-    //     return back();
-    // }
+        return back();
+    }
 }

@@ -21,6 +21,7 @@
                         <th scope="col" class="px-6 py-3">Nombre</th>
                         <th scope="col" class="px-6 py-3">Precio</th>
                         <th scope="col" class="px-6 py-3">Categoría</th>
+                        <th scope="col" class="px-6 py-3">Imagen</th>
                         <th scope="col" class="px-6 py-3">Acciones</th>
                     </tr>
                 </thead>
@@ -31,6 +32,13 @@
                             <td class="px-6 py-4">{{ $product->name }}</td>
                             <td class="px-6 py-4">{{ $product->price }}</td>
                             <td class="px-6 py-4">{{ $product->category->name ?? 'Sin categoría' }}</td>
+                            <td class="px-6 py-4">
+                                @if($product->images->count())
+                                    <img src="{{ asset('storage/products/' . $product->images->first()->path) }}" alt="{{ $product->name }}" class="w-12 h-12 object-cover">
+                                @else
+                                    <img src="https://media.istockphoto.com/id/1147544807/vector/thumbnail-image-vector-graphic.jpg?s=612x612&w=0&k=20&c=rnCKVbdxqkjlcs3xH87-9gocETqpspHFXu5dIGB4wuM=" alt="{{ $product->name }}" class="w-12 h-12 object-cover">
+                                @endif
+                            </td>
                             <td class="px-6 py-1 flex flex-col">
                                 
                                 <a href="{{ route('products.show', $product) }}" class="text-blue-600 hover:underline">Detallar</a>
