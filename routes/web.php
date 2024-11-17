@@ -10,6 +10,7 @@ use App\Http\Controllers\RoleController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\Shop\ProductController as ShopProductController;
 use App\Http\Controllers\CheckoutController;
+use App\Http\Controllers\OpinionController;
 use App\Http\Controllers\Shop\CategoryController as ShopCategoryController;
 use Illuminate\Support\Facades\Route;
 
@@ -65,6 +66,10 @@ Route::middleware('auth')->group(function () {
 
     Route::delete('admin-discounts/{discount}/removeproduct/{product}', [DiscountController::class, 'removeProduct'])
         ->name('dashboard.discounts.removeproduct');
+
+    Route::resource('admin-opinions', OpinionController::class)
+        ->only(['index', 'destroy'])
+        ->names('dashboard.opinions');
 });
 
 Route::resource('products', ShopProductController::class)
