@@ -69,6 +69,7 @@
                     <input type="text" id="discount_code" name="discount_code" placeholder="Código de descuento"
                         required
                         class="border border-gray-300 rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-primary">
+                        <x-input-error :messages="$errors->get('discount_code')" class="mt-2" />
                     <button type="submit"
                         class="bg-blue-800 text-white px-4 py-2 rounded-lg hover:bg-blue-900 transition-colors">Aplicar</button>
                 </div>

@@ -19,8 +19,9 @@ class ProductController extends Controller
 
         $product = Product::findOrFail($product);
         $relatedProducts = Product::where('category_id', $product->category_id)->where('id', '!=', $product->id)->take(4)->get();
+        $discountedPrice = session('discountedPrice');
 
-        return view('shop.products.show', compact('product', 'relatedProducts'));
+        return view('shop.products.show', compact('product', 'relatedProducts', 'discountedPrice'));
     }
 
     public function applyDiscount(Request $request, $productId){
@@ -31,8 +32,7 @@ class ProductController extends Controller
 
         if ($discount) {
             $discountedPrice = $product->price - ($product->price * ($discount->percentage / 100));
-
-            return redirect()->route('products.show', $product->id)->with(compact('discountedPrice', 'discount'));
+            return redirect()->route('products.show', $product->id)->with('discountedPrice', $discountedPrice);
         } else {
             return redirect()->back()->withErrors(['discount_code' => 'Código de descuento no válido o inactivo.']);
         }
