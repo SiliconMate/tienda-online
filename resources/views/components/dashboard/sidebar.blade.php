@@ -43,19 +43,19 @@
 
                     <x-sidebar-section-title> VENTAS </x-sidebar-section-title>
 
-                    <x-sidebar-section-link href="#{{-- route('dashboard.orders.index') --}}">
+                    <x-sidebar-section-link href="{{ route('dashboard.orders.index') }}">
                         <div class="flex justify-between items-center w-full">
                             <div class="">
                                 <i class="ti ti-receipt text-xl pr-2"></i> 
                                 Ordenes
                             </div>
-                            <span class="bg-red-500 text-white rounded-full px-2 py-1 text-xs">
+                            <span class="bg-red-500 text-white rounded-full px-2 py-1 text-xs flex items-center justify-center w-6 h-6 font-black">
                                 {{ App\Models\OrderDetail::where('status', 'pending')->count() }}
                             </span>
                         </div>
                     </x-sidebar-section-link>
 
-                    <x-sidebar-section-link href="#{{-- route('dashboard.sales.index') --}}">
+                    <x-sidebar-section-link href="{{ route('dashboard.sales.index') }}">
                         <i class="ti ti-shopping-cart text-xl"></i> Ventas
                     </x-sidebar-section-link>
 
