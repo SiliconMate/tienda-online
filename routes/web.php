@@ -42,14 +42,16 @@ Route::middleware('auth')->group(function () {
         ->name('users.addpermission');
 });
 
-Route::resource('produtos', ProductController::class)-> only(['index', 'show'])->names('products');
+Route::resource('products', ShopProductController::class)-> only(['index', 'show'])->names('products');
 
-Route::resource('categorias', CategoryController::class)-> only(['index', 'show'])->names('categories');
+Route::post('products/{product}/apply-discount', [ShopProductController::class, 'applyDiscount'])->name('apply.discount');
 
-Route::get('/carrito', [CartController::class, 'index'])->name('cart.index');
+Route::resource('shop/categories', ShopCategoryController::class)-> only(['index', 'show'])->names('categories');
+
+Route::get('/cart', [CartController::class, 'index'])->name('cart.index');
 
 Route::get('/checkout', [CheckoutController::class, 'index'])->name('checkout.index');
 
-Route::get('/checkout/completado', [CheckoutController::class, 'completed'])->name('checkout.completed');
+Route::get('/checkout/complete', [CheckoutController::class, 'completed'])->name('checkout.completed');
 
 require __DIR__.'/auth.php';

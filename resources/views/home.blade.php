@@ -41,7 +41,7 @@ $images = [
         <h2 class="text-2xl font-medium text-gray-800 uppercase mb-6">Explora nuestras categorías</h2>
         <div class="grid grid-cols-3 gap-3">
             @foreach (App\Models\Category::all()->take(6) as $category)
-                <a href="route('categories.show', $category->id)" class="block mx-4 bg-gray-800 shadow-md rounded-sm overflow-hidden transform transition duration-300 hover:scale-105 text-center relative no-underline">
+                <a href="{{ route('categories.show', $category->id) }}" class="block mx-4 bg-gray-800 shadow-md rounded-sm overflow-hidden transform transition duration-300 hover:scale-105 text-center relative no-underline">
                     <img src="{{ asset('images/categories/' . $category->name . '.webp') }}" alt="{{ $category->name }}" class="w-full h-64 object-cover opacity-50">
                     <h3 class="absolute inset-0 flex items-center justify-center text-2xl font-semibold text-slate-200">{{ $category->name }}</h3>
                 </a>

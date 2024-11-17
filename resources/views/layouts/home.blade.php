@@ -13,11 +13,10 @@
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap"
         rel="stylesheet" />
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@2.44.0/tabler-icons.min.css">
-
     <!-- Core -->
     @vite('resources/css/app.css')
     @vite('resources/js/app.js')
-
+    
     <title>{{ $title ?? 'Tienda Online'}}</title>
 </head>
 
@@ -37,5 +36,5 @@
     </div>
 
 </body>
-
+<script src="https://kit.fontawesome.com/4d32451fc4.js" crossorigin="anonymous"></script>
 </html>

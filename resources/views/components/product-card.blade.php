@@ -27,7 +27,7 @@
                 <h6 class="text-lg text-gray-800 font-semibold">${{ $product->price }}</h6>
                 <span class="text-xs text-gray-500 border border-gray-300 p-1 rounded bg-yellow-100">hasta 12 cuotas fijas</span>
             </div>
-            <a href="javascript:void(0)" class="mt-4 bg-blue-600 text-white px-4 py-2 rounded-full hover:bg-blue-700 transition-colors">Ver más</a>
+            <a href="{{ route('products.show', $product->id) }}" class="mt-4 bg-blue-600 text-white px-4 py-2 rounded-full hover:bg-blue-700 transition-colors">Ver más</a>
         </div>
     </div>
 </div>
