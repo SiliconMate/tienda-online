@@ -23,7 +23,7 @@
                         <tr class="odd:bg-white odd:dark:bg-gray-900 even:bg-gray-50 even:dark:bg-gray-800 border-b dark:border-gray-700">
                             <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
                                 @if($order->status == 'pending')
-                                    <span class="inline-blocz w-2 h-2 bg-red-500 rounded-full mr-2"></span>
+                                    <span class="inline-block w-2 h-2 bg-red-500 rounded-full mr-2"></span>
                                 @endif
                                 {{ $order->id }}
                             </th>
@@ -36,7 +36,7 @@
                             <td class="px-6 py-4">{{ $order->status }}</td>
                             <td class="px-6 py-4">{{ $order->created_at }}</td>
                             <td class="px-6 py-1 flex flex-col">
-                                <a href="{{ route('dashboard.orders.show', $order->id) }}" class="text-blue-600 hover:underline">Detallar</a>
+                                <a href="{{ route('dashboard.orders.show', $order->id) }}" class="text-blue-600 hover:underline">Adminsitrar</a>
                             </td>
                         </tr>
                     @endforeach

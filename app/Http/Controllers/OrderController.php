@@ -9,7 +9,7 @@ class OrderController extends Controller
 {
     public function index()
     {
-        $orders = OrderDetail::whereIn('status', ['pending', 'processing', 'canceled'])->get();
+        $orders = OrderDetail::whereIn('status', ['pending', 'processing', 'cancelled'])->get();
 
         return view('dashboard.orders.index', compact('orders'));
     }
@@ -19,20 +19,16 @@ class OrderController extends Controller
 
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
     public function store(Request $request)
     {
-        //
+
     }
 
-    /**
-     * Display the specified resource.
-     */
     public function show(string $id)
     {
-        //
+        $order = OrderDetail::findOrFail($id);
+
+        return view('dashboard.orders.show', compact('order'));
     }
 
     /**
@@ -58,4 +54,34 @@ class OrderController extends Controller
     {
         //
     }
+
+    public function cancel(string $id)
+    {
+        $order = OrderDetail::findOrFail($id);
+        $order->status = 'cancelled';
+        $order->save();
+
+        return redirect()->route('dashboard.orders.index');
+    }
+
+    public function accept(string $id)
+    {
+        $order = OrderDetail::findOrFail($id);
+        $order->status = 'processing';
+        $order->save();
+
+        return redirect()->route('dashboard.orders.index');
+    }
+
+    public function complete(string $id)
+    {
+        $order = OrderDetail::findOrFail($id);
+        $order->status = 'completed';
+        $order->completed_at = now();
+        $order->save();
+
+        return redirect()->route('dashboard.orders.index');
+    }
+
+
 }

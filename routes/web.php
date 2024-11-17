@@ -76,6 +76,15 @@ Route::middleware('auth')->group(function () {
     Route::resource('admin-orders', OrderController::class)
         ->names('dashboard.orders');
 
+    Route::put('admin-orders/{order}/cancel', [OrderController::class, 'cancel'])
+        ->name('dashboard.orders.cancel');
+        
+    Route::put('admin-orders/{order}/accept', [OrderController::class, 'accept'])
+        ->name('dashboard.orders.accept');
+
+    Route::put('admin-orders/{order}/complete', [OrderController::class, 'complete'])
+        ->name('dashboard.orders.complete');
+
     Route::resource('admin-sales', SaleController::class)
         ->names('dashboard.sales');
 });
