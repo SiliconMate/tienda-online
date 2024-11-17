@@ -59,6 +59,12 @@ Route::middleware('auth')->group(function () {
     Route::resource('admin-discounts', DiscountController::class)
         ->only(['index', 'store', 'update', 'destroy'])
         ->names('dashboard.discounts');
+
+    Route::post('admin-discounts/{discount}/addproduct', [DiscountController::class, 'addProduct'])
+        ->name('dashboard.discounts.addproduct');
+
+    Route::delete('admin-discounts/{discount}/removeproduct/{product}', [DiscountController::class, 'removeProduct'])
+        ->name('dashboard.discounts.removeproduct');
 });
 
 Route::resource('products', ShopProductController::class)

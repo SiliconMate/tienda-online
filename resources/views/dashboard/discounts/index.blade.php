@@ -18,8 +18,6 @@
                         <th scope="col" class="px-6 py-3">Nombre</th>
                         <th scope="col" class="px-6 py-3">Código</th>
                         <th scope="col" class="px-6 py-3">Porcentaje</th>
-                        {{-- <th scope="col" class="px-6 py-3">Inicio</th>
-                        <th scope="col" class="px-6 py-3">Fin</th> --}}
                         <th scope="col" class="px-6 py-3">Activo</th>
                         <th scope="col" class="px-6 py-3">Productos</th>
                         <th scope="col" class="px-6 py-3">Acciones</th>
@@ -30,11 +28,16 @@
                         <tr class="odd:bg-white odd:dark:bg-gray-900 even:bg-gray-50 even:dark:bg-gray-800 border-b dark:border-gray-700">
                             <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">{{ $discount->id }}</th>
                             <td class="px-6 py-4">{{ $discount->name }}</td>
-                            <td class="px-6 py-4">{{ $discount->percent }}</td>
-                            {{-- <td class="px-6 py-4">{{ $discount->start_date }}</td>
-                            <td class="px-6 py-4">{{ $discount->end_date }}</td> --}}
+                            <td class="px-6 py-4">{{ $discount->code }}</td>
+                            <td class="px-6 py-4">{{ $discount->percentage }}%</td>
                             <td class="px-6 py-4">{{ $discount->active ? 'Si' : 'No' }}</td>
-                            <td class="px-6 py-4">{{ $discount->products->count() }}</td>
+                            <td class="px-6 py-4">
+                                {{ $discount->products->count() }}
+                                <a href="#" x-data="" x-on:click.prevent="$dispatch('open-modal', 'add-product-{{ $discount->id }}')">
+                                    <i class="ti ti-plus text-lg ml-2"></i>
+                                </a>
+                                @include('dashboard.discounts.partials.add-discount-product', ['discount' => $discount])
+                            </td>
                             <td class="px-6 py-1 flex flex-col">
                                 <a href="#" x-data="" x-on:click.prevent="$dispatch('open-modal', 'edit-discount-{{ $discount->id }}')" class="text-blue-600 hover:underline">
                                     Editar
