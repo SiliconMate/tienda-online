@@ -1,8 +1,10 @@
 <div class="card overflow-hidden transition-transform transform hover:scale-105 shadow-lg rounded-lg hover:border-4 hover:border-blue-800">
     <!-- Imagen -->
     <div class="relative group">
-        <a href="javascript:void(0)">
-            <img src="https://placehold.co/600x400/EEE/31343C" alt="{{ $product->name }}" class="w-full">
+        <a href="{{ route('products.show', $product->id) }}">
+            @if($product->images->isNotEmpty())
+                <img src="{{ asset('storage/products/' . $product->images->first()->path) }}" alt="{{ $product->name }}" class="w-full">
+            @endif
         </a>
         <!-- Botón de añadir al carrito -->
         <a href="javascript:void(0)"

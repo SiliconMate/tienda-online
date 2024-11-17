@@ -8,6 +8,18 @@
         @endforeach
     ],
     currentSlideIndex: 1,
+    interval: null,
+    init() {
+        this.startAutoSlide();
+    },
+    startAutoSlide() {
+        this.interval = setInterval(() => {
+            this.next();
+        }, 3000); // Change slide every 3 seconds
+    },
+    stopAutoSlide() {
+        clearInterval(this.interval);
+    },
     previous() {                
         if (this.currentSlideIndex > 1) {                    
             this.currentSlideIndex = this.currentSlideIndex - 1                
@@ -27,14 +39,14 @@
 }" class="relative w-full overflow-hidden">
 
     <!-- previous button -->
-    <button type="button" class="absolute left-2 md:left-5 top-1/2 z-20 flex rounded-full -translate-y-1/2 items-center justify-center bg-white/40 p-1 md:p-2 text-neutral-600 transition hover:bg-white/60 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-black active:outline-offset-0 dark:bg-neutral-950/40 dark:text-neutral-300 dark:hover:bg-neutral-950/60 dark:focus-visible:outline-white" aria-label="previous slide" x-on:click="previous()">
+    <button type="button" class="absolute left-2 md:left-5 top-1/2 z-20 flex rounded-full -translate-y-1/2 items-center justify-center bg-white/40 p-1 md:p-2 text-neutral-600 transition hover:bg-white/60 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-black active:outline-offset-0 dark:bg-neutral-950/40 dark:text-neutral-300 dark:hover:bg-neutral-950/60 dark:focus-visible:outline-white" aria-label="previous slide" x-on:click="previous(); stopAutoSlide(); startAutoSlide();">
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" stroke="currentColor" fill="none" stroke-width="3" class="size-4 md:size-6 pr-0.5" aria-hidden="true">
             <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 19.5 8.25 12l7.5-7.5" />
         </svg>
     </button>
 
     <!-- next button -->
-    <button type="button" class="absolute right-2 md:right-5 top-1/2 z-20 flex rounded-full -translate-y-1/2 items-center justify-center bg-white/40 p-1 md:p-2 text-neutral-600 transition hover:bg-white/60 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-black active:outline-offset-0 dark:bg-neutral-950/40 dark:text-neutral-300 dark:hover:bg-neutral-950/60 dark:focus-visible:outline-white" aria-label="next slide" x-on:click="next()">
+    <button type="button" class="absolute right-2 md:right-5 top-1/2 z-20 flex rounded-full -translate-y-1/2 items-center justify-center bg-white/40 p-1 md:p-2 text-neutral-600 transition hover:bg-white/60 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-black active:outline-offset-0 dark:bg-neutral-950/40 dark:text-neutral-300 dark:hover:bg-neutral-950/60 dark:focus-visible:outline-white" aria-label="next slide" x-on:click="next(); stopAutoSlide(); startAutoSlide();">
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" stroke="currentColor" fill="none" stroke-width="3" class="size-4 md:size-6 pl-0.5" aria-hidden="true">
             <path stroke-linecap="round" stroke-linejoin="round" d="M8.25 4.5l7.5 7.5-7.5 7.5" />
         </svg>
@@ -53,7 +65,7 @@
     <!-- indicators -->
     <div class="absolute bottom-2 md:bottom-4 left-1/2 z-20 flex -translate-x-1/2 gap-1 md:gap-2" role="group" aria-label="slides">
         <template x-for="(slide, index) in slides">
-            <button class="size-1.5 md:size-2 cursor-pointer rounded-full transition bg-neutral-600 dark:bg-neutral-300" x-on:click="currentSlideIndex = index + 1" x-bind:class="[currentSlideIndex === index + 1 ? 'bg-neutral-600 dark:bg-neutral-300' : 'bg-neutral-600/50 dark:bg-neutral-300/50']" x-bind:aria-label="'slide ' + (index + 1)"></button>
+            <button class="size-1.5 md:size-2 cursor-pointer rounded-full transition bg-neutral-600 dark:bg-neutral-300" x-on:click="currentSlideIndex = index + 1; stopAutoSlide(); startAutoSlide();" x-bind:class="[currentSlideIndex === index + 1 ? 'bg-neutral-600 dark:bg-neutral-300' : 'bg-neutral-600/50 dark:bg-neutral-300/50']" x-bind:aria-label="'slide ' + (index + 1)"></button>
         </template>
     </div>
 </div>
