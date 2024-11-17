@@ -11,25 +11,14 @@ class RoleController extends Controller
     public function index()
     {
         $roles = Role::all();
-        return view('roles.index', compact('roles'));
-    }
-
-    public function create()
-    {
-        $permissions = Permission::all();
-        return view('roles.create', compact('permissions'));
+        return view('dashboard.roles.index', compact('roles'));
     }
 
     public function store(Request $request)
     {
         Role::create($request->all());
 
-        return redirect()->route('roles.index');
-    }
-
-    public function edit($role)
-    {
-        return view('roles.edit');
+        return redirect()->route('dashboard.roles.index');
     }
 
     public function update(Request $request, $role)
@@ -37,7 +26,7 @@ class RoleController extends Controller
         $role = Role::find($role);
         $role->update($request->all());
 
-        return redirect()->route('roles.index');
+        return redirect()->route('dashboard.roles.index');
     }
 
     public function destroy($role)
@@ -45,11 +34,6 @@ class RoleController extends Controller
         $role = Role::find($role);
         $role->delete();
 
-        return redirect()->route('roles.index');
-    }
-
-    public function show($role)
-    {
-        return view('roles.show');
+        return redirect()->route('dashboard.roles.index');
     }
 }

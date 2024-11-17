@@ -13,7 +13,7 @@ class ProductController extends Controller
     {
         $products = Product::all();
         
-        return view('products.index', compact('products'));
+        return view('dashboard.products.index', compact('products'));
     }
     
     public function store(Request $request)
@@ -45,14 +45,14 @@ class ProductController extends Controller
             }
         }
 
-        return redirect()->route('products.index');
+        return redirect()->route('dashboard.products.index');
     }
 
     public function show(string $id)
     {
         $product = Product::find($id);
         
-        return view('products.show', compact('product'));        
+        return view('dashboard.products.show', compact('product'));        
     }
 
     public function update(Request $request, string $id)
@@ -87,7 +87,7 @@ class ProductController extends Controller
             }
         }
 
-        return redirect()->route('products.index');
+        return redirect()->route('dashboard.products.index');
     }
 
     public function destroy(string $id)

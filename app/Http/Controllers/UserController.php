@@ -14,13 +14,13 @@ class UserController extends Controller
     public function index()
     {
         $users = User::all();
-        return view('users.index', compact('users'));
+        return view('dashboard.users.index', compact('users'));
     }
 
     public function create()
     {
         $roles = Role::all();
-        return view('users.create', compact('roles'));
+        return view('dashboard.users.create', compact('roles'));
     }
 
     public function store(Request $request)
@@ -52,7 +52,7 @@ class UserController extends Controller
             $user->save();
         }
 
-        return redirect()->route('users.index');
+        return redirect()->route('dashboard.users.index');
     }
 
     // public function edit($user)
@@ -87,7 +87,7 @@ class UserController extends Controller
             $user->save();
         }
 
-        return redirect()->route('users.index');
+        return redirect()->route('dashboard.users.index');
     }
 
     public function destroy($user)
@@ -95,13 +95,13 @@ class UserController extends Controller
         $user = User::find($user);
         $user->delete();
 
-        return redirect()->route('users.index');
+        return redirect()->route('dashboard.users.index');
     }
 
     public function show($user)
     {
         $user = User::find($user);
-        return view('users.show', compact('user'));
+        return view('dashboard.users.show', compact('user'));
     }
 
     public function addRole(Request $request, $user)
@@ -110,7 +110,7 @@ class UserController extends Controller
         $role = Role::findByName($request->role, 'web');
         $user->assignRole($role);
 
-        return redirect()->route('users.index');
+        return redirect()->route('dashboard.users.index');
     }
 
     public function removeRole(Request $request, $user)
@@ -119,7 +119,7 @@ class UserController extends Controller
         $role = Role::findByName($request->role, 'web');
         $user->removeRole($role);
 
-        return redirect()->route('users.index');
+        return redirect()->route('dashboard.users.index');
     }
 
     public function addPermission(Request $request, $user)
@@ -128,7 +128,7 @@ class UserController extends Controller
         $perm = Permission::findByName($request->perm, 'web');
         $user->givePermissionTo($perm);
 
-        return redirect()->route('users.index');
+        return redirect()->route('dashboard.users.index');
     }
 
     public function removePermission(Request $request, $user)
@@ -137,6 +137,6 @@ class UserController extends Controller
         $perm = Permission::findByName($request->permission, 'web');
         $user->revokePermissionTo($perm);
 
-        return redirect()->route('users.index');
+        return redirect()->route('dashboard.users.index');
     }
 }

@@ -11,7 +11,7 @@ class CategoryController extends Controller
     public function index()
     {
         $categories = Category::all();
-        return view('categories.index', compact('categories'));
+        return view('dashboard.categories.index', compact('categories'));
     }
 
     public function store(Request $request)
@@ -25,7 +25,7 @@ class CategoryController extends Controller
         $category->slug = Str::slug($request->name);
         $category->save();
 
-        return redirect()->route('categories.index');
+        return redirect()->route('dashboard.categories.index');
     }
 
     public function update(Request $request, string $id)
@@ -40,7 +40,7 @@ class CategoryController extends Controller
         $category->slug = Str::slug($request->slug);
         $category->save();
 
-        return redirect()->route('categories.index');
+        return redirect()->route('dashboard.categories.index');
     }
 
     public function destroy(string $id)
@@ -48,6 +48,6 @@ class CategoryController extends Controller
         $category = Category::find($id);
         $category->delete();
 
-        return redirect()->route('categories.index');
+        return redirect()->route('dashboard.categories.index');
     }
 }
