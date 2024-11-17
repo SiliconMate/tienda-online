@@ -9,9 +9,34 @@ use App\Models\Discount;
 
 class ProductController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-        $products = Product::all();
+        $query = Product::query();
+
+        if ($request->has('min') && $request->min != null) {
+            $query->where('price', '>=', $request->min);
+        }
+
+        if ($request->has('max') && $request->max != null) {
+            $query->where('price', '<=', $request->max);
+        }
+
+        if ($request->has('sort') && $request->sort != null) {
+            switch ($request->sort) {
+                case 'price-low-to-high':
+                    $query->orderBy('price', 'asc');
+                    break;
+                case 'price-high-to-low':
+                    $query->orderBy('price', 'desc');
+                    break;
+                case 'latest':
+                    $query->orderBy('created_at', 'desc');
+                    break;
+            }
+        }
+
+        $products = $query->get();
+
         return view('shop.products.index', compact('products'));
     }
 
