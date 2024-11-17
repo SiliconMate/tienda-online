@@ -6,6 +6,10 @@
             <i class="fa-solid fa-chevron-right"></i>
         </span>
         <p class="text-gray-600 font-medium">Productos</p>
+        <span class="text-sm text-gray-400">
+            <i class="fa-solid fa-chevron-right"></i>
+        </span>
+        <p class="text-gray-600 font-medium">{{ $product->name }}</p>
     </div>
 
     <!-- product-detail -->
@@ -170,7 +174,7 @@
                             <div class="text-xs text-gray-500 ml-3">({{ $relatedProduct->opinions()->count() }})</div>
                         </div>
                     </div>
-                    <a href="{{ route('products.show', $relatedProduct->id) }}"
+                    <a href="{{-- route('cart') --}}"
                         class="block w-full py-2 text-center text-white bg-blue-800 border border-blue-800 rounded-b-lg hover:bg-blue-900 transition"><i class="fa-solid fa-bag-shopping"></i> Agregar
                         al carrito
                     </a>

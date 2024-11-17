@@ -9,9 +9,20 @@ use App\Models\Discount;
 
 class ProductController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-        $products = Product::all();
+        $query = Product::query();
+
+        if ($request->has('min') && $request->min != null) {
+            $query->where('price', '>=', $request->min);
+        }
+
+        if ($request->has('max') && $request->max != null) {
+            $query->where('price', '<=', $request->max);
+        }
+
+        $products = $query->get();
+
         return view('shop.products.index', compact('products'));
     }
 
