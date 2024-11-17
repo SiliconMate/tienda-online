@@ -13,6 +13,9 @@ return new class extends Migration
             $table->foreignId('user_id')->constrained()
                 ->onDelete('cascade')
                 ->onUpdate('cascade');
+            $table->foreignId('address_id')->constrained()
+                ->onDelete('no action')
+                ->onUpdate('no action');
             $table->decimal('total_price', 10, 2);
             $table->enum('status', ['pending', 'processing', 'completed', 'cancelled']);
             $table->timestamp('completed_at')->nullable();

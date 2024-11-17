@@ -16,6 +16,7 @@ return new class extends Migration
             $table->foreignId('discount_id')->constrained()
                 ->onDelete('cascade')
                 ->onUpdate('cascade');
+            $table->integer('uses')->default(0);
             $table->timestamps();
             $table->softDeletes();
         });
