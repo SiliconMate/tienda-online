@@ -11,12 +11,12 @@
     <!-- product-detail -->
     <div class="container grid grid-cols-2 gap-6 bg-gray-100 p-6 rounded-lg shadow-md mx-8">
         <div class="relative">
-            <img id="main-image" src="{{ asset('storage/products/' . $images->first()->path) }}" alt="product" class="w-3/4 mx-auto">
+            <img id="main-image" src="{{ asset('storage/products/' . $images->first()->path) }}" alt="product" class="w-3/4 mx-auto transition-all duration-500 ease-in-out">
             <div id="zoom-lens" class="absolute hidden border-2 border-gray-300"></div>
             <div class="flex justify-center mt-4">
-                @foreach ($images as $image)
-                    <img src="{{ asset('storage/products/' . $image->path) }}" alt="product" class="w-1/6 mx-1 cursor-pointer" onclick="changeMainImage('{{ asset('storage/products/' . $image->path) }}')">
-                @endforeach
+            @foreach ($images as $image)
+            <img src="{{ asset('storage/products/' . $image->path) }}" alt="product" class="w-1/6 mx-1 cursor-pointer border-2 border-transparent hover:border-blue-800" onclick="changeMainImage('{{ asset('storage/products/' . $image->path) }}')">
+            @endforeach
             </div>
         </div>
         <div class="p-6 bg-white rounded-lg shadow-md">
@@ -108,13 +108,41 @@
             </div>
         </div>
     </div>
-    <br>
+    <!-- ./product-detail -->
+
+    <!-- valorations -->
+    <div class="container mt-8 mx-8">
+        <h2 class="text-3xl font-bold text-gray-800 uppercase mb-6">Valoraciones</h2>
+        @foreach ($opinions as $opinion)
+            <div class="bg-white p-6 rounded-lg shadow-md mb-4 ">
+                <div class="flex items-center mb-2">
+                    <div class="text-lg text-yellow-400 flex gap-1">
+                        @for ($i = 1; $i <= 5; $i++)
+                            @if ($i <= $opinion->rating)
+                                <span><i class="fa-solid fa-star"></i></span>
+                            @else
+                                <span><i class="fa-regular fa-star"></i></span>
+                            @endif
+                        @endfor
+                    </div>
+                    <div class="text-sm text-gray-500 ml-3 font-semibold">{{ $opinion->user->firstname . ' ' . $opinion->user->lastname  }}</div>
+                </div>
+                <p class="text-gray-700 text-lg">{{ $opinion->content }}</p>
+            </div>
+        @endforeach
+    </div>
+    
     <!-- related product -->
     <div class="container pb-16 mx-8">
         <h2 class="text-2xl font-medium text-gray-800 uppercase mb-6">Productos relacionados</h2>
         <div class="grid grid-cols-4 gap-6">
             @foreach ($relatedProducts as $relatedProduct)
                 <div class="bg-white shadow-lg rounded-lg overflow-hidden group transform transition duration-500 hover:scale-105">
+                    <div class="relative">
+                        <a href="{{ route('products.show', $relatedProduct->id) }}">
+                            <img src="{{ asset('storage/products/' . $relatedProduct->images->first()->path) }}" alt="{{ $relatedProduct->name }}" class="w-full h-48 object-cover">
+                        </a>
+                    </div>
                     <div class="pt-4 pb-3 px-4">
                         <a href="{{ route('products.show', $relatedProduct->id) }}">
                             <h4 class="uppercase font-medium text-xl mb-2 text-gray-800 hover:text-primary transition">

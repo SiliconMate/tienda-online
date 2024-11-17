@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\CartController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\DiscountController;
 use App\Http\Controllers\PermissionController;
@@ -60,11 +61,11 @@ Route::middleware('auth')->group(function () {
         ->names('dashboard.discounts');
 });
 
-Route::resource('products', ShopProductController::class)-> only(['index', 'show'])->names('products');
+Route::resource('products', ShopProductController::class)->only(['index', 'show'])->names('products');
 
 Route::post('products/{product}/apply-discount', [ShopProductController::class, 'applyDiscount'])->name('apply.discount');
 
-Route::resource('shop/categories', ShopCategoryController::class)-> only(['index', 'show'])->names('categories');
+Route::resource('shop/categories', ShopCategoryController::class)->only(['index', 'show'])->names('categories');
 
 Route::get('/cart', [CartController::class, 'index'])->name('cart.index');
 
