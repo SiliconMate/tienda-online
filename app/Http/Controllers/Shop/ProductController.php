@@ -18,20 +18,9 @@ class ProductController extends Controller
     public function show($product){
 
         $product = Product::findOrFail($product);
-
-        $averageRating = $product->opinions()->avg('rating');
-
-        $reviewCount = $product->opinions()->count();
-
-        $inventory = $product->inventory;
-
         $relatedProducts = Product::where('category_id', $product->category_id)->where('id', '!=', $product->id)->take(4)->get();
 
-        $images = $product->images()->take(6)->get();
-
-        $opinions = $product->opinions()->with('user')->get();
-
-        return view('shop.products.show', compact('product', 'averageRating', 'reviewCount', 'inventory', 'relatedProducts', 'images', 'opinions'));
+        return view('shop.products.show', compact('product', 'relatedProducts'));
     }
 
     public function applyDiscount(Request $request, $productId){
@@ -42,17 +31,8 @@ class ProductController extends Controller
 
         if ($discount) {
             $discountedPrice = $product->price - ($product->price * ($discount->percentage / 100));
-            $averageRating = $product->opinions()->avg('rating');
-            $reviewCount = $product->opinions()->count();
-            $inventory = $product->inventory;
 
-            // Obtener productos relacionados
-            $relatedProducts = Product::where('category_id', $product->category_id)
-                                    ->where('id', '!=', $product->id)
-                                    ->take(4)
-                                    ->get();
-
-            return view('shop.products.show', compact('product', 'discountedPrice', 'discount', 'averageRating', 'reviewCount', 'inventory', 'relatedProducts'));
+            return redirect()->route('products.show', $product->id)->with(compact('discountedPrice', 'discount'));
         } else {
             return redirect()->back()->withErrors(['discount_code' => 'Código de descuento no válido o inactivo.']);
         }

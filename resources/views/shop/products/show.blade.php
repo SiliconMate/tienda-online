@@ -11,10 +11,10 @@
     <!-- product-detail -->
     <div class="container grid grid-cols-2 gap-6 bg-gray-100 p-6 rounded-lg shadow-md mx-8">
         <div class="relative">
-            <img id="main-image" src="{{ asset('storage/products/' . $images->first()->path) }}" alt="product" class="w-3/4 mx-auto transition-all duration-500 ease-in-out">
+            <img id="main-image" src="{{ asset('storage/products/' . $product->images->first()->path) }}" alt="product" class="w-3/4 mx-auto transition-all duration-500 ease-in-out">
             <div id="zoom-lens" class="absolute hidden border-2 border-gray-300"></div>
             <div class="flex justify-center mt-4">
-            @foreach ($images as $image)
+            @foreach ($product->images as $image)
             <img src="{{ asset('storage/products/' . $image->path) }}" alt="product" class="w-1/6 mx-1 cursor-pointer border-2 border-transparent hover:border-blue-800" onclick="changeMainImage('{{ asset('storage/products/' . $image->path) }}')">
             @endforeach
             </div>
@@ -24,21 +24,21 @@
             <div class="flex items-center mb-4">
                 <div class="flex gap-1 text-sm text-yellow-400">
                     @for ($i = 1; $i <= 5; $i++)
-                        @if ($i <= $averageRating)
+                        @if ($i <= $product->opinions()->avg('rating'))
                             <span><i class="fa-solid fa-star"></i></span>
                         @else
                             <span><i class="fa-regular fa-star"></i></span>
                         @endif
                     @endfor
                 </div>
-                <div class="text-xs text-gray-500 ml-3">({{ $reviewCount }} Reviews)</div>
+                <div class="text-xs text-gray-500 ml-3">({{ $product->opinions()->count() }} Reviews)</div>
             </div>
             <div class="space-y-2">
                 <p class="text-gray-800 font-semibold space-x-2">
                     <span>Disponibilidad: </span>
-                    @if ($inventory->quantity > 10)
+                    @if ($product->inventory->quantity > 10)
                         <span class="text-green-600">Stock alto</span>
-                    @elseif ($inventory->quantity > 0 && $inventory->quantity <= $inventory->min_quantity)
+                    @elseif ($product->inventory->quantity > 0 && $product->inventory->quantity <= $product->inventory->min_quantity)
                         <span class="text-yellow-600">Quedan pocos</span>
                     @else
                         <span class="text-red-600">Agotado</span>
@@ -113,7 +113,7 @@
     <!-- valorations -->
     <div class="container mt-8 mx-8">
         <h2 class="text-3xl font-bold text-gray-800 uppercase mb-6">Valoraciones</h2>
-        @foreach ($opinions as $opinion)
+        @foreach ($product->opinions as $opinion)
             <div class="bg-white p-6 rounded-lg shadow-md mb-4 ">
                 <div class="flex items-center mb-2">
                     <div class="text-lg text-yellow-400 flex gap-1">
