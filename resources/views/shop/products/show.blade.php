@@ -5,7 +5,9 @@
         <span class="text-sm text-gray-400">
             <i class="fa-solid fa-chevron-right"></i>
         </span>
-        <p class="text-gray-600 font-medium">Productos</p>
+        <a href="{{route('products.index')}}">
+            <p class="text-gray-600 font-medium">Productos</p>
+        </a>
         <span class="text-sm text-gray-400">
             <i class="fa-solid fa-chevron-right"></i>
         </span>
@@ -142,43 +144,45 @@
         <h2 class="text-2xl font-medium text-gray-800 uppercase mb-6">Productos relacionados</h2>
         <div class="grid grid-cols-4 gap-6">
             @foreach ($relatedProducts as $relatedProduct)
-                <div class="bg-white shadow-lg rounded-lg overflow-hidden group transform transition duration-500 hover:scale-105">
-                    <div class="relative">
-                        <a href="{{ route('products.show', $relatedProduct->id) }}">
-                            <img src="{{ asset('storage/products/' . $relatedProduct->images->first()->path) }}" alt="{{ $relatedProduct->name }}" class="w-full h-48 object-cover">
-                        </a>
-                    </div>
-                    <div class="pt-4 pb-3 px-4">
-                        <a href="{{ route('products.show', $relatedProduct->id) }}">
-                            <h4 class="uppercase font-medium text-xl mb-2 text-gray-800 hover:text-primary transition">
-                                {{ $relatedProduct->name }}</h4>
-                        </a>
-                        <div class="flex items-baseline mb-1 space-x-2">
-                            <p class="text-xl text-red-600 font-semibold">
-                                ${{ number_format($relatedProduct->price, 2) }}</p>
-                            @if ($relatedProduct->discount)
-                                <p class="text-sm text-gray-400 line-through">
-                                    ${{ number_format($relatedProduct->original_price, 2) }}</p>
-                            @endif
-                        </div>
-                        <div class="flex items-center">
-                            <div class="flex gap-1 text-sm text-yellow-400">
-                                @for ($i = 1; $i <= 5; $i++)
-                                    @if ($i <= $relatedProduct->opinions()->avg('rating'))
-                                        <span><i class="fa-solid fa-star"></i></span>
-                                    @else
-                                        <span><i class="fa-regular fa-star"></i></span>
-                                    @endif
-                                @endfor
-                            </div>
-                            <div class="text-xs text-gray-500 ml-3">({{ $relatedProduct->opinions()->count() }})</div>
-                        </div>
-                    </div>
-                    <a href="{{-- route('cart') --}}"
-                        class="block w-full py-2 text-center text-white bg-blue-800 border border-blue-800 rounded-b-lg hover:bg-blue-900 transition"><i class="fa-solid fa-bag-shopping"></i> Agregar
-                        al carrito
+            <div class="bg-white shadow-lg rounded-lg overflow-hidden group transform transition duration-500 hover:scale-105 flex flex-col justify-between">
+                <div>
+                <div class="relative">
+                    <a href="{{ route('products.show', $relatedProduct->id) }}">
+                    <img src="{{ asset('storage/products/' . $relatedProduct->images->first()->path) }}" alt="{{ $relatedProduct->name }}" class="w-full h-48 object-cover">
                     </a>
                 </div>
+                <div class="pt-4 pb-3 px-4">
+                    <a href="{{ route('products.show', $relatedProduct->id) }}">
+                    <h4 class="uppercase font-medium text-xl mb-2 text-gray-800 hover:text-primary transition">
+                        {{ $relatedProduct->name }}</h4>
+                    </a>
+                    <div class="flex items-baseline mb-1 space-x-2">
+                    <p class="text-xl text-red-600 font-semibold">
+                        ${{ number_format($relatedProduct->price, 2) }}</p>
+                    @if ($relatedProduct->discount)
+                        <p class="text-sm text-gray-400 line-through">
+                        ${{ number_format($relatedProduct->original_price, 2) }}</p>
+                    @endif
+                    </div>
+                    <div class="flex items-center">
+                    <div class="flex gap-1 text-sm text-yellow-400">
+                        @for ($i = 1; $i <= 5; $i++)
+                        @if ($i <= $relatedProduct->opinions()->avg('rating'))
+                            <span><i class="fa-solid fa-star"></i></span>
+                        @else
+                            <span><i class="fa-regular fa-star"></i></span>
+                        @endif
+                        @endfor
+                    </div>
+                    <div class="text-xs text-gray-500 ml-3">({{ $relatedProduct->opinions()->count() }})</div>
+                    </div>
+                </div>
+                </div>
+                <a href="{{-- route('cart') --}}"
+                class="block w-full py-2 text-center text-white bg-blue-800 border border-blue-800 rounded-b-lg hover:bg-blue-900 transition"><i class="fa-solid fa-bag-shopping"></i> Agregar
+                al carrito
+                </a>
+            </div>
             @endforeach
         </div>
     </div>

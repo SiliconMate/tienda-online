@@ -21,6 +21,20 @@ class ProductController extends Controller
             $query->where('price', '<=', $request->max);
         }
 
+        if ($request->has('sort') && $request->sort != null) {
+            switch ($request->sort) {
+                case 'price-low-to-high':
+                    $query->orderBy('price', 'asc');
+                    break;
+                case 'price-high-to-low':
+                    $query->orderBy('price', 'desc');
+                    break;
+                case 'latest':
+                    $query->orderBy('created_at', 'desc');
+                    break;
+            }
+        }
+
         $products = $query->get();
 
         return view('shop.products.index', compact('products'));
