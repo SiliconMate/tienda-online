@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\CartController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\PermissionController;
 use App\Http\Controllers\ProductController;
@@ -55,11 +56,11 @@ Route::middleware('auth')->group(function () {
         ->name('dashboard.products.image.destroy');
 });
 
-Route::resource('products', ShopProductController::class)-> only(['index', 'show'])->names('products');
+Route::resource('products', ShopProductController::class)->only(['index', 'show'])->names('products');
 
 Route::post('products/{product}/apply-discount', [ShopProductController::class, 'applyDiscount'])->name('apply.discount');
 
-Route::resource('shop/categories', ShopCategoryController::class)-> only(['index', 'show'])->names('categories');
+Route::resource('shop/categories', ShopCategoryController::class)->only(['index', 'show'])->names('categories');
 
 Route::get('/cart', [CartController::class, 'index'])->name('cart.index');
 
