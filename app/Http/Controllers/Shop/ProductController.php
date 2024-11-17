@@ -29,7 +29,9 @@ class ProductController extends Controller
 
         $images = $product->images()->take(6)->get();
 
-        return view('shop.products.show', compact('product', 'averageRating', 'reviewCount', 'inventory', 'relatedProducts', 'images'));
+        $opinions = $product->opinions()->with('user')->get();
+
+        return view('shop.products.show', compact('product', 'averageRating', 'reviewCount', 'inventory', 'relatedProducts', 'images', 'opinions'));
     }
 
     public function applyDiscount(Request $request, $productId){
