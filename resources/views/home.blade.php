@@ -38,7 +38,14 @@ $images = [
     
     {{-- categorias --}}
     <section class="container mx-auto py-8">
-        <h2 class="text-2xl font-medium text-gray-800 uppercase mb-6">Explora nuestras categorías</h2>
+        <div class="flex justify-between items-center mb-6">
+            <h2 class="text-3xl font-bold text-gray-900 mb-6 pl-3">Explora nuestras categorías</h2>
+            <a href="{{ route('categories.index') }}">
+                <p class="text-gray-600 font-medium">Ver todas
+                    <i class="fa-solid fa-chevron-right"></i>
+                </p>
+            </a>
+        </div>
         <div class="grid grid-cols-3 gap-3">
             @foreach (App\Models\Category::all()->take(6) as $category)
                 <a href="{{ route('categories.show', $category->id) }}" class="block mx-4 bg-gray-800 shadow-md rounded-sm overflow-hidden transform transition duration-300 hover:scale-105 text-center relative no-underline">
@@ -51,7 +58,14 @@ $images = [
 
     {{-- productos destacados --}}
     <section class="container mx-auto py-8">
-        <h2 class="text-3xl font-bold text-gray-900 mb-6 pl-3">Productos destacados</h2>
+        <div class="flex justify-between items-center mb-6">
+            <h2 class="text-3xl font-bold text-gray-900 mb-6 pl-3">Productos destacados</h2>
+            <a href="{{ route('products.index') }}">
+                <p class="text-gray-600 font-medium">Ver todos
+                    <i class="fa-solid fa-chevron-right"></i>
+                </p>
+            </a>
+        </div>
         <div class="border-2 border-blue-900 rounded-lg p-4">
             <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
                 @foreach (App\Models\Product::all()->take(4) as $product)
