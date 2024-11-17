@@ -8,27 +8,27 @@ $images = [
 
 <x-home-layout>
     <x-home.carousel :images="$images" />
-    <section>
-        <div class="container py-16">
+    <section class="bg-gray-100 py-16">
+        <div class="container mx-auto">
             <div class="w-10/12 grid grid-cols-1 md:grid-cols-3 gap-6 mx-auto justify-center">
-                <div class="border border-primary rounded-sm px-3 py-6 flex justify-center items-center gap-5">
-                    <img src="{{ asset('images/icons/delivery-van.svg') }}"class="w-12 h-12 object-contain">
+                <div class="border border-primary rounded-sm px-6 py-8 flex justify-center items-center gap-5 bg-white shadow-lg">
+                    <img src="{{ asset('images/icons/delivery-van.svg') }}" class="w-16 h-16 object-contain">
                     <div>
-                        <h4 class="font-medium capitalize text-lg">Envio gratis</h4>
+                        <h4 class="font-medium capitalize text-lg text-gray-800">Envio gratis</h4>
                         <p class="text-gray-500 text-sm">Sobre compras mayores a $60.000</p>
                     </div>
                 </div>
-                <div class="border border-primary rounded-sm px-3 py-6 flex justify-center items-center gap-5">
-                    <img src="{{ asset('images/icons/money-back.svg')}}" alt="Delivery" class="w-12 h-12 object-contain">
+                <div class="border border-primary rounded-sm px-6 py-8 flex justify-center items-center gap-5 bg-white shadow-lg">
+                    <img src="{{ asset('images/icons/money-back.svg')}}" alt="Delivery" class="w-16 h-16 object-contain">
                     <div>
-                        <h4 class="font-medium capitalize text-lg">Reembolso de dinero</h4>
+                        <h4 class="font-medium capitalize text-lg text-gray-800">Reembolso de dinero</h4>
                         <p class="text-gray-500 text-sm">Reembolso disponibles en 30 dias</p>
                     </div>
                 </div>
-                <div class="border border-primary rounded-sm px-3 py-6 flex justify-center items-center gap-5">
-                    <img src="{{ asset('images/icons/service-hours.svg')}}" alt="Delivery" class="w-12 h-12 object-contain">
+                <div class="border border-primary rounded-sm px-6 py-8 flex justify-center items-center gap-5 bg-white shadow-lg">
+                    <img src="{{ asset('images/icons/service-hours.svg')}}" alt="Delivery" class="w-16 h-16 object-contain">
                     <div>
-                        <h4 class="font-medium capitalize text-lg">Soporte 24/7</h4>
+                        <h4 class="font-medium capitalize text-lg text-gray-800">Soporte 24/7</h4>
                         <p class="text-gray-500 text-sm">Soporte al cliente</p>
                     </div>
                 </div>
@@ -36,7 +36,7 @@ $images = [
         </div>
     </section>
     
-        {{-- categorias --}}
+    {{-- categorias --}}
     <section class="container mx-auto py-8">
         <h2 class="text-2xl font-medium text-gray-800 uppercase mb-6">Explora nuestras categorías</h2>
         <div class="grid grid-cols-3 gap-3">
