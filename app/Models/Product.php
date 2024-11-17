@@ -37,7 +37,8 @@ class Product extends Model
 
     public function discounts(): BelongsToMany
     {
-        return $this->belongsToMany(Discount::class)->withTimestamps();
+        return $this->belongsToMany(Discount::class, 'product_discounts')
+            ->withTimestamps();
     }
 
     public function inventory(): HasOne

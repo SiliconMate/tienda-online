@@ -18,6 +18,7 @@ class Discount extends Model
 
     public function products(): BelongsToMany
     {
-        return $this->belongsToMany(Product::class)->withTimestamps();
+        return $this->belongsToMany(Product::class, 'product_discounts')
+            ->withTimestamps();
     }
 }

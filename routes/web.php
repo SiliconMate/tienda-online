@@ -27,43 +27,46 @@ Route::middleware('auth')->group(function () {
     Route::patch('/profile', [ProfileController::class, 'update'])->name('dashboard.profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('dashboard.profile.destroy');
 
-    Route::resource('permissions', PermissionController::class)
+    Route::resource('admin-permissions', PermissionController::class)
         ->only(['index', 'store', 'update', 'destroy'])
         ->names('dashboard.permissions');
 
-    Route::resource('roles', RoleController::class)
+    Route::resource('admin-roles', RoleController::class)
         ->only(['index', 'store', 'update', 'destroy'])
         ->names('dashboard.roles');
 
-    Route::resource('users', UserController::class)
+    Route::resource('admin-users', UserController::class)
         ->except(['create', 'edit'])
         ->names('dashboard.users');
 
-    Route::post('users/{user}/addrole', [UserController::class, 'addRole'])
+    Route::post('admin-users/{user}/addrole', [UserController::class, 'addRole'])
         ->name('dashboard.users.addrole');
 
-    Route::post('users/{user}/addpermission', [UserController::class, 'addPermission'])
+    Route::post('admin-users/{user}/addpermission', [UserController::class, 'addPermission'])
         ->name('dashboard.users.addpermission');
 
-    Route::resource('categories', CategoryController::class)
+    Route::resource('admin-categories', CategoryController::class)
         ->only(['index', 'store', 'update', 'destroy'])
         ->names('dashboard.categories');
 
-    Route::resource('products', ProductController::class)
+    Route::resource('admin-products', ProductController::class)
         ->except(['create', 'edit'])
         ->names('dashboard.products');
 
-    Route::delete('products/{product}/image/{image}', [ProductController::class, 'destroyImage'])
+    Route::delete('admin-products/{product}/image/{image}', [ProductController::class, 'destroyImage'])
         ->name('dashboard.products.image.destroy');
 
-    Route::resource('discounts', DiscountController::class)
+    Route::resource('admin-discounts', DiscountController::class)
         ->only(['index', 'store', 'update', 'destroy'])
         ->names('dashboard.discounts');
 });
 
-Route::resource('products', ShopProductController::class)->only(['index', 'show'])->names('products');
+Route::resource('products', ShopProductController::class)
+    ->only(['index', 'show'])
+    ->names('products');
 
-Route::post('products/{product}/apply-discount', [ShopProductController::class, 'applyDiscount'])->name('apply.discount');
+Route::post('products/{product}/apply-discount', [ShopProductController::class, 'applyDiscount'])
+    ->name('apply.discount');
 
 Route::resource('shop/categories', ShopCategoryController::class)->only(['index', 'show'])->names('categories');
 
