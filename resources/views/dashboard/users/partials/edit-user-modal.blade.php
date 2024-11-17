@@ -1,5 +1,5 @@
 <x-modal name="edit-user-{{ $user->id }}" :show="$errors->any()" focusable>
-    <form action="{{ route('users.update', $user->id) }}" method="POST" enctype="multipart/form-data">
+    <form action="{{ route('dashboard.users.update', $user->id) }}" method="POST" enctype="multipart/form-data">
         @csrf
         @method('PUT')
         <div class="grid grid-cols-1 gap-3">

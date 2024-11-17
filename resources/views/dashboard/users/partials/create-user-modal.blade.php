@@ -1,5 +1,5 @@
 <x-modal name="create-user" :show="$errors->any()" focusable>
-    <form action="{{ route('users.store') }}" method="POST" enctype="multipart/form-data">
+    <form action="{{ route('dashboard.users.store') }}" method="POST" enctype="multipart/form-data">
         @csrf
         <div class="grid grid-cols-1 gap-3">
             <div class="grid grid-cols-1 p-6 pb-0">

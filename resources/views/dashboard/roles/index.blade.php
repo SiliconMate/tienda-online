@@ -8,7 +8,7 @@
                     Crear Rol
                 </x-button>
 
-                @include('roles.partials.create-role-modal')
+                @include('dashboard.roles.partials.create-role-modal')
 
             </div>
         </x-slot>
@@ -41,9 +41,9 @@
                                     Editar
                                 </a>
 
-                                @include('roles.partials.edit-role-modal', ['role' => $role])
+                                @include('dashboard.roles.partials.edit-role-modal', ['role' => $role])
                                 
-                                <form action="{{ route('roles.destroy', $role) }}" method="POST" class="inline">
+                                <form action="{{ route('dashboard.roles.destroy', $role) }}" method="POST" class="inline">
                                     @csrf
                                     @method('DELETE')
                                     <button type="submit"

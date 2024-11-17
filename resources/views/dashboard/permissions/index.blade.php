@@ -8,7 +8,7 @@
                     Crear permiso
                 </x-button>
 
-                @include('permissions.partials.create-perm-modal')
+                @include('dashboard.permissions.partials.create-perm-modal')
                 
             </div>
         </x-slot>
@@ -53,9 +53,9 @@
                                     Editar
                                 </a>
                 
-                                @include('permissions.partials.edit-perm-modal', ['permission' => $permission])
+                                @include('dashboard.permissions.partials.edit-perm-modal', ['permission' => $permission])
 
-                                <form action="{{ route('permissions.destroy', $permission) }}" method="POST" class="inline">
+                                <form action="{{ route('dashboard.permissions.destroy', $permission) }}" method="POST" class="inline">
                                     @csrf
                                     @method('DELETE')
                                     <button type="submit" class="font-medium text-red-600 dark:text-red-500 hover:underline">

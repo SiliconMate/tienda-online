@@ -10,7 +10,7 @@
                     </div>
                 </div>
                 <x-button style="primary" type="button">
-                    <a href="{{route('users.index')}}">Volver</a>
+                    <a href="{{route('dashboard.users.index')}}">Volver</a>
                 </x-button>
             </div>
         </x-slot>

@@ -8,7 +8,7 @@
                     Crear Usuario
                 </x-button>
 
-                @include('users.partials.create-user-modal')
+                @include('dashboard.users.partials.create-user-modal')
 
             </div>
         </x-slot>
@@ -39,7 +39,7 @@
                                 <a href="#" x-data="" x-on:click.prevent="$dispatch('open-modal', 'add-role-{{ $user->id }}')">
                                     <i class="ti ti-plus text-lg"></i>
                                 </a>
-                                @include('users.partials.add-role-modal', ['user' => $user])
+                                @include('dashboard.users.partials.add-role-modal', ['user' => $user])
 
                             </td>
                             <td class="px-6 py-4">
@@ -50,19 +50,19 @@
                                 <a href="#" x-data="" x-on:click.prevent="$dispatch('open-modal', 'add-perm-{{ $user->id }}')">
                                     <i class="ti ti-plus text-lg"></i>
                                 </a>
-                                @include('users.partials.add-perm-modal', ['user' => $user])
+                                @include('dashboard.users.partials.add-perm-modal', ['user' => $user])
 
                             </td>
                             <td class="px-6 py-1 flex flex-col">
                                 
-                                <a href="{{ route('users.show', $user) }}" class="text-blue-600 hover:underline">Detallar</a>
+                                <a href="{{ route('dashboard.users.show', $user) }}" class="text-blue-600 hover:underline">Detallar</a>
                                 
                                 <a href="#" x-data="" x-on:click.prevent="$dispatch('open-modal', 'edit-user-{{ $user->id }}')" class="text-blue-600 hover:underline">
                                     Editar
                                 </a>
-                                @include('users.partials.edit-user-modal', ['user' => $user])
+                                @include('dashboard.users.partials.edit-user-modal', ['user' => $user])
                                 
-                                <form action="{{ route('users.destroy', $user) }}" method="POST" class="inline">
+                                <form action="{{ route('dashboard.users.destroy', $user) }}" method="POST" class="inline">
                                     @csrf
                                     @method('DELETE')
                                     <button type="submit" class="font-medium text-red-600 dark:text-red-500 hover:underline">Eliminar</button>

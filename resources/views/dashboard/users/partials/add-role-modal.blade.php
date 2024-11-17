@@ -1,21 +1,21 @@
-<x-modal name="edit-perm-{{ $permission->id }}" :show="$errors->userDeletion->isNotEmpty()" focusable>
-    <form action="{{ route('permissions.update', $permission->id) }}" method="POST">
+<x-modal name="add-role-{{ $user->id }}" :show="$errors->any()" focusable>
+    <form action="{{ route('dashboard.users.addrole', $user->id) }}" method="POST">
         @csrf
-        @method('PUT')
+
         <div class="grid grid-cols-1 gap-3">
             <div class="grid grid-cols-1 p-6 pb-0">
                 <div class="flex items-center">
                     <i class="ti ti-edit text-3xl text-gray-800 pr-2"></i>
-                    <h2 class="font-semibold text-xl text-gray-800 leading-tight">Editar permiso</h2>
+                    <h2 class="font-semibold text-xl text-gray-800 leading-tight">Agregar Rol</h2>
                 </div>
             </div>
+
             <div class="grid grid-cols-1 py-0 px-6">
-                <div>
-                    <x-input id="name" class="block w-full" type="text" name="name" :value="$permission->name" required autofocus>
-                        Nombre
-                    </x-input>
-                </div>
+                <x-select-menu id="role" name="role" :options="Spatie\Permission\Models\Role::all()->toArray()" key="name">
+                    Rol
+                </x-select-menu>
             </div>
+
             <div class="flex items-center justify-end px-6 py-3 bg-gray-400">
                 <x-button type="submit" style="primary">
                     Actualizar

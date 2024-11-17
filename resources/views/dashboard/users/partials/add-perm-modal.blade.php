@@ -1,5 +1,5 @@
 <x-modal name="add-perm-{{ $user->id }}" :show="$errors->any()" focusable>
-    <form action="{{ route('users.addpermission', $user->id) }}" method="POST">
+    <form action="{{ route('dashboard.users.addpermission', $user->id) }}" method="POST">
         @csrf
 
         <div class="grid grid-cols-1 gap-3">

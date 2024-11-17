@@ -25,11 +25,11 @@
 
                     <x-sidebar-section-title> PRODUCTOS/CATEGORIAS </x-sidebar-section-title>
 
-                    <x-sidebar-section-link href="#">
+                    <x-sidebar-section-link href="{{ route('dashboard.categories.index') }}">
                         <i class="ti ti-article text-xl"></i> Categorias
                     </x-sidebar-section-link>
 
-                    <x-sidebar-section-link href="#">
+                    <x-sidebar-section-link href="{{ route('dashboard.products.index') }}">
                         <i class="ti ti-shopping-cart text-xl"></i> Productos
                     </x-sidebar-section-link>
 
@@ -53,15 +53,15 @@
 
                     <x-sidebar-section-title> USUARIOS </x-sidebar-section-title>
 
-                    <x-sidebar-section-link href="{{ route('users.index') }}">
+                    <x-sidebar-section-link href="{{ route('dashboard.users.index') }}">
                         <i class="ti ti-user text-xl"></i> Usuarios
                     </x-sidebar-section-link>
 
-                    <x-sidebar-section-link href="{{ route('permissions.index') }}">
+                    <x-sidebar-section-link href="{{ route('dashboard.permissions.index') }}">
                         <i class="ti ti-license text-xl"></i> Permisos
                     </x-sidebar-section-link>
 
-                    <x-sidebar-section-link href="{{ route('roles.index') }}">
+                    <x-sidebar-section-link href="{{ route('dashboard.roles.index') }}">
                         <i class="ti ti-lock text-xl"></i> Roles
                     </x-sidebar-section-link>
                 </ul>

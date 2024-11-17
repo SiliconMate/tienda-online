@@ -10,7 +10,7 @@ class PermissionController extends Controller
     public function index()
     {
         $permissions = Permission::all();
-        return view('permissions.index', compact('permissions'));
+        return view('dashboard.permissions.index', compact('permissions'));
     }
 
     public function store(Request $request)
@@ -24,7 +24,7 @@ class PermissionController extends Controller
 
         Permission::create($request->all());
 
-        return redirect()->route('permissions.index');
+        return redirect()->route('dashboard.permissions.index');
     }
 
     public function update(Request $request, $permission)
@@ -38,7 +38,7 @@ class PermissionController extends Controller
         $permission = Permission::find($permission);
         $permission->update($request->all());
 
-        return redirect()->route('permissions.index');
+        return redirect()->route('dashboard.permissions.index');
     }
 
     public function destroy($permission)
@@ -46,6 +46,6 @@ class PermissionController extends Controller
         $permission = Permission::find($permission);
         $permission->delete();
 
-        return redirect()->route('permissions.index');
+        return redirect()->route('dashboard.permissions.index');
     }
 }

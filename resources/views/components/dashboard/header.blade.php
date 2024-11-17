@@ -77,7 +77,7 @@
                 </a>
                 <div class="card hs-dropdown-menu transition-[opacity,margin] border border-gray-400 rounded-[7px] duration hs-dropdown-open:opacity-100 opacity-0 mt-2 min-w-max  w-[200px] hidden z-[12]" aria-labelledby="hs-dropdown-custom-icon-trigger">
                     <div class="card-body p-0 py-2">
-                        <a href="{{ route('profile.edit') }}" class="flex gap-2 items-center px-4 py-[6px] hover:bg-blue-500">
+                        <a href="{{ route('dashboard.profile.edit') }}" class="flex gap-2 items-center px-4 py-[6px] hover:bg-blue-500">
                             <i class="ti ti-user text-gray-500 text-xl "></i>
                             <p class="text-sm text-gray-500">My Profile</p>
                         </a>
