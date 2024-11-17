@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\DiscountController;
 use App\Http\Controllers\PermissionController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ProfileController;
@@ -50,6 +51,10 @@ Route::middleware('auth')->group(function () {
 
     Route::delete('products/{product}/image/{image}', [ProductController::class, 'destroyImage'])
         ->name('dashboard.products.image.destroy');
+
+    Route::resource('discounts', DiscountController::class)
+        ->only(['index', 'store', 'update', 'destroy'])
+        ->names('dashboard.discounts');
 });
 
 require __DIR__.'/auth.php';
