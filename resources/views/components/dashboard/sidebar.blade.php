@@ -33,11 +33,11 @@
                         <i class="ti ti-shopping-cart text-xl"></i> Productos
                     </x-sidebar-section-link>
 
-                    <x-sidebar-section-link href="#">
+                    <x-sidebar-section-link href="#{{-- route('dashboard.opinions.index') --}}">
                         <i class="ti ti-message text-xl"></i> Opiniones
                     </x-sidebar-section-link>
 
-                    <x-sidebar-section-link href="#">
+                    <x-sidebar-section-link href="{{ route('dashboard.discounts.index') }}">
                         <i class="ti ti-scan text-xl"></i> Descuentos
                     </x-sidebar-section-link>
 
