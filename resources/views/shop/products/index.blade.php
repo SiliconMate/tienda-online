@@ -68,7 +68,7 @@
                 </form>
             </div>
 
-            <div class="grid md:grid-cols-3 grid-cols-2 gap-6">
+            <div class="grid md:grid-cols-3 grid-cols-2 gap-6" x-data="cart">
                 @forelse ($products as $product)
                 <div class="bg-white shadow rounded overflow-hidden group flex flex-col justify-between transition-transform transform hover:scale-105">
                     <div>
@@ -103,10 +103,14 @@
                         </div>
                     </div>
                     </div>
-                    <a href="{{-- route('cart') --}}"
-                    class="block w-full py-2 text-center text-white bg-blue-800 border border-blue-800 rounded-b-lg hover:bg-blue-900 transition"><i class="fa-solid fa-bag-shopping"></i> Agregar
-                    al carrito
-                    </a>
+                    <button @click="addToCart({
+                        id: {{ $product->id }},
+                        price: {{ $product->price }},
+                        quantity: 1,
+                    })"
+                        class="block w-full py-2 text-center text-white bg-blue-800 border border-blue-800 rounded-b-lg hover:bg-blue-900 transition">
+                        <i class="fa-solid fa-bag-shopping"></i> Agregar al carrito
+                    </button>
                 </div>
                 @empty
                     <p>No se encontraron productos.</p>

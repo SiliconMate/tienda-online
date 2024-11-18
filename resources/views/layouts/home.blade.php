@@ -23,10 +23,10 @@
 <body class="bg-white">
 
     <div class="grid grid-rows-[auto,1fr,auto] min-h-screen">
-        <div class="">
+        <div class="sticky top-0 z-50">
             <x-home.header />
-            <x-home.navbar />
         </div>
+        <x-home.navbar />
     
         <main>
             {{ $slot }}

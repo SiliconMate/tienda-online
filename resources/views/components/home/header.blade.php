@@ -1,6 +1,6 @@
 {{-- header del layout que estara siempre --}}
 <header class="bg-white shadow">
-    <div class="bg-yellow-500 text-center py-2 text-white font-bold">
+    <div class="bg-yellow-500 text-center py-1 text-white text-sm font-semibold">
         ENVIOS GRATIS A PARTIR DE $60.000
     </div>
     <div class="container mx-auto px-2 sm:px-12 lg:px-48">
@@ -16,21 +16,11 @@
                     <button type="submit" class="p-2 bg-blue-500 text-white rounded-r-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500"><i class="fa-solid fa-magnifying-glass"></i></button>
                 </form>
             </div>
-            {{-- <div class="flex-1 flex justify-center px-2">
-                <div class="max-w-lg w-full lg:max-w-xs">
-                    <label for="search" class="sr-only">Buscar</label>
-                    <div class="relative">
-                        <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                            <i class="ti ti-search text-gray-500"></i>
-                        </div>
-                        <input id="search" name="search" class="block w-full pl-10 pr-3 py-2 border border-gray-300 rounded-md leading-5 bg-white placeholder-gray-500 focus:outline-none focus:placeholder-gray-400 focus:ring-1 focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" placeholder="Buscar" type="search">
-                    </div>
-                </div>
-            </div> --}}
-            <div class="flex space-x-4 ml-2">
+            <div class="flex space-x-4 ml-2" x-data="cart">
                 <a href="{{-- route('cart') --}}" class="text-gray-700 hover:text-gray-900 flex flex-col items-center">
                     <i class="ti ti-shopping-cart text-3xl"></i>
                     <span class="text-sm">Carrito</span>
+                    <span x-text="totalItems" class="absolute top-50 right-[315px] text-xs text-white bg-red-500 rounded-full w-5 h-5 flex items-center justify-center"></span>
                 </a>
                 <a href="{{ route('login') }}" class="text-gray-700 hover:text-gray-900 flex flex-col items-center">
                     <i class="ti ti-user text-3xl"></i>
