@@ -18,6 +18,10 @@ Route::get('/', function () {
     return view('home');
 });
 
+Route::get('/aboutUs', function () {
+    return view('shop/aboutUs');
+});
+
 Route::middleware('auth')->group(function () {
     
     Route::get('dashboard', function () {

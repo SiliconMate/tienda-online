@@ -16,20 +16,12 @@
                     <h6 class="text-lg font-semibold mb-4">Enlaces útiles</h6>
                     <div class="flex justify-center">
                         <ul class="mr-8">
-                            <li class="mb-2"><a href="#" class="text-gray-400 hover:text-white">Productos</a></li>
-                            <li class="mb-2"><a href="#" class="text-gray-400 hover:text-white">Contacto</a></li>
-                            <li class="mb-2"><a href="#" class="text-gray-400 hover:text-white">Secure Shopping</a></li>
-                            <li class="mb-2"><a href="#" class="text-gray-400 hover:text-white">Delivery Information</a></li>
-                            <li class="mb-2"><a href="#" class="text-gray-400 hover:text-white">Privacy Policy</a></li>
-                            <li class="mb-2"><a href="#" class="text-gray-400 hover:text-white">Our Sitemap</a></li>
+                            <li class="mb-2"><a href="{{route('products.index')}}"class="text-gray-400 hover:text-white">Productos</a></li>
+                            <li class="mb-2"><a href="{{route('categories.index')}}" class="text-gray-400 hover:text-white">Categorias</a></li>
                         </ul>
                         <ul>
-                            <li class="mb-2"><a href="#" class="text-gray-400 hover:text-white">Who We Are</a></li>
-                            <li class="mb-2"><a href="#" class="text-gray-400 hover:text-white">Our Services</a></li>
-                            <li class="mb-2"><a href="#" class="text-gray-400 hover:text-white">Projects</a></li>
-                            <li class="mb-2"><a href="#" class="text-gray-400 hover:text-white">Contact</a></li>
-                            <li class="mb-2"><a href="#" class="text-gray-400 hover:text-white">Innovation</a></li>
-                            <li class="mb-2"><a href="#" class="text-gray-400 hover:text-white">Testimonials</a></li>
+                            <li class="mb-2"><a href="/aboutUs" class="text-gray-400 hover:text-white">Sobre nosotros</a></li>
+                            
                         </ul>
                     </div>
                 </div>
