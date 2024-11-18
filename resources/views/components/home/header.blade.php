@@ -1,8 +1,5 @@
 {{-- header del layout que estara siempre --}}
 <header class="bg-white shadow">
-    <div class="bg-yellow-500 text-center py-1 text-white text-sm font-semibold">
-        ENVIOS GRATIS A PARTIR DE $60.000
-    </div>
     <div class="container mx-auto px-2 sm:px-12 lg:px-48">
         <div class="flex justify-between items-center py-4">
             <div class="flex-shrink-0 mr-2">
