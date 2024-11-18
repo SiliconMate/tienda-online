@@ -59,6 +59,9 @@ Route::middleware('auth')->group(function () {
     Route::delete('admin-products/{product}/image/{image}', [ProductController::class, 'destroyImage'])
         ->name('dashboard.products.image.destroy');
 
+    Route::put('admin-products/{product}/updateInventory', [ProductController::class, 'updateInventory'])
+        ->name('dashboard.products.updateInventory');
+
     Route::resource('admin-discounts', DiscountController::class)
         ->only(['index', 'store', 'update', 'destroy'])
         ->names('dashboard.discounts');

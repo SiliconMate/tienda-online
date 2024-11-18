@@ -12,6 +12,7 @@
         <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
             <div class="space-y-2">
                 <h3 class="text-2xl font-bold text-gray-900">Producto: {{ $product->name }}</h3>
+                <p class="text-md text-gray-700">Precio: ${{ $product->price }}</p>
                 <p class="text-md text-gray-700">Código: {{ $product->code }}</p>
                 <p class="text-md text-gray-700">Slug: {{ $product->slug }}</p>
                 <p class="text-md text-gray-700">Categoría: {{ $product->category->name }}</p>
@@ -40,7 +41,13 @@
             </div>
         </div>
         <div class="mt-8">
-            <h3 class="text-2xl font-bold text-gray-900">Detalles</h3>
+            <div class="flex items-center justify-between">
+                <h3 class="text-2xl font-bold text-gray-900">Detalles Inventario</h3>
+                <x-button style="primary">
+                    <a href="#" x-data="" x-on:click.prevent="$dispatch('open-modal', 'edit-inventory-{{ $product->id }}')">Editar</a>
+                </x-button>
+                @include('dashboard.products.partials.edit-inventory-modal', ['product' => $product])                
+            </div>
             <table class="min-w-full bg-white">
                 <thead>
                     <tr>
@@ -50,12 +57,20 @@
                 </thead>
                 <tbody>
                     <tr>
-                        <td class="py-2 px-4 border-b border-gray-200">Precio</td>
-                        <td class="py-2 px-4 border-b border-gray-200">${{ $product->price }}</td>
+                        <td class="py-2 px-4 border-b border-gray-200">Ubicación</td>
+                        <td class="py-2 px-4 border-b border-gray-200">{{ $product->inventory->location ?? 'N/A' }}</td>
                     </tr>
                     <tr>
                         <td class="py-2 px-4 border-b border-gray-200">Cantidad</td>
                         <td class="py-2 px-4 border-b border-gray-200">{{ $product->inventory->quantity ?? 0 }}</td>
+                    </tr>
+                    <tr>
+                        <td class="py-2 px-4 border-b border-gray-200">Cantidad Mínima</td>
+                        <td class="py-2 px-4 border-b border-gray-200">{{ $product->inventory->min_quantity ?? 0 }}</td>
+                    </tr>
+                    <tr>
+                        <td class="py-2 px-4 border-b border-gray-200">Cantidad Máxima</td>
+                        <td class="py-2 px-4 border-b border-gray-200">{{ $product->inventory->max_quantity ?? 0 }}</td>
                     </tr>
                     <tr>
                         <td class="py-2 px-4 border-b border-gray-200">Vendidos</td>
@@ -67,7 +82,7 @@
                     </tr>
                     <tr>
                         <td class="py-2 px-4 border-b border-gray-200">Ganancias por venta</td>
-                        <td class="py-2 px-4 border-b border-gray-200">${{ $product->orderItems ? $product->orderItems->sum(function($orderItem) { return $orderItem->quantity * ($orderItem->price - $product->cost); }) : 0 }}</td>
+                        <td class="py-2 px-4 border-b border-gray-200">${{ $product->orderItems ? $product->orderItems->sum(function($orderItem) use ($product) { return $orderItem->quantity * ($orderItem->price - $product->cost); }) : 0 }}</td>
                     </tr>
                 </tbody>
             </table>

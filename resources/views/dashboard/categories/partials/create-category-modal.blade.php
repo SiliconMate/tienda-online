@@ -1,5 +1,5 @@
 <x-modal name="create-category" :show="$errors->any()" focusable>
-    <form action="{{ route('dashboard.categories.store') }}" method="POST">
+    <form action="{{ route('dashboard.categories.store') }}" method="POST" enctype="multipart/form-data">
         @csrf
         <div class="grid grid-cols-1 gap-3">
             <div class="grid grid-cols-1 p-6 pb-0">
@@ -15,6 +15,12 @@
                         Nombre
                     </x-input>
                     <x-input-error :messages="$errors->get('name')" class="mt-2" />
+                </div>
+                <div class="mt-4">
+                    <x-file-select id="image" class="block w-full" name="image" required>
+                        Imagen
+                    </x-file-select>
+                    <x-input-error :messages="$errors->get('image')" class="mt-2" />
                 </div>
             </div>
             <div class="flex items-center justify-end px-6 py-3 bg-gray-400">

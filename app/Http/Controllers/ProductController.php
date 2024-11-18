@@ -45,6 +45,13 @@ class ProductController extends Controller
             }
         }
 
+        $product->inventory()->create([
+            'quantity' => 0,
+            'min_quantity' => 0,
+            'max_quantity' => 0,
+            'storage_location' => '',
+        ]);
+
         return redirect()->route('dashboard.products.index');
     }
 
@@ -101,6 +108,25 @@ class ProductController extends Controller
     {
         $product->images()->where('id', $image)->delete();
         
+        return back();
+    }
+
+    public function updateInventory(Request $request, Product $product)
+    {
+        $request->validate([
+            'quantity' => 'required|numeric',
+            'min_quantity' => 'required|numeric',
+            'max_quantity' => 'required|numeric',
+            'storage_location' => 'required|string',
+        ]);
+
+        $product->inventory()->update([
+            'quantity' => $request->quantity,
+            'min_quantity' => $request->min_quantity,
+            'max_quantity' => $request->max_quantity,
+            'storage_location' => $request->storage_location,
+        ]);
+
         return back();
     }
 }
