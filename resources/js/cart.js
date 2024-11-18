@@ -14,6 +14,8 @@ document.addEventListener('alpine:init', () => {
                 });
             }
             this.saveCart();
+            alert(`Producto agregado al carrito.`);
+            location.reload();
         },
 
         removeFromCart(productId) {
