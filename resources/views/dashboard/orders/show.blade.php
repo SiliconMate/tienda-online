@@ -19,7 +19,7 @@
                         </div>
                         <div class="flex flex-row mb-2">
                             <span class="font-semibold text-gray-800 mr-2">Dirección:</span>
-                            <span>{{ $order->address }}</span>
+                            <span>{{ $order->address->address_line }}</span>
                         </div>
                         <div class="flex flex-row mb-2">
                             <span class="font-semibold text-gray-800 mr-2">Fecha:</span>
