@@ -13,16 +13,22 @@ class ProductController extends Controller
     {
         $query = Product::query();
 
-        if ($request->has('min') && $request->min != null) {
-            $query->where('price', '>=', $request->min);
+        // Filtrar por término de búsqueda
+        if ($request->has('query') && $request->query('query') != null) {
+            $query->where('name', 'like', '%' . $request->query('query') . '%');
         }
 
-        if ($request->has('max') && $request->max != null) {
-            $query->where('price', '<=', $request->max);
+        // Filtrar por rango de precios
+        if ($request->has('min') && $request->query('min') != null) {
+            $query->where('price', '>=', $request->query('min'));
+        }
+        if ($request->has('max') && $request->query('max') != null) {
+            $query->where('price', '<=', $request->query('max'));
         }
 
-        if ($request->has('sort') && $request->sort != null) {
-            switch ($request->sort) {
+        // Ordenar resultados
+        if ($request->has('sort') && $request->query('sort') != null) {
+            switch ($request->query('sort')) {
                 case 'price-low-to-high':
                     $query->orderBy('price', 'asc');
                     break;
@@ -36,7 +42,6 @@ class ProductController extends Controller
         }
 
         $products = $query->get();
-
         return view('shop.products.index', compact('products'));
     }
 

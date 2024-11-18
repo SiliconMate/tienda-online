@@ -1,7 +1,8 @@
 <x-home-layout>
-    
     <div class="container py-4 flex items-center gap-3 ml-8">
-        <i class="fa-solid fa-house"></i>
+        <a href="/" >
+            <i class="fa-solid fa-house"></i>
+        </a>
         <span class="text-sm text-gray-400">
             <i class="fa-solid fa-chevron-right"></i>
         </span>
@@ -33,14 +34,15 @@
                 <div class="pt-4">
                     <h3 class="text-xl text-gray-800 mb-3 uppercase font-medium">Precio</h3>
                     <form method="GET" action="{{ route('products.index') }}">
+                        <input type="hidden" name="query" value="{{ request('query') }}">
                         <div class="mt-4 flex items-center">
                             <input type="text" name="min" id="min"
                                 class="w-1/3 border-gray-300 focus:border-primary rounded focus:ring-0 px-3 py-1 text-gray-600 shadow-sm"
-                                placeholder="min">
+                                placeholder="min" value="{{ request('min') }}">
                             <span class="mx-3 text-gray-500">-</span>
                             <input type="text" name="max" id="max"
                                 class="w-1/3 border-gray-300 focus:border-primary rounded focus:ring-0 px-3 py-1 text-gray-600 shadow-sm"
-                                placeholder="max">
+                                placeholder="max" value="{{ request('max') }}">
                             <button type="submit" class="ml-3 px-4 py-2 bg-blue-800 text-white rounded hover:bg-blue-900 transition">Filtrar</button>
                         </div>
                     </form>
@@ -53,6 +55,9 @@
         <div class="col-span-3">
             <div class="flex items-center mb-4">
                 <form method="GET" action="{{ route('products.index') }}" id="sortForm">
+                    <input type="hidden" name="query" value="{{ request('query') }}">
+                    <input type="hidden" name="min" value="{{ request('min') }}">
+                    <input type="hidden" name="max" value="{{ request('max') }}">
                     <select name="sort" id="sort"
                         class="w-44 text-sm text-gray-600 py-3 px-4 border-gray-300 shadow-sm rounded focus:ring-primary focus:border-primary"
                         onchange="document.getElementById('sortForm').submit()">
@@ -64,7 +69,7 @@
             </div>
 
             <div class="grid md:grid-cols-3 grid-cols-2 gap-6">
-                @foreach ($products as $product)
+                @forelse ($products as $product)
                 <div class="bg-white shadow rounded overflow-hidden group flex flex-col justify-between transition-transform transform hover:scale-105">
                     <div>
                     <div class="relative h-64 flex items-center justify-center bg-gray-100">
@@ -103,7 +108,9 @@
                     al carrito
                     </a>
                 </div>
-                @endforeach
+                @empty
+                    <p>No se encontraron productos.</p>
+                @endforelse
             </div>
         </div>
     </div>

@@ -1,7 +1,9 @@
 <x-home-layout>
 
     <div class="container py-4 flex items-center gap-3 ml-8">
-        <i class="fa-solid fa-house"></i>
+        <a href="/" >
+            <i class="fa-solid fa-house"></i>
+        </a>
         <span class="text-sm text-gray-400">
             <i class="fa-solid fa-chevron-right"></i>
         </span>
