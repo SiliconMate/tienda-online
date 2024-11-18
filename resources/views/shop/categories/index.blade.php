@@ -21,7 +21,7 @@
                 <div class="relative group">
                     <a href="{{ route('categories.show', $category->id) }}" class="block">
                         <div class="bg-cover bg-center h-48 rounded-lg shadow-md transition-transform transform group-hover:scale-105">
-                        <img src="{{ asset('images/categories/' . $category->name . '.webp') }}" alt="{{ $category->name }}" class="absolute inset-0 w-full h-full object-cover rounded-lg">
+                        <img src="{{ asset('storage/categories/' . $category->path ) }}" alt="{{ $category->name }}" class="absolute inset-0 w-full h-full object-cover rounded-lg">
                             <div class="absolute inset-0 bg-black bg-opacity-50 flex items-center justify-center rounded-lg">
                                 <h3 class="text-white text-xl font-semibold">{{ $category->name }}</h3>
                             </div>
