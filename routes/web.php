@@ -11,6 +11,8 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\Shop\ProductController as ShopProductController;
 use App\Http\Controllers\CheckoutController;
 use App\Http\Controllers\OpinionController;
+use App\Http\Controllers\OrderController;
+use App\Http\Controllers\SaleController;
 use App\Http\Controllers\Shop\CategoryController as ShopCategoryController;
 use Illuminate\Support\Facades\Route;
 
@@ -70,6 +72,21 @@ Route::middleware('auth')->group(function () {
     Route::resource('admin-opinions', OpinionController::class)
         ->only(['index', 'destroy'])
         ->names('dashboard.opinions');
+
+    Route::resource('admin-orders', OrderController::class)
+        ->names('dashboard.orders');
+
+    Route::put('admin-orders/{order}/cancel', [OrderController::class, 'cancel'])
+        ->name('dashboard.orders.cancel');
+        
+    Route::put('admin-orders/{order}/accept', [OrderController::class, 'accept'])
+        ->name('dashboard.orders.accept');
+
+    Route::put('admin-orders/{order}/complete', [OrderController::class, 'complete'])
+        ->name('dashboard.orders.complete');
+
+    Route::resource('admin-sales', SaleController::class)
+        ->names('dashboard.sales');
 });
 
 Route::resource('products', ShopProductController::class)
