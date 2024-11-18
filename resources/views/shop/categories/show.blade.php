@@ -116,11 +116,16 @@
                                 </div>
                             </div>
                         </div>
-                        <a href="{{-- route('cart') --}}"
-                            class="block w-full py-2 text-center text-white bg-blue-800 border border-blue-800 rounded-b-lg hover:bg-blue-900 transition"><i
-                                class="fa-solid fa-bag-shopping"></i> Agregar
-                            al carrito
-                        </a>
+                        <div x-data="cart">
+                            <button @click="addToCart({
+                                id: {{ $product->id }},
+                                price: {{ $product->price }},
+                                quantity: 1,
+                            })"
+                            class="block w-full py-2 text-center text-white bg-blue-800 border border-blue-800 rounded-b-lg hover:bg-blue-900 transition">
+                            <i class="fa-solid fa-bag-shopping"></i> Agregar al carrito
+                        </button>
+                        </div>
                     </div>
                 @endforeach
             </div>

@@ -96,11 +96,15 @@
                 </div>
             </div>
 
-            <div class="mt-6 flex gap-3 border-b border-gray-200 pb-5 pt-5">
-                <a href="#"
-                    class="bg-blue-600 border border-blue-600 text-white px-8 py-2 font-medium rounded uppercase flex items-center gap-2 hover:bg-transparent hover:text-blue-600 transition">
+            <div class="mt-6 flex gap-3 border-b border-gray-200 pb-5 pt-5" x-data="cart">
+                <button @click="addToCart({
+                        id: {{ $product->id }},
+                        price: {{ $product->price }},
+                        quantity: 1,
+                    })"
+                        class="bg-blue-600 border border-blue-600 text-white px-8 py-2 font-medium rounded uppercase flex items-center gap-2 hover:bg-transparent hover:text-blue-600 transition">
                     <i class="fa-solid fa-bag-shopping"></i> Agregar al carrito
-                </a>
+                </button>
             </div>
 
             <div class="flex gap-3 mt-4">
