@@ -1,14 +1,14 @@
 <x-home-layout>
     <div class="container mx-auto py-4">
         <div class="flex items-center gap-3 mb-6">
-            <a href="/" >
+            <a href="/" class="text-gray-600 font-medium hover:text-blue-700">
                 <i class="fa-solid fa-house"></i>
             </a>
             <span class="text-sm text-gray-400">
                 <i class="fa-solid fa-chevron-right"></i>
             </span>
-            <a href="{{ route('categories.index') }}">
-                <p class="text-gray-600 font-medium">Categorías</p>
+            <a href="{{ route('categories.index') }}" class="text-gray-600 font-medium hover:text-blue-700">
+                Categorías
             </a>
         </div>
 
