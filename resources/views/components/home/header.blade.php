@@ -19,7 +19,7 @@
                 </form>
             </div>
             <div class="flex space-x-4 ml-2" x-data="cart">
-                <a href="{{-- route('cart') --}}" class="text-gray-700 hover:text-gray-900 flex flex-col items-center">
+                <a href="{{route('cart.index')}}" class="text-gray-700 hover:text-gray-900 flex flex-col items-center">
                     <i class="ti ti-shopping-cart text-3xl"></i>
                     <span class="text-sm">Carrito</span>
                     <span x-text="totalItems" class="absolute top-50 right-[315px] text-xs text-white bg-red-500 rounded-full w-5 h-5 flex items-center justify-center"></span>
