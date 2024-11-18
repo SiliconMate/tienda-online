@@ -19,10 +19,31 @@
                     
                     <x-sidebar-section-title> HOME </x-sidebar-section-title>
 
+                    <x-sidebar-section-link href="{{ route('home') }}">
+                        <i class="ti ti-building-store text-xl"></i> Tienda
+                    </x-sidebar-section-link>
+
                     <x-sidebar-section-link href="{{ route('dashboard') }}">
                         <i class="ti ti-layout-dashboard  text-xl"></i> Dashboard
                     </x-sidebar-section-link>
 
+                    @role('user')
+                    <x-sidebar-section-title> MI CUENTA </x-sidebar-section-title>
+
+                    <x-sidebar-section-link href="{{ route('dashboard.profile.edit') }}">
+                        <i class="ti ti-user text-xl"></i> Perfil
+                    </x-sidebar-section-link>
+
+                    <x-sidebar-section-link href="#{{-- route('') --}}">
+                        <i class="ti ti-receipt text-xl"></i> Compras
+                    </x-sidebar-section-link>
+
+                    <x-sidebar-section-link href="#{{-- route('') --}}">
+                        <i class="ti ti-message text-xl"></i> Mis Opiniones
+                    </x-sidebar-section-link>
+                    @endrole
+
+                    @role('admin')
                     <x-sidebar-section-title> PRODUCTOS/CATEGORIAS </x-sidebar-section-title>
 
                     <x-sidebar-section-link href="{{ route('dashboard.categories.index') }}">
@@ -72,6 +93,7 @@
                     <x-sidebar-section-link href="{{ route('dashboard.roles.index') }}">
                         <i class="ti ti-lock text-xl"></i> Roles
                     </x-sidebar-section-link>
+                    @endrole
                 </ul>
             </nav>
         </div>
