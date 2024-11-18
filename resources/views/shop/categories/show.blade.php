@@ -1,14 +1,14 @@
 <x-home-layout>
 
     <div class="container py-4 flex items-center gap-3 ml-8">
-        <a href="/" >
+        <a href="/" class="text-gray-600 font-medium hover:text-blue-700">
             <i class="fa-solid fa-house"></i>
         </a>
         <span class="text-sm text-gray-400">
             <i class="fa-solid fa-chevron-right"></i>
         </span>
-        <a href="{{ route('categories.index') }}">
-            <p class="text-gray-600 font-medium">Categorias</p>
+        <a href="{{ route('categories.index') }}" class="text-gray-600 font-medium hover:text-blue-700">
+            Categorias
         </a>
         <span class="text-sm text-gray-400">
             <i class="fa-solid fa-chevron-right"></i>
@@ -134,7 +134,7 @@
     <!-- ./products -->
     <script>
         function redirectToCategory(categoryId) {
-            window.location.href = `/shop/categories/${categoryId}`;
+            window.location.href = `/categories/${categoryId}`;
         }
     </script>
 </x-home-layout>

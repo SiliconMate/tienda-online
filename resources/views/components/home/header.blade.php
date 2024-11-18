@@ -1,5 +1,10 @@
 {{-- header del layout que estara siempre --}}
 <header class="bg-white shadow">
+    <div class="bg-yellow-500 text-center py-2 text-white font-bold overflow-hidden relative">
+        <div class="marquee whitespace-nowrap">
+            ENVIOS GRATIS A PARTIR DE $60.000
+        </div>
+    </div>
     <div class="container mx-auto px-2 sm:px-12 lg:px-48">
         <div class="flex justify-between items-center py-4">
             <div class="flex-shrink-0 mr-2">
@@ -26,4 +31,22 @@
             </div>
         </div>
     </div>
+    
+    <style>
+        .marquee {
+            display: inline-block;
+            animation: marquee 17s linear infinite;
+            white-space: nowrap;
+            padding-left: 70%;
+        }
+    
+        @keyframes marquee {
+            0% {
+                transform: translateX(-100%);
+            }
+            100% {
+                transform: translateX(100%);
+            }
+        }
+    </style>
 </header>
