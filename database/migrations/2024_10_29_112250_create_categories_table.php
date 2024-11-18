@@ -13,7 +13,7 @@ return new class extends Migration
             $table->string('name');
             $table->string('slug')->unique();
             $table->string('description')->nullable();
-            $table->string('path')->default('empty.webp');
+            $table->string('path');
             $table->timestamps();
             $table->softDeletes();
         });
