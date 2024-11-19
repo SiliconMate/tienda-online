@@ -21,6 +21,7 @@ class DiscountController extends Controller
             'name' => 'required',
             'code' => 'required|unique:discounts',
             'percentage' => 'required|numeric|min:0|max:100',
+            'uses' => 'required|numeric|min:0',
         ]);
 
         $discount = Discount::create($request->all());
@@ -36,6 +37,7 @@ class DiscountController extends Controller
             'name' => 'required',
             'code' => 'required|unique:discounts,id,' . $id,
             'percentage' => 'required|numeric|min:0|max:100',
+            'uses' => 'required|numeric|min:0',
         ]);
 
         $discount = Discount::find($id);

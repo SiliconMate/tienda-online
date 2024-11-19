@@ -9,25 +9,33 @@
                 </div>
             </div>
             <div class="grid grid-cols-1 py-0 px-6">
-                <div>
-                    <x-input id="name" class="block w-full" type="text" name="name" :value="old('name')" required autofocus>
-                        Nombre
-                    </x-input>
-                    <x-input-error :messages="$errors->get('name')" class="mt-2" />
-                </div>
-
                 <div class="grid grid-cols-2 gap-3">
+                    <div>
+                        <x-input id="name" class="block w-full" type="text" name="name" :value="old('name')" required autofocus>
+                            Nombre
+                        </x-input>
+                        <x-input-error :messages="$errors->get('name')" class="mt-2" />
+                    </div>
                     <div>
                         <x-input id="code" class="block w-full" type="text" name="code" :value="old('code')" required>
                             Código
                         </x-input>
                         <x-input-error :messages="$errors->get('code')" class="mt-2" />
                     </div>
+                </div>
+
+                <div class="grid grid-cols-2 gap-3">
                     <div>
                         <x-input id="percentage" class="block w-full" type="number" name="percentage" :value="old('percentage')" required>
                             Porcentaje
                         </x-input>
                         <x-input-error :messages="$errors->get('percentage')" class="mt-2" />
+                    </div>
+                    <div>
+                        <x-input id="uses" class="block w-full" type="number" name="uses" :value="old('uses')" required>
+                            Usos
+                        </x-input>
+                        <x-input-error :messages="$errors->get('uses')" class="mt-2" />
                     </div>
                 </div>
 

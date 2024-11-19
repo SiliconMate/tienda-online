@@ -19,7 +19,7 @@
                         <th scope="col" class="px-6 py-3">Código</th>
                         <th scope="col" class="px-6 py-3">Porcentaje</th>
                         <th scope="col" class="px-6 py-3">Activo</th>
-                        <th scope="col" class="px-6 py-3">Productos</th>
+                        <th scope="col" class="px-6 py-3">Usos Disponible</th>
                         <th scope="col" class="px-6 py-3">Acciones</th>
                     </tr>
                 </thead>
@@ -31,13 +31,7 @@
                             <td class="px-6 py-4">{{ $discount->code }}</td>
                             <td class="px-6 py-4">{{ $discount->percentage }}%</td>
                             <td class="px-6 py-4">{{ $discount->active ? 'Si' : 'No' }}</td>
-                            <td class="px-6 py-4">
-                                {{ $discount->products->count() }}
-                                <a href="#" x-data="" x-on:click.prevent="$dispatch('open-modal', 'add-product-{{ $discount->id }}')">
-                                    <i class="ti ti-plus text-lg ml-2"></i>
-                                </a>
-                                @include('dashboard.discounts.partials.add-discount-product', ['discount' => $discount])
-                            </td>
+                            <td class="px-6 py-4">{{ $discount->uses }}</td>
                             <td class="px-6 py-1 flex flex-col">
                                 <a href="#" x-data="" x-on:click.prevent="$dispatch('open-modal', 'edit-discount-{{ $discount->id }}')" class="text-blue-600 hover:underline">
                                     Editar
