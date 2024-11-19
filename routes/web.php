@@ -100,8 +100,7 @@ Route::resource('products', ShopProductController::class)
     ->only(['index', 'show'])
     ->names('products');
 
-Route::post('products/{product}/apply-discount', [ShopProductController::class, 'applyDiscount'])
-    ->name('apply.discount');
+Route::post('/apply-discount', [CheckoutController::class, 'applyDiscount'])->name('apply.discount');
 
 Route::resource('categories', ShopCategoryController::class)->only(['index', 'show'])->names('categories');
 
@@ -109,6 +108,6 @@ Route::get('/cart', [CartController::class, 'index'])->name('cart.index');
 
 Route::get('/checkout', [CheckoutController::class, 'index'])->name('checkout.index');
 
-Route::get('/checkout/complete', [CheckoutController::class, 'completed'])->name('checkout.completed');
+Route::get('/checkout/completed', [CheckoutController::class, 'completed'])->name('checkout.completed');
 
 require __DIR__.'/auth.php';
