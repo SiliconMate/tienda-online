@@ -3,13 +3,14 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class CheckoutController extends Controller
 {
     public function index()
     {
-        $user = auth()->user();
-        $address = $user->addresses()->first(); 
+        $user = Auth::user();
+        $address = $user->addresses->first(); 
         // $cartItems = \Cart::getContent(); 
         // $subtotal = \Cart::getSubTotal(); no se si esto funciona asi
         // $discountPercentage = 0;
