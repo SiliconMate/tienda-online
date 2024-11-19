@@ -42,8 +42,7 @@
                         <i class="ti ti-message text-xl"></i> Mis Opiniones
                     </x-sidebar-section-link>
 
-                    {{-- mis direcciones --}}
-                    <x-sidebar-section-link href="{{-- route('dashboard.addresses.index') --}}">
+                    <x-sidebar-section-link href="{{ route('dashboard.useraddresses.index') }}">
                         <i class="ti ti-location-pin text-xl"></i> Direcciones
                     </x-sidebar-section-link>
                     @endrole

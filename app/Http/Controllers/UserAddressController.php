@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
-class UserBuyController extends Controller
+class UserAddressController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -13,9 +13,9 @@ class UserBuyController extends Controller
     public function index()
     {
         $user = Auth::user();
-        $orders = $user->ordersDetails;
+        $addresses = $user->addresses;
 
-        return view('dashboard.user-buys.index', compact('orders'));
+        return view('dashboard.user-addresses.index', compact('addresses'));
     }
 
     /**
