@@ -34,8 +34,8 @@
                         <i class="ti ti-user text-xl"></i> Perfil
                     </x-sidebar-section-link>
 
-                    <x-sidebar-section-link href="#{{-- route('') --}}">
-                        <i class="ti ti-receipt text-xl"></i> Compras
+                    <x-sidebar-section-link href="{{ route('dashboard.userbuys.index') }}">
+                        <i class="ti ti-receipt text-xl"></i> Mis Compras
                     </x-sidebar-section-link>
 
                     <x-sidebar-section-link href="{{ route('dashboard.useropinions.index') }}">

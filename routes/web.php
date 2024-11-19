@@ -14,6 +14,7 @@ use App\Http\Controllers\OpinionController;
 use App\Http\Controllers\OrderController;
 use App\Http\Controllers\SaleController;
 use App\Http\Controllers\Shop\CategoryController as ShopCategoryController;
+use App\Http\Controllers\UserBuyController;
 use App\Http\Controllers\UserOpinionController;
 use Illuminate\Support\Facades\Route;
 
@@ -96,7 +97,11 @@ Route::middleware('auth')->group(function () {
     Route::resource('admin-sales', SaleController::class)
         ->names('dashboard.sales');
 
-    Route::resource('opinions', UserOpinionController::class)
+    Route::resource('user-buys', UserBuyController::class)
+        ->only(['index'])
+        ->names('dashboard.userbuys');
+
+    Route::resource('user-opinions', UserOpinionController::class)
         ->only(['index', 'update', 'destroy'])
         ->names('dashboard.useropinions');
 });
