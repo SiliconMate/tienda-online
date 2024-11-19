@@ -23,14 +23,32 @@ document.addEventListener('alpine:init', () => {
             location.reload();
         },
 
+        incrementQuantity(productId) {
+            let item = this.items.find(i => i.id === productId);
+            item.quantity += 1;
+            this.saveCart();
+        },
+
+        decrementQuantity(productId) {
+            let item = this.items.find(i => i.id === productId);
+            if (item.quantity > 1) {
+                item.quantity -= 1;
+            } else {
+                this.removeFromCart(productId);
+            }
+            this.saveCart();
+        },
+
         removeFromCart(productId) {
             this.items = this.items.filter(item => item.id !== productId);
             this.saveCart();
+            location.reload();
         },
 
         clearCart() {
             this.items = [];
             this.saveCart();
+            location.reload();
         },
 
         saveCart() {
