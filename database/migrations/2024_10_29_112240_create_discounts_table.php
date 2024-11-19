@@ -14,6 +14,7 @@ return new class extends Migration
             $table->string('code')->unique();
             $table->unsignedTinyInteger('percentage');
             $table->boolean('active')->default(false);
+            $table->integer('uses')->default(0);
             $table->timestamps();
             $table->softDeletes();
         });

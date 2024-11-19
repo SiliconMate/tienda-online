@@ -35,12 +35,6 @@ class Product extends Model
         return $this->belongsTo(Category::class);
     }
 
-    public function discounts(): BelongsToMany
-    {
-        return $this->belongsToMany(Discount::class, 'product_discounts')
-            ->withTimestamps();
-    }
-
     public function inventory(): HasOne
     {
         return $this->hasOne(Inventory::class);

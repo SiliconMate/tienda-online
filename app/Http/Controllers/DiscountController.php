@@ -55,26 +55,26 @@ class DiscountController extends Controller
         return redirect()->route('dashboard.discounts.index');
     }
 
-    public function addProduct(Request $request, $discount)
-    {
-        $request->validate([
-            'product_name' => 'required|exists:products,name',
-        ]);
+    // public function addProduct(Request $request, $discount)
+    // {
+    //     $request->validate([
+    //         'product_name' => 'required|exists:products,name',
+    //     ]);
 
-        $product = Product::where('name', $request->product_name)->first();
+    //     $product = Product::where('name', $request->product_name)->first();
 
-        if (!$product->discounts->contains($discount)) {
-            $product->discounts()->attach($discount);
-        }
+    //     if (!$product->discounts->contains($discount)) {
+    //         $product->discounts()->attach($discount);
+    //     }
 
-        return redirect()->route('dashboard.discounts.index');
-    }
+    //     return redirect()->route('dashboard.discounts.index');
+    // }
 
-    public function removeProduct($discount, $product)
-    {
-        $discount = Discount::find($discount);
-        $discount->products()->detach($product);
+    // public function removeProduct($discount, $product)
+    // {
+    //     $discount = Discount::find($discount);
+    //     $discount->products()->detach($product);
 
-        return redirect()->route('dashboard.discounts.index');
-    }
+    //     return redirect()->route('dashboard.discounts.index');
+    // }
 }

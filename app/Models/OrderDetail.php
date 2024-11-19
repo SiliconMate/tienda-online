@@ -46,4 +46,9 @@ class OrderDetail extends Model
     {
         return $this->belongsTo(Address::class);
     }
+
+    public function discount(): BelongsTo
+    {
+        return $this->belongsTo(Discount::class);
+    }
 }
