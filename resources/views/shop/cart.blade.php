@@ -37,7 +37,9 @@
                                     <p class="text-sm text-gray-600 mt-2" x-text="'$' + (item.price * item.quantity).toFixed(2)"></p>
                                 </div>
                             </div>
-                            <button @click="removeFromCart(item.id)" class="text-red-500 hover:text-red-700 font-semibold">Eliminar</button>
+                            <button @click="removeFromCart(item.id)" class="text-red-500 hover:text-red-700 font-semibold">
+                                <i class="fa-solid fa-trash text-xl mr-6"></i>
+                            </button>
                         </li>
                     </template>
                 </ul>
