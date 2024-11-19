@@ -9,7 +9,12 @@ document.addEventListener('alpine:init', () => {
             } else {
                 this.items.push({
                     id: product.id,
+                    name: product.name,
+                    description: product.description,
                     price: product.price,
+                    code: product.code,
+                    category: product.category,
+                    image: product.image,
                     quantity: 1,
                 });
             }

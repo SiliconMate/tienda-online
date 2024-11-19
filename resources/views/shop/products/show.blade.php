@@ -98,10 +98,15 @@
 
             <div class="mt-6 flex gap-3 border-b border-gray-200 pb-5 pt-5" x-data="cart">
                 <button @click="addToCart({
-                        id: {{ $product->id }},
-                        price: {{ $product->price }},
-                        quantity: 1,
-                    })"
+                    id: {{ $product->id }},
+                    name: '{{ $product->name }}',
+                    description: '{{ $product->description }}',
+                    price: {{ $product->price }},
+                    code: '{{ $product->code }}',
+                    category: '{{ $product->category->name }}',
+                    image: 'storage/products/{{ $product->images->first()->path }}',
+                    quantity: 1,
+                })"
                         class="bg-blue-600 border border-blue-600 text-white px-8 py-2 font-medium rounded uppercase flex items-center gap-2 hover:bg-transparent hover:text-blue-600 transition">
                     <i class="fa-solid fa-bag-shopping"></i> Agregar al carrito
                 </button>

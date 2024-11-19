@@ -119,7 +119,12 @@
                         <div x-data="cart">
                             <button @click="addToCart({
                                 id: {{ $product->id }},
+                                name: '{{ $product->name }}',
+                                description: '{{ $product->description }}',
                                 price: {{ $product->price }},
+                                code: '{{ $product->code }}',
+                                category: '{{ $product->category->name }}',
+                                image: 'storage/products/{{ $product->images->first()->path }}',
                                 quantity: 1,
                             })"
                             class="block w-full py-2 text-center text-white bg-blue-800 border border-blue-800 rounded-b-lg hover:bg-blue-900 transition">
