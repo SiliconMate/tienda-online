@@ -21,4 +21,23 @@ class OpinionController extends Controller
 
         return redirect()->route('dashboard.opinions.index');
     }
+
+    public function store(Request $request)
+    {
+        $request->validate([
+            'product_id' => 'required|exists:products,id',
+            'user_id' => 'required|exists:users,id',
+            'content' => 'required|string',
+            'rating' => 'required|integer|min=1|max=5',
+        ]);
+
+        Opinion::create([
+            'product_id' => $request->product_id,
+            'user_id' => $request->user_id,
+            'content' => $request->content,
+            'rating' => $request->rating,
+        ]);
+
+        return redirect()->back()->with('success', '¡Gracias por tu opinión!');
+    }
 }

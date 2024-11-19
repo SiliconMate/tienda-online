@@ -110,4 +110,6 @@ Route::get('/checkout', [CheckoutController::class, 'index'])->name('checkout.in
 
 Route::get('/checkout/completed', [CheckoutController::class, 'completed'])->name('checkout.completed');
 
+Route::post('/opinions', [OpinionController::class, 'store'])->name('opinions.store');
+
 require __DIR__.'/auth.php';
