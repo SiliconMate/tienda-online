@@ -38,8 +38,13 @@
                         <i class="ti ti-receipt text-xl"></i> Compras
                     </x-sidebar-section-link>
 
-                    <x-sidebar-section-link href="#{{-- route('') --}}">
+                    <x-sidebar-section-link href="{{ route('dashboard.useropinions.index') }}">
                         <i class="ti ti-message text-xl"></i> Mis Opiniones
+                    </x-sidebar-section-link>
+
+                    {{-- mis direcciones --}}
+                    <x-sidebar-section-link href="{{-- route('dashboard.addresses.index') --}}">
+                        <i class="ti ti-location-pin text-xl"></i> Direcciones
                     </x-sidebar-section-link>
                     @endrole
 
