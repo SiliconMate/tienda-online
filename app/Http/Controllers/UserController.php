@@ -64,7 +64,7 @@ class UserController extends Controller
         $request->validate([
             'username' => 'unique:users,username,'.$user,
             'email' => 'email|unique:users,email,'.$user,
-            'phone' => 'numeric',
+            'phone' => 'numeric|nullable',
             'password' => ['nullable', 'confirmed', Rules\Password::defaults()],
             'avatar' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
         ]);
