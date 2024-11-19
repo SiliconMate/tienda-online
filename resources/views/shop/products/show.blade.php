@@ -71,7 +71,7 @@
                 @endif
             </div>
 
-            <form method="POST" action="{{ route('apply.discount', $product->id) }}" class="mt-4">
+            {{-- <form method="POST" action="{{ route('apply.discount', $product->id) }}" class="mt-4">
                 @csrf
                 <div class="flex items-center space-x-3">
                     <input type="text" id="discount_code" name="discount_code" placeholder="Código de descuento"
@@ -81,7 +81,7 @@
                     <button type="submit"
                         class="bg-blue-800 text-white px-4 py-2 rounded-lg hover:bg-blue-900 transition-colors">Aplicar</button>
                 </div>
-            </form>
+            </form> --}}
 
             <p class="mt-4 text-gray-600">{{ $product->description }}</p>
 
