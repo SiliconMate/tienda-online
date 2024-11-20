@@ -11,13 +11,6 @@ class UserOpinionController extends Controller
     public function index()
     {
         $user = Auth::user();
-        // $opinions = $user->products->map(function($product) {
-        //     return [
-        //         'product_id' => $product->id,
-        //         'content' => $product->pivot->content,
-        //         'rating' => $product->pivot->rating,
-        //     ];
-        // });
         $opinions = Opinion::where('user_id', $user->id)->get();
 
         return view('dashboard.user-opinions.index', compact('opinions'));
@@ -28,23 +21,24 @@ class UserOpinionController extends Controller
 
     }
 
-    public function show(string $id)
-    {
-
-    }
-
-    public function edit(string $id)
-    {
-
-    }
-
     public function update(Request $request, string $id)
     {
+        $request->validate([
+            'content' => 'required|string',
+            'rating' => 'required|integer|between:1,5',
+        ]);
 
+        $opinion = Opinion::findOrFail($id);
+        $opinion->update($request->all());
+
+        return redirect()->route('dashboard.useropinions.index');
     }
 
     public function destroy(string $id)
     {
+        $opinion = Opinion::findOrFail($id);
+        $opinion->delete();
 
+        return redirect()->route('dashboard.user-opinions.index');
     }
 }
