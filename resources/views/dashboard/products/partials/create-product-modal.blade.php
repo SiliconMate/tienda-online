@@ -40,7 +40,26 @@
                         <x-input-error :messages="$errors->get('code')" class="mt-2" />
                     </div>
                 </div>
-                {{-- category id --}}
+                <div class="grid grid-cols-3 gap-3">
+                    <div class="w-full">
+                        <x-input id="quantity" class="block w-full" type="number" name="quantity" :value="old('quantity')" required>
+                            Stock
+                        </x-input>
+                        <x-input-error :messages="$errors->get('quantity')" class="mt-2" />
+                    </div>
+                    <div class="w-full">
+                        <x-input id="min_quantity" class="block w-full" type="number" name="min_quantity" :value="old('min_quantity')" required>
+                            Stock Mínimo
+                        </x-input>
+                        <x-input-error :messages="$errors->get('min_quantity')" class="mt-2" />
+                    </div>
+                    <div class="w-full">
+                        <x-input id="max_quantity" class="block w-full" type="number" name="max_quantity" :value="old('max_quantity')" required>
+                            Máximo
+                        </x-input>
+                        <x-input-error :messages="$errors->get('max_quantity')" class="mt-2" />
+                    </div>
+                </div>
                 <div class="w-full">
                     <x-select-menu id="category_id" class="block w-full" name="category_id" :options="\App\Models\Category::all()->toArray()" key="name">
                         Categoría
