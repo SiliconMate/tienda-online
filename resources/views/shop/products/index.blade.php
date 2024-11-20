@@ -113,7 +113,8 @@
                         image: 'storage/products/{{ $product->images->first()->path }}',
                         quantity: 1,
                     })"
-                        class="block w-full py-2 text-center text-white bg-blue-800 border border-blue-800 rounded-b-lg hover:bg-blue-900 transition">
+                    @disabled($product->inventory->quantity <= 0)
+                    class="block w-full py-2 text-center text-white bg-blue-800 border border-blue-800 rounded-b-lg hover:bg-blue-900 transition {{ $product->inventory->quantity <= 0 ? 'cursor-not-allowed bg-gray-400 border-gray-400 hover:bg-gray-400' : '' }}">
                         <i class="fa-solid fa-bag-shopping"></i> Agregar al carrito
                     </button>
                 </div>
