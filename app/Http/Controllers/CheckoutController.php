@@ -4,12 +4,17 @@ namespace App\Http\Controllers;
 
 use App\Models\OrderDetail;
 use App\Models\OrderItem;
+use App\Services\MercadoPagoService;
 use App\Models\Product;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
 class CheckoutController extends Controller
 {
+    public function __construct(
+        private MercadoPagoService $mercadoPagoService
+    ){}
+
     public function index()
     {
         $data = session()->get('checkout');
@@ -24,6 +29,7 @@ class CheckoutController extends Controller
         $orderDetail->save();
 
         $totalPrice = 0;
+        $orderItems = [];
 
         foreach ($data['items'] as $item) {
             $orderItem = new OrderItem();
@@ -33,14 +39,19 @@ class CheckoutController extends Controller
             $orderItem->save();
 
             $totalPrice += $item['quantity'] * Product::find($item['id'])->price;
+            $orderItems[] = $orderItem;
         }
 
+        
         $orderDetail->total_price = $totalPrice;
         $orderDetail->save();
-
+        
         $orderItems = $orderDetail->orderItems->load('product');
+        
+        $preference = $this->mercadoPagoService->createPreference($orderItems);
 
-        return view('shop.checkouts.checkout', compact('user', 'address', 'orderDetail', 'orderItems'));
+
+        return view('shop.checkouts.checkout', compact('user', 'address', 'orderDetail', 'orderItems', 'preference'));
     }
 
     public function store(Request $request)

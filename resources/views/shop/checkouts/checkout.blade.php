@@ -131,4 +131,15 @@
 
         </div>
     </div>
+     {{-- <script>
+        const mp = new MercadoPago('APP_USR-6c3aa8b4-ddd9-4feb-949b-368bcb6d8780', {
+            locale: 'es-AR'
+        });
+        
+        mp.bricks().create("wallet", "wallet_container", {
+            initialization: {
+                preferenceId: '{{ $preference->id }}'
+            }
+        })
+    </script>  --}}
 </x-home-layout>

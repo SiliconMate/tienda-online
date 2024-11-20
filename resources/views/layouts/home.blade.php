@@ -41,4 +41,6 @@
 
 </body>
 <script src="https://kit.fontawesome.com/4d32451fc4.js" crossorigin="anonymous"></script>
+<script src="https://sdk.mercadopago.com/js/v2"></script>
+
 </html>
