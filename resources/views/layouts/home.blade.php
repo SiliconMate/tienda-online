@@ -12,6 +12,8 @@
 
     <!-- Favicon icon-->
     <link rel="shortcut icon" type="image/png" href="{{ asset('assets/images/logos/utn.png') }}" />
+    <script src="https://sdk.mercadopago.com/js/v2"></script>
+
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap"
         rel="stylesheet" />
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@2.44.0/tabler-icons.min.css">
@@ -41,6 +43,5 @@
 
 </body>
 <script src="https://kit.fontawesome.com/4d32451fc4.js" crossorigin="anonymous"></script>
-<script src="https://sdk.mercadopago.com/js/v2"></script>
 
 </html>

@@ -7,6 +7,7 @@ use App\Models\OrderItem;
 use App\Services\MercadoPagoService;
 use App\Models\Product;
 use Illuminate\Http\Request;
+use App\Models\Address;
 use Illuminate\Support\Facades\Auth;
 
 class CheckoutController extends Controller
@@ -22,9 +23,16 @@ class CheckoutController extends Controller
         $user = Auth::user();
         $address = $user->addresses->first();
 
+        if (!$address) {
+            $address = new Address();
+            $address->user_id = $user->id;
+            // Asignar otros campos necesarios para la dirección
+            $address->save();
+        }
+
         $orderDetail = new OrderDetail();
         $orderDetail->user_id = $user->id;
-        $orderDetail->address_id = $address->id;
+        $orderDetail->address_id = $address ? $address->id : $user->id; // Usar la dirección por defecto o el id del usuario
         $orderDetail->total_price = 0;
         $orderDetail->save();
 

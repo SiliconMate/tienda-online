@@ -16,65 +16,65 @@
         <div class="w-2/3 border border-gray-300 p-6 rounded-lg shadow-sm bg-gray-100">
             <h3 class="text-2xl font-bold capitalize mb-6 text-blue-700">Pagar</h3>
             <div class="space-y-6">
-                <div class="grid grid-cols-1 gap-6">
-                    <div class="grid grid-cols-2 gap-6">
-                        <div>
-                            <label for="first_name" class="block text-gray-700 font-semibold">Nombre <span
-                                    class="text-red-500">*</span></label>
-                            <input type="text" name="first_name" id="first_name"
-                                class="input-box border-gray-300 rounded-md w-full" value="{{ $user->firstname }}">
-                        </div>
-                        <div>
-                            <label for="last_name" class="block text-gray-700 font-semibold">Apellido <span
-                                    class="text-red-500">*</span></label>
-                            <input type="text" name="last_name" id="last_name"
-                                class="input-box border-gray-300 rounded-md w-full" value="{{ $user->lastname }}">
-                        </div>
-                        <div>
-                            <label for="email" class="block text-gray-700 font-semibold">Correo Electrónico <span
-                                    class="text-red-500">*</span></label>
-                            <input type="email" name="email" id="email"
-                                class="input-box border-gray-300 rounded-md w-full" value="{{ $user->email }}">
-                        </div>
-                        <div>
-                            <label for="phone" class="block text-gray-700 font-semibold">Teléfono <span
-                                    class="text-red-500">*</span></label>
-                            <input type="text" name="phone" id="phone"
-                                class="input-box border-gray-300 rounded-md w-full" value="{{ $user->phone }}">
-                        </div>
-                        <div>
-                            <label for="address_line" class="block text-gray-700 font-semibold">Dirección <span
-                                    class="text-red-500">*</span></label>
-                            <input type="text" name="address_line" id="address_line"
-                                class="input-box border-gray-300 rounded-md w-full"
-                                value="{{ $address->address_line }}">
-                        </div>
-                        <div>
-                            <label for="city" class="block text-gray-700 font-semibold">Ciudad <span
-                                    class="text-red-500">*</span></label>
-                            <input type="text" name="city" id="city"
-                                class="input-box border-gray-300 rounded-md w-full" value="{{ $address->city }}">
-                        </div>
-                        <div>
-                            <label for="postal_code" class="block text-gray-700 font-semibold">Código Postal <span
-                                    class="text-red-500">*</span></label>
-                            <input type="text" name="postal_code" id="postal_code"
-                                class="input-box border-gray-300 rounded-md w-full" value="{{ $address->postal_code }}">
-                        </div>
-                        <div>
-                            <label for="country" class="block text-gray-700 font-semibold">País <span
-                                    class="text-red-500">*</span></label>
-                            <input type="text" name="country" id="country"
-                                class="input-box border-gray-300 rounded-md w-full" value="{{ $address->country }}">
-                        </div>
-                        <div>
-                            <label for="state" class="block text-gray-700 font-semibold">Estado <span
-                                    class="text-red-500">*</span></label>
-                            <input type="text" name="state" id="state"
-                                class="input-box border-gray-300 rounded-md w-full" value="{{ $address->state }}">
-                        </div>
-                    </div>
+            <div class="grid grid-cols-1 gap-6">
+                <div class="grid grid-cols-2 gap-6">
+                <div>
+                    <label for="first_name" class="block text-gray-700 font-semibold">Nombre <span
+                        class="text-red-500">*</span></label>
+                    <input type="text" name="first_name" id="first_name"
+                    class="input-box border-gray-300 rounded-md w-full" value="{{ $user->firstname }}">
                 </div>
+                <div>
+                    <label for="last_name" class="block text-gray-700 font-semibold">Apellido <span
+                        class="text-red-500">*</span></label>
+                    <input type="text" name="last_name" id="last_name"
+                    class="input-box border-gray-300 rounded-md w-full" value="{{ $user->lastname }}">
+                </div>
+                <div>
+                    <label for="email" class="block text-gray-700 font-semibold">Correo Electrónico <span
+                        class="text-red-500">*</span></label>
+                    <input type="email" name="email" id="email"
+                    class="input-box border-gray-300 rounded-md w-full" value="{{ $user->email }}">
+                </div>
+                <div>
+                    <label for="phone" class="block text-gray-700 font-semibold">Teléfono <span
+                        class="text-red-500">*</span></label>
+                    <input type="text" name="phone" id="phone"
+                    class="input-box border-gray-300 rounded-md w-full" value="{{ $user->phone }}">
+                </div>
+                <div>
+                    <label for="address_line" class="block text-gray-700 font-semibold">Dirección <span
+                        class="text-red-500">*</span></label>
+                    <input type="text" name="address_line" id="address_line"
+                    class="input-box border-gray-300 rounded-md w-full"
+                    value="{{ $address->address_line ?? '' }}">
+                </div>
+                <div>
+                    <label for="city" class="block text-gray-700 font-semibold">Ciudad <span
+                        class="text-red-500">*</span></label>
+                    <input type="text" name="city" id="city"
+                    class="input-box border-gray-300 rounded-md w-full" value="{{ $address->city ?? '' }}">
+                </div>
+                <div>
+                    <label for="postal_code" class="block text-gray-700 font-semibold">Código Postal <span
+                        class="text-red-500">*</span></label>
+                    <input type="text" name="postal_code" id="postal_code"
+                    class="input-box border-gray-300 rounded-md w-full" value="{{ $address->postal_code ?? '' }}">
+                </div>
+                <div>
+                    <label for="country" class="block text-gray-700 font-semibold">País <span
+                        class="text-red-500">*</span></label>
+                    <input type="text" name="country" id="country"
+                    class="input-box border-gray-300 rounded-md w-full" value="{{ $address->country ?? '' }}">
+                </div>
+                <div>
+                    <label for="state" class="block text-gray-700 font-semibold">Estado <span
+                        class="text-red-500">*</span></label>
+                    <input type="text" name="state" id="state"
+                    class="input-box border-gray-300 rounded-md w-full" value="{{ $address->state ?? '' }}">
+                </div>
+                </div>
+            </div>
             </div>
         </div>
 
@@ -84,7 +84,7 @@
                 @foreach ($orderItems as $item)
                     <div class="flex justify-between items-center">
                         <h3 class="font-semibold text-gray-800">{{ $item->product->name }}</h3>
-                        <p class="text-sm text-gray-500">{{ $item->product->price }}</p>
+                        <p class="text-sm text-gray-500">${{ $item->product->price }}</p>
                     </div>
                 @endforeach
 
@@ -112,18 +112,22 @@
             </form> --}}
             <div class="flex justify-between border-b border-gray-300 mt-2 text-gray-900 font-semibold py-4 uppercase">
                 <p>Envío</p>
-                {{-- @if ($subtotal > 60000)
+                @php $subtotal = $orderDetail->total_price; @endphp
+                @if ($subtotal > 60000)
                     <p>Gratis</p>
                     @php $shipping = 0; @endphp
                 @else
                     <p>$10000</p>
-                    @php $shipping = 10000; @endphp
-                @endif --}}
+                    @php $shipping = 10000; 
+                    $orderDetail->total_price += $shipping;
+                    @endphp
+
+                @endif 
             </div>
 
             <div class="flex justify-between text-gray-900 font-semibold py-4 uppercase">
                 <p class="font-bold">Total</p>
-                <p class="font-bold">{{ $orderDetail->total_price }}</p>
+                <p class="font-bold">${{ $orderDetail->total_price }}</p>
             </div>
 
             <div id="wallet_container" class="flex justify-between text-gray-900 font-semibold py-4 uppercase">
@@ -131,7 +135,7 @@
 
         </div>
     </div>
-     {{-- <script>
+     <script>
         const mp = new MercadoPago('APP_USR-6c3aa8b4-ddd9-4feb-949b-368bcb6d8780', {
             locale: 'es-AR'
         });
@@ -141,5 +145,5 @@
                 preferenceId: '{{ $preference->id }}'
             }
         })
-    </script>  --}}
+    </script>  
 </x-home-layout>
