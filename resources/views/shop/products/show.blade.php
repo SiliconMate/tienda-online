@@ -85,16 +85,20 @@
 
             <p class="mt-4 text-gray-600">{{ $product->description }}</p>
 
-            <div class="mt-4">
+            {{-- <div class="mt-4" x-data="{ quantity: 1 }">
                 <h3 class="text-sm text-gray-800 uppercase mb-1">Cantidad</h3>
                 <div class="flex border border-gray-300 text-gray-600 divide-x divide-gray-300 w-max">
-                    <div id="decrement"
-                        class="h-8 w-8 text-xl flex items-center justify-center cursor-pointer select-none">-</div>
-                    <div id="quantity" class="h-8 w-8 text-base flex items-center justify-center">1</div>
-                    <div id="increment"
-                        class="h-8 w-8 text-xl flex items-center justify-center cursor-pointer select-none">+</div>
+                    <div @click="quantity > 1 ? quantity-- : quantity" class="h-8 w-8 text-xl flex items-center justify-center cursor-pointer select-none">
+                        -
+                    </div>
+                    <div class="h-8 w-8 text-base flex items-center justify-center">
+                        <span x-text="quantity"></span> <!-- Utiliza x-text para mostrar el valor reactivo -->
+                    </div>
+                    <div @click="quantity++" class="h-8 w-8 text-xl flex items-center justify-center cursor-pointer select-none">
+                        +
+                    </div>
                 </div>
-            </div>
+            </div> --}}
 
             <div class="mt-6 flex gap-3 border-b border-gray-200 pb-5 pt-5" x-data="cart">
                 <button @click="addToCart({
@@ -223,19 +227,6 @@
             zoomLens.style.backgroundSize = (mainImage.width * 2.5) + 'px ' + (mainImage.height * 2.5) + 'px'; // Aumentar la escala del zoom
             zoomLens.style.backgroundPosition = `-${x * 2.5 - lensSize / 2}px -${y * 2.5 - lensSize / 2}px`;
         }
-    </script>
-    <script>
-        document.getElementById('increment').addEventListener('click', function() {
-            let quantity = document.getElementById('quantity');
-            quantity.innerText = parseInt(quantity.innerText) + 1;
-        });
-
-        document.getElementById('decrement').addEventListener('click', function() {
-            let quantity = document.getElementById('quantity');
-            if (parseInt(quantity.innerText) > 1) {
-                quantity.innerText = parseInt(quantity.innerText) - 1;
-            }
-        });
     </script>
     <style>
     #main-image {
