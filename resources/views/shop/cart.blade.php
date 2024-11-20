@@ -50,7 +50,7 @@
                 </div>
                 <div class="mt-4 flex justify-end gap-4">
                     <button @click="clearCart" class="bg-red-500 text-white py-2 px-4 rounded-md hover:bg-red-600">Vaciar carrito</button>
-                    <button class="bg-blue-500 text-white py-2 px-4 rounded-md hover:bg-blue-600">Proceder al pago</button>
+                    <button @click="processCheckout" class="bg-blue-500 text-white py-2 px-4 rounded-md hover:bg-blue-600">Proceder al pago</button>
                 </div>
             </div>
         </template>
@@ -63,5 +63,11 @@
             </div>
         </template>
     </div>
+    
+    <script>
+        window.routes = {
+            checkoutStore: "{{ route('checkout.store') }}"
+        };
+    </script>
 
 </x-home-layout>

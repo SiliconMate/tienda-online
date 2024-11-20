@@ -115,15 +115,23 @@ Route::resource('products', ShopProductController::class)
     ->only(['index', 'show'])
     ->names('products');
 
-Route::post('/apply-discount', [CheckoutController::class, 'applyDiscount'])->name('apply.discount');
+Route::post('/apply-discount', [CheckoutController::class, 'applyDiscount'])
+    ->name('apply.discount');
 
-Route::resource('categories', ShopCategoryController::class)->only(['index', 'show'])->names('categories');
+Route::resource('categories', ShopCategoryController::class)->only(['index', 'show'])
+    ->names('categories');
 
-Route::get('/cart', [CartController::class, 'index'])->name('cart.index');
+Route::get('/cart', [CartController::class, 'index'])
+    ->name('cart.index');
 
-Route::get('/checkout', [CheckoutController::class, 'index'])->name('checkout.index');
+Route::get('/checkout', [CheckoutController::class, 'index'])
+    ->name('checkout.index');
 
-Route::get('/checkout/completed', [CheckoutController::class, 'completed'])->name('checkout.completed');
+Route::post('/checkout-store', [CheckoutController::class, 'store'])
+    ->name('checkout.store');
+
+Route::get('/checkout/completed', [CheckoutController::class, 'completed'])
+    ->name('checkout.completed');
 
 Route::post('/opinions', [OpinionController::class, 'store'])->name('opinions.store');
 

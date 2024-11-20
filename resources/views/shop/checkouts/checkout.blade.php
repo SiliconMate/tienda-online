@@ -81,20 +81,15 @@
         <div class="w-1/3 border border-gray-300 p-6 rounded-lg shadow-sm bg-gray-100">
             <h3 class="text-2xl font-bold capitalize mb-6 text-blue-700">Resumen del Pedido</h3>
             <div class="space-y-4">
-                {{-- @foreach ($cartItems as $item)
-                    <div class="flex justify-between">
-                        <div>
-                            <h5 class="text-gray-900 font-semibold">{{ $item->name }}</h5>
-                            <p class="text-sm text-gray-700">Tamaño: {{ $item->attributes->size }}</p>
-                        </div>
-                        <p class="text-gray-700">
-                            x{{ $item->quantity }}
-                        </p>
-                        <p class="text-gray-900 font-semibold">${{ $item->price }}</p>
+                @foreach ($orderItems as $item)
+                    <div class="flex justify-between items-center">
+                        <h3 class="font-semibold text-gray-800">{{ $item->product->name }}</h3>
+                        <p class="text-sm text-gray-500">{{ $item->product->price }}</p>
                     </div>
-                @endforeach --}}
+                @endforeach
+
             </div>
-            @if (isset($discountPercentage) && $discountPercentage > 0)
+            {{-- @if (isset($discountPercentage) && $discountPercentage > 0)
                 <div
                     class="flex justify-between border-b border-gray-300 mt-2 text-gray-900 font-semibold py-4 uppercase">
                     <p>Descuento ({{ $discountCode }})</p>
@@ -114,11 +109,7 @@
                     <button type="submit"
                         class="bg-blue-800 text-white px-4 py-2 rounded-lg hover:bg-blue-900 transition-colors">Aplicar</button>
                 </div>
-            </form>
-            <div class="flex justify-between border-b border-gray-300 mt-2 text-gray-900 font-semibold py-4 uppercase">
-                <p>Subtotal</p>
-                {{-- <p>${{ \Cart::getSubTotal() }}</p> --}}
-            </div>
+            </form> --}}
             <div class="flex justify-between border-b border-gray-300 mt-2 text-gray-900 font-semibold py-4 uppercase">
                 <p>Envío</p>
                 {{-- @if ($subtotal > 60000)
@@ -132,7 +123,7 @@
 
             <div class="flex justify-between text-gray-900 font-semibold py-4 uppercase">
                 <p class="font-bold">Total</p>
-                {{-- <p>${{ number_format($total, 2) }}</p> --}}
+                <p class="font-bold">{{ $orderDetail->total_price }}</p>
             </div>
 
             <div id="wallet_container" class="flex justify-between text-gray-900 font-semibold py-4 uppercase">

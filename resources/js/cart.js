@@ -62,6 +62,29 @@ document.addEventListener('alpine:init', () => {
         get totalItems() {
             const totalItems = this.items.reduce((sum, item) => sum + item.quantity, 0);
             return totalItems.toString();
+        },
+
+        processCheckout() {
+            fetch(window.routes.checkoutStore, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content')
+                },
+                body: JSON.stringify({ items: this.items })
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.message) {
+                    alert(data.message);
+                    this.clearCart();
+                    window.location.href = '/checkout';
+                }
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                alert('Hubo un problema al procesar la compra.');
+            });
         }
     }));
 });
