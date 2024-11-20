@@ -17,18 +17,20 @@
         @csrf
         @method('patch')
 
-        <div>
-            <x-input type="text" name="firstname" :value="old('firstname', $user->firstname)" aria-placeholder="First Name" required autofocus autocomplete="firstname">
-                {{ __('First Name') }}
-            </x-input>
-            <x-input-error :messages="$errors->updateProfileInformation->get('firstname')" class="mt-2" />
-        </div>
-
-        <div>
-            <x-input type="text" name="lastname" :value="old('lastname', $user->lastname)" aria-placeholder="Last Name" required autofocus autocomplete="lastname">
-                {{ __('Last Name') }}
-            </x-input>
-            <x-input-error :messages="$errors->updateProfileInformation->get('lastname')" class="mt-2" />
+        <div class="flex flex-row gap-4">
+            <div class="w-1/2">
+                <x-input type="text" name="firstname" :value="old('firstname', $user->firstname)" aria-placeholder="First Name" required autofocus autocomplete="firstname">
+                    {{ __('First Name') }}
+                </x-input>
+                <x-input-error :messages="$errors->updateProfileInformation->get('firstname')" class="mt-2" />
+            </div>
+    
+            <div class="w-1/2">
+                <x-input type="text" name="lastname" :value="old('lastname', $user->lastname)" aria-placeholder="Last Name" required autofocus autocomplete="lastname">
+                    {{ __('Last Name') }}
+                </x-input>
+                <x-input-error :messages="$errors->updateProfileInformation->get('lastname')" class="mt-2" />
+            </div>
         </div>
 
         <div>
@@ -39,7 +41,7 @@
         </div>
 
         <div>
-            <x-input type="text" name="phone" :value="old('phone', $user->phone)" aria-placeholder="phone" required autofocus autocomplete="phone">
+            <x-input type="text" name="phone" :value="old('phone', $user->phone)" aria-placeholder="phone" :required="false" autofocus autocomplete="phone">
                 {{ __('Phone') }}
             </x-input>
             {{-- <x-input-error :messages="$errors->updateProfileInformation->get('phone')" class="mt-2" /> --}}

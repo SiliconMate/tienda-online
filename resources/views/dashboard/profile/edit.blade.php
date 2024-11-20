@@ -9,6 +9,12 @@
             @include('dashboard.profile.partials.update-password-form')
         </div>
     </x-section>
+    {{-- update-avatar-form --}}
+    <x-section title="Actualizar Avatar">
+        <div class="max-w-xl">
+            @include('dashboard.profile.partials.update-avatar-form')
+        </div>
+    </x-section>
     <x-section title="Eliminar Usuario">
         <div class="max-w-xl">
             @include('dashboard.profile.partials.delete-user-form')

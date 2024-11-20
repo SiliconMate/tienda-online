@@ -57,4 +57,22 @@ class ProfileController extends Controller
 
         return Redirect::to('/');
     }
+
+    public function updateAvatar(Request $request){
+        $request->validate([
+            'avatar' => ['required', 'image'],
+        ]);
+
+        $user = $request->user();
+
+        if ($request->hasFile('avatar')) {
+            $avatar = $request->file('avatar');
+            $filename = time() . $user->username . '.' . $avatar->getClientOriginalExtension();
+            $avatar->storeAs('avatars', $filename, 'public');
+            $user->avatar = $filename;
+            $user->save();
+        }
+
+        return Redirect::back()->with('status', 'avatar-updated');
+    }
 }
