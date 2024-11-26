@@ -15,7 +15,7 @@ document.addEventListener('alpine:init', () => {
                     code: product.code,
                     category: product.category,
                     image: product.image,
-                    quantity: 1,
+                    quantity: 1
                 });
             }
             this.saveCart();
