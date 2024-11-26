@@ -24,7 +24,7 @@ class ProductController extends Controller
             'price' => 'required|numeric',
             'code' => 'required|numeric|unique:products',
             'category_id' => 'required|exists:categories,name',
-            'image.*' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            'image.*' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg,webp|max:2048',
             'quantity' => 'required|numeric',
             'min_quantity' => 'required|numeric',
             'max_quantity' => 'required|numeric',

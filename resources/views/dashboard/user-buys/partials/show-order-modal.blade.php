@@ -39,14 +39,14 @@
                     <p class="text-gray-800">Método</p>
                 </div>
                 <div>
-                    <p class="text-gray-800">{{ $paymentDetail->payment_method }}</p>
+                    <p class="text-gray-800">{{ $paymentDetail->payment_method ?? 'Sin registro' }}</p>
                 </div>
                 <li class="flex justify-between items-center py-2 border-b border-gray-200">
                     <div>
                         <p class="text-gray-800">Proveedor</p>
                     </div>
                     <div>
-                        <p class="text-gray-800">{{ $paymentDetail->provider }}</p>
+                        <p class="text-gray-800">{{ $paymentDetail->provider ?? 'Sin registro' }}</p>
                     </div>
                 </li>
                 <li class="flex justify-between items-center py-2 border-b border-gray-200">
@@ -54,7 +54,7 @@
                         <p class="text-gray-800">Estado</p>
                     </div>
                     <div>
-                        <p class="text-gray-800">{{ $paymentDetail->status }}</p>
+                        <p class="text-gray-800">{{ $paymentDetail->status ?? 'Sin registro' }}</p>
                     </div>
                 </li>
                 <li class="flex justify-between items-center py-2 border-b border-gray-200">
@@ -62,7 +62,7 @@
                         <p class="text-gray-800">Total Pagado</p>
                     </div>
                     <div>
-                        <p class="text-gray-800">${{ $paymentDetail->total_paid }}</p>
+                        <p class="text-gray-800">${{ $paymentDetail->total_paid ?? 'Sin registro' }}</p>
                     </div>
                 </li>
 

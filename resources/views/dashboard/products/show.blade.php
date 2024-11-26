@@ -76,14 +76,6 @@
                         <td class="py-2 px-4 border-b border-gray-200">Vendidos</td>
                         <td class="py-2 px-4 border-b border-gray-200">{{ $product->orderItems ? $product->orderItems->sum('quantity') : 0 }}</td>
                     </tr>
-                    <tr>
-                        <td class="py-2 px-4 border-b border-gray-200">Ganancias</td>
-                        <td class="py-2 px-4 border-b border-gray-200">${{ $product->orderItems ? $product->orderItems->sum(function($orderItem) { return $orderItem->quantity * $orderItem->price; }) : 0 }}</td>
-                    </tr>
-                    <tr>
-                        <td class="py-2 px-4 border-b border-gray-200">Ganancias por venta</td>
-                        <td class="py-2 px-4 border-b border-gray-200">${{ $product->orderItems ? $product->orderItems->sum(function($orderItem) use ($product) { return $orderItem->quantity * ($orderItem->price - $product->cost); }) : 0 }}</td>
-                    </tr>
                 </tbody>
             </table>
         </div>
