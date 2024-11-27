@@ -38,7 +38,7 @@
                 </div>
             @endif
 
-            <button id="add-new-address-btn" class="bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-blue-700">
+            {{-- <button id="add-new-address-btn" class="bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-blue-700">
                 Agregar Nueva Dirección
             </button>
 
@@ -95,7 +95,7 @@
                     Dirección</button>
                 </div>
                 </div>
-            </form>
+            </form> --}}
             </div>
         </div>
 
