@@ -82,6 +82,14 @@ class CheckoutController extends Controller
 
         $orderDetail = OrderDetail::where('id', $externalReference)->with('user')->first();
 
+        $orderItems = $orderDetail->orderItems;
+        foreach ($orderItems as $orderItem) {
+            $product = Product::find($orderItem->product_id);            
+            $product->inventory->quantity -= $orderItem->quantity;
+            $product->inventory->save();
+            $product->save();
+        }
+
         if($orderDetail){
             if ($status === 'approved') {
                 PaymentDetail::create([
