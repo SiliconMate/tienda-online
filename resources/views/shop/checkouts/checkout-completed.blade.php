@@ -77,21 +77,22 @@
             <h2 class="text-xl font-semibold mb-4">Detalles del Usuario</h2>
             <ul>
                 <li class="mb-2 p-4 bg-white rounded-lg shadow-md">
-                    <p class="text-lg font-medium"><strong>Nombre completo:</strong> {{ $user->firstname }} {{ $user->lastname }}</p>
-                    <p class="text-sm text-gray-600"><strong>Email:</strong> {{ $user->email }}</p>
-                    <p class="text-sm text-gray-600"><strong>Teléfono:</strong> {{ $user->phone }}</p> 
+                    <p class="text-lg font-medium"><strong>Nombre completo:</strong> {{ $orderDetail->user->firstname }} {{ $orderDetail->user->lastname }}</p>
+                    <p class="text-sm text-gray-600"><strong>Email:</strong> {{ $orderDetail->user->email }}</p>
+                    <p class="text-sm text-gray-600"><strong>Teléfono:</strong> {{ $orderDetail->user->phone }}</p> 
                 </li>
             </ul>
         </div>
     </div>
 
+    @if ($orderDetail->orderItems[0]->product->opinions->isEmpty())
     <div class="bg-gray-200 border border-gray-300 shadow-lg rounded-lg p-8 mb-6 mx-8">
         <h2 class="text-2xl font-semibold mb-6 text-center text-gray-800">¡Valoramos mucho tu opinión sobre el producto!</h2>
         <form action="{{ route('opinions.store') }}" method="POST">
             @csrf
             @foreach ($orderDetail->orderItems as $item)
                 <input type="hidden" name="product_id[]" value="{{ $item->product_id }}">
-                <input type="hidden" name="user_id" value="{{ $user->id }}">
+                <input type="hidden" name="user_id" value="{{ $orderDetail->user->id }}">
                 <div class="mb-6">
                     <label for="content-{{ $item->product_id }}" class="block text-lg font-medium text-gray-700 mb-2">Tu opinión sobre {{ $item->product->name }}</label>
                     <textarea id="content-{{ $item->product_id }}" name="content[]" rows="4" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 sm:text-sm" required></textarea>
@@ -118,6 +119,7 @@
             </div>
         </form>
     </div>
+    @endif
     
     <script>
         document.addEventListener('DOMContentLoaded', function () {

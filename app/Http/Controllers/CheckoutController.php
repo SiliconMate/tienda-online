@@ -80,7 +80,7 @@ class CheckoutController extends Controller
         $externalReference = $request->input('external_reference');
         $totalPaid = $request->input('total_amount');
 
-        $orderDetail = OrderDetail::where('id', $externalReference)->first();
+        $orderDetail = OrderDetail::where('id', $externalReference)->with('user')->first();
 
         if($orderDetail){
             if ($status === 'approved') {
@@ -97,9 +97,8 @@ class CheckoutController extends Controller
                 ]);
             }
         }
-        $user = Auth::user();
 
-        return view('shop.checkouts.checkout-completed', compact('orderDetail', 'user'));
+        return view('shop.checkouts.checkout-completed', compact('orderDetail'));
     }
 
     public function failed()
