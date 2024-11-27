@@ -25,7 +25,7 @@ npm install
 cp .env.example .env
 ```
 
-En el caso del proveedor de mails, para pruebas puede crear una cuenta en https://mailtrap.io/home y seleccionar la opción de email testing, en la parte de inboxes se le proporicona una bandeja que cuenta con las credenciales que debe usar en el `.env`
+En el caso del proveedor de mails, para pruebas puede crear una cuenta en https://mailtrap.io/home y seleccionar la opción de email testing, en la parte de inboxes se le proporciona una bandeja que cuenta con las credenciales que debe usar en el `.env`
 
 4. Generar clave de aplicación
 ```bash
@@ -47,7 +47,7 @@ php artisan key:generate
 ```bash
 php artisan migrate --seed
 ```
-Los seeders crean 3 categorias y 2 productos en cada como también los usuarios:
+Los seeders crean 3 categorias y 2 productos en cada una como también los usuarios:
 
 admin@gmail.com : admin123 y user@gmail.com : user123
 
@@ -61,7 +61,20 @@ php artisan serve
 
 TESTUSER1205457698 : KRPwWBFKLy
 
-Vencimiento y código: 11/25 - 123
+O probar el uso de tarjeta de crédito con las siguientes credenciales
+
+Nunero: 5032 7557 3453 0604 
+Titular: APRO
+Codigo: 123
+Vto: 11/25
+DNI: 12.345.678
+
+Para verificar un caso de error en el pago usar la siguientes
+
+Numero: 3711 803032 57522 
+Titular: OTHE 
+Codigo: 1234
+Vto: 11/25
 DNI: 12.345.678
 
 ## About Laravel
