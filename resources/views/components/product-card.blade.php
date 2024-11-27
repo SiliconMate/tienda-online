@@ -8,6 +8,17 @@
         </a>
         <!-- Botón de añadir al carrito -->
         <a href="javascript:void(0)"
+            x-data="cart"
+            @click="addToCart({
+            id: {{ $product->id }},
+            name: '{{ $product->name }}',
+            description: '{{ $product->description }}',
+            price: {{ $product->price }},
+            code: '{{ $product->code }}',
+            category: '{{ $product->category->name }}',
+            image: 'storage/products/{{ $product->images->first()->path }}',
+            quantity: 1,
+            })"
             class="bg-blue-600 w-8 h-8 flex justify-center items-center text-white rounded-full absolute bottom-0 right-0 mr-4 -mb-3 opacity-0 group-hover:opacity-100 transition-opacity">
             <i class="ti ti-basket text-base"></i>
         </a>

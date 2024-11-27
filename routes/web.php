@@ -135,4 +135,6 @@ Route::get('/checkout/completed', [CheckoutController::class, 'completed'])
 
 Route::post('/opinions', [OpinionController::class, 'store'])->name('opinions.store');
 
+Route::post('/addresses/store', [UserAddressController::class, 'store'])->name('addresses.store');
+
 require __DIR__.'/auth.php';

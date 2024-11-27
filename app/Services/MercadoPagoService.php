@@ -20,33 +20,46 @@ namespace App\Services;
         $items = [];
         foreach ($orderItems as $item) {
             if ($item !== null && $item->product !== null) {
+                error_log("Product Name: " . $item->product->name);
+
                 $items[] = [
                     "id" => $item->product->id,
-                    "title" => $item->product->title,
+                    "title" => $item->product->name,
                     "quantity" => $item->quantity,
-                    "unit_price" => (float) $item->product->price // Forzar a float
+                    "unit_price" => (float) $item->product->price, // Forzar a float
                 ];
             }
         }
+        
+        $total = 0;
+        foreach ($items as $item) {
+            $total += $item['unit_price'] * $item['quantity'];
+        }
+        if ($total > 60000) {
+            $shipping = 0;
+        } else {
+            $shipping = 10000;
+        }
+
+        $items[] = [
+            "id" => "shipping-" . uniqid(),
+            "title" => "Envio",
+            "quantity" => 1,
+            "unit_price" => (float) $shipping,
+        ];    
+        
         $client = new PreferenceClient();
         try{
             $preference = $client->create([
                 "items" => $items,
                 "statement_descriptor" => "Tienda-test",
-                "external_reference" => "Test",
+                "external_reference" => "Silicon Mate",
+                "back_urls" => [
+                    "success" => "http://127.0.0.1:8000/checkout/completed",
+                    "failure" => "http://127.0.0.1:8000/checkout/completed",
+                    "pending" => "http://127.0.0.1:8000/checkout/completed"
+                ],
             ]);
-            // $preference = $client->create([
-            //     "items" => [
-            //         [
-            //             "id" => "1234",
-            //             "title" => "Test",
-            //             "quantity" => 1,
-            //             "unit_price" => 10.0
-            //         ]
-            //     ],
-            //     "statement_descriptor" => "Tienda-test",
-            //     "external_reference" => "Test",
-            // ]); 
         return $preference;
         } catch (MPApiException $e) {
             print_r($e->getApiResponse()->getContent());

@@ -29,9 +29,18 @@ class UserAddressController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
-    {
-        //
+    public function store(Request $request){
+        $address = new UserAddress();
+        $address->user_id = Auth::id();
+        $address->address_line = $request->address;
+        $address->city = $request->city;
+        $address->postal_code = $request->postal_code;
+        $address->country = $request->country;
+        $address->state = $request->state;
+        $address->comment = $request->comment;
+        $address->save();
+
+        return redirect()->back()->with('success', 'Direccion guardada correctamente');
     }
 
     /**
