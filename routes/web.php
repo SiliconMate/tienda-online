@@ -37,56 +37,58 @@ Route::middleware('auth')->group(function () {
     Route::put('/profile/avatar', [ProfileController::class, 'updateAvatar'])->name('dashboard.profile.updateavatar');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('dashboard.profile.destroy');
 
-    Route::resource('admin-permissions', PermissionController::class)
+    Route::group(['middleware' => ['role:admin']], function () {
+        Route::resource('admin-permissions', PermissionController::class)
         ->only(['index', 'store', 'update', 'destroy'])
         ->names('dashboard.permissions');
 
-    Route::resource('admin-roles', RoleController::class)
-        ->only(['index', 'store', 'update', 'destroy'])
-        ->names('dashboard.roles');
+        Route::resource('admin-roles', RoleController::class)
+            ->only(['index', 'store', 'update', 'destroy'])
+            ->names('dashboard.roles');
 
-    Route::resource('admin-users', UserController::class)
-        ->except(['create', 'edit'])
-        ->names('dashboard.users');
+        Route::resource('admin-users', UserController::class)
+            ->except(['create', 'edit'])
+            ->names('dashboard.users');
 
-    Route::post('admin-users/{user}/addrole', [UserController::class, 'addRole'])
-        ->name('dashboard.users.addrole');
+        Route::post('admin-users/{user}/addrole', [UserController::class, 'addRole'])
+            ->name('dashboard.users.addrole');
 
-    Route::post('admin-users/{user}/addpermission', [UserController::class, 'addPermission'])
-        ->name('dashboard.users.addpermission');
+        Route::post('admin-users/{user}/addpermission', [UserController::class, 'addPermission'])
+            ->name('dashboard.users.addpermission');
 
-    Route::resource('admin-categories', CategoryController::class)
-        ->only(['index', 'store', 'update', 'destroy'])
-        ->names('dashboard.categories');
+        Route::resource('admin-categories', CategoryController::class)
+            ->only(['index', 'store', 'update', 'destroy'])
+            ->names('dashboard.categories');
 
-    Route::resource('admin-products', ProductController::class)
-        ->except(['create', 'edit'])
-        ->names('dashboard.products');
+        Route::resource('admin-products', ProductController::class)
+            ->except(['create', 'edit'])
+            ->names('dashboard.products');
 
-    Route::delete('admin-products/{product}/image/{image}', [ProductController::class, 'destroyImage'])
-        ->name('dashboard.products.image.destroy');
+        Route::delete('admin-products/{product}/image/{image}', [ProductController::class, 'destroyImage'])
+            ->name('dashboard.products.image.destroy');
 
-    Route::put('admin-products/{product}/updateInventory', [ProductController::class, 'updateInventory'])
-        ->name('dashboard.products.updateInventory');
+        Route::put('admin-products/{product}/updateInventory', [ProductController::class, 'updateInventory'])
+            ->name('dashboard.products.updateInventory');
 
-    Route::resource('admin-opinions', OpinionController::class)
-        ->only(['index', 'destroy'])
-        ->names('dashboard.opinions');
+        Route::resource('admin-opinions', OpinionController::class)
+            ->only(['index', 'destroy'])
+            ->names('dashboard.opinions');
 
-    Route::resource('admin-orders', OrderController::class)
-        ->names('dashboard.orders');
+        Route::resource('admin-orders', OrderController::class)
+            ->names('dashboard.orders');
 
-    Route::put('admin-orders/{order}/cancel', [OrderController::class, 'cancel'])
-        ->name('dashboard.orders.cancel');
-        
-    Route::put('admin-orders/{order}/accept', [OrderController::class, 'accept'])
-        ->name('dashboard.orders.accept');
+        Route::put('admin-orders/{order}/cancel', [OrderController::class, 'cancel'])
+            ->name('dashboard.orders.cancel');
+            
+        Route::put('admin-orders/{order}/accept', [OrderController::class, 'accept'])
+            ->name('dashboard.orders.accept');
 
-    Route::put('admin-orders/{order}/complete', [OrderController::class, 'complete'])
-        ->name('dashboard.orders.complete');
+        Route::put('admin-orders/{order}/complete', [OrderController::class, 'complete'])
+            ->name('dashboard.orders.complete');
 
-    Route::resource('admin-sales', SaleController::class)
-        ->names('dashboard.sales');
+        Route::resource('admin-sales', SaleController::class)
+            ->names('dashboard.sales');
+    });
 
     Route::resource('user-buys', UserBuyController::class)
         ->only(['index'])
@@ -99,6 +101,15 @@ Route::middleware('auth')->group(function () {
     Route::resource('user-addresses', UserAddressController::class)
         ->only(['index', 'store', 'update', 'destroy'])
         ->names('dashboard.useraddresses');
+
+    Route::get('/checkout', [CheckoutController::class, 'index'])
+        ->name('checkout.index');
+    
+    Route::post('/checkout-store', [CheckoutController::class, 'store'])
+        ->name('checkout.store');
+    
+    Route::post('/opinions', [OpinionController::class, 'store'])
+    ->name('opinions.store');
 });
 
 Route::resource('products', ShopProductController::class)
@@ -111,20 +122,11 @@ Route::resource('categories', ShopCategoryController::class)->only(['index', 'sh
 Route::get('/cart', [CartController::class, 'index'])
     ->name('cart.index');
 
-Route::get('/checkout', [CheckoutController::class, 'index'])
-    ->name('checkout.index')->middleware('auth');
-
-Route::post('/checkout-store', [CheckoutController::class, 'store'])
-    ->name('checkout.store')->middleware('auth');
-
 Route::get('/checkout/completed', [CheckoutController::class, 'completed'])
     ->name('checkout.completed');
 
 Route::get('/checkout/failed', [CheckoutController::class, 'failed'])
     ->name('checkout.failed');
-
-Route::post('/opinions', [OpinionController::class, 'store'])
-->name('opinions.store');
 
 Route::post('/addresses/store', [UserAddressController::class, 'store'])->name('addresses.store');
 
