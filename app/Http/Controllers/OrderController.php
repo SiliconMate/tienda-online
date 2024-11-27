@@ -2,8 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Mail\InformarCanceladoMail;
+use App\Mail\InformarEnvioMail;
 use App\Models\OrderDetail;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Mail;
 
 class OrderController extends Controller
 {
@@ -61,7 +64,8 @@ class OrderController extends Controller
         $order->status = 'cancelled';
         $order->save();
 
-        // agregar lo del envio del mail
+        $mesanje = $request->input('message');
+        Mail::to($order->user->email)->send(new InformarCanceladoMail($order, $mesanje));
 
         return redirect()->route('dashboard.orders.index');
     }
@@ -74,7 +78,8 @@ class OrderController extends Controller
 
         $order = OrderDetail::findOrFail($id);
 
-        // enviar mail
+        $mensaje = $request->input('message');
+        Mail::to($order->user->email)->send(new InformarEnvioMail($order, $mensaje));
 
         return redirect()->route('dashboard.orders.index');
     }
@@ -88,6 +93,4 @@ class OrderController extends Controller
 
         return redirect()->route('dashboard.userbuys.index');
     }
-
-
 }
