@@ -34,12 +34,28 @@ class DatabaseSeeder extends Seeder
 
         $user->assignRole('admin');
 
+        $user->addresses()->create([
+            'address_line' => 'Calle 123',
+            'country' => 'Argentina',
+            'state' => 'Corrientes',
+            'city' => 'Goya',
+            'postal_code' => '3450',
+        ]);
+
         $user = User::factory()->create([
             'firstname' => 'user',
             'lastname' => 'user',
             'username' => 'user',
             'email' => 'user@gmail.com',
             'password' => bcrypt('user123'),
+        ]);
+
+        $user->addresses()->create([
+            'address_line' => 'Calle 123',
+            'country' => 'Argentina',
+            'state' => 'Corrientes',
+            'city' => 'Goya',
+            'postal_code' => '3450',
         ]);
 
         $user->assignRole('user');
