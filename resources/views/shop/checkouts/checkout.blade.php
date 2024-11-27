@@ -148,7 +148,6 @@
         mp.bricks().create("wallet", "wallet_container", {
             initialization: {
                 preferenceId: '{{ $preference->id }}'
-                redirect
             }
         })
     </script>
