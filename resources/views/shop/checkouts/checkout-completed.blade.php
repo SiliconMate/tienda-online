@@ -85,7 +85,6 @@
         </div>
     </div>
 
-    @if ($orderDetail->orderItems[0]->product->opinions->isEmpty())
     <div class="bg-gray-200 border border-gray-300 shadow-lg rounded-lg p-8 mb-6 mx-8">
         <h2 class="text-2xl font-semibold mb-6 text-center text-gray-800">¡Valoramos mucho tu opinión sobre el producto!</h2>
         <form action="{{ route('opinions.store') }}" method="POST">
@@ -119,7 +118,6 @@
             </div>
         </form>
     </div>
-    @endif
     
     <script>
         document.addEventListener('DOMContentLoaded', function () {

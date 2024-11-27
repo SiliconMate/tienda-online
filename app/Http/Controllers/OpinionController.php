@@ -35,6 +35,9 @@ class OpinionController extends Controller
         ]);
 
         foreach ($request->product_id as $index => $productId) {
+            if (Opinion::where('product_id', $productId)->where('user_id', $request->user_id)->exists()) {
+                continue;
+            }
             Opinion::create([
                 'product_id' => $productId,
                 'user_id' => $request->user_id,

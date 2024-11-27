@@ -37,9 +37,25 @@
                     <div class="flex flex-col mt-2">
                         <div class="flex flex-row mb-2">
                             <span class="font-semibold text-gray-800 mr-2">Método:</span>
-                            <span>{{ $order->paymentDetail->payment_method }}</span>
+                            <span>{{ $order->paymentDetail->payment_method ?? 'Sin registro' }}</span>
                         </div>
-                        {{-- resto --}}
+                        {{-- resto: provider, status, total_paid, completed_at --}}
+                        <div class="flex flex-row mb-2">
+                            <span class="font-semibold text-gray-800 mr-2">Proveedor:</span>
+                            <span>{{ $order->paymentDetail->provider ?? 'Sin registro' }}</span>
+                        </div>
+                        <div class="flex flex-row mb-2">
+                            <span class="font-semibold text-gray-800 mr-2">Estado:</span>
+                            <span>{{ $order->paymentDetail->status ?? 'Sin registro' }}</span>
+                        </div>
+                        <div class="flex flex-row mb-2">
+                            <span class="font-semibold text-gray-800 mr-2">Total Pagado:</span>
+                            <span>${{ $order->paymentDetail->total_paid ?? 'Sin registro' }}</span>
+                        </div>
+                        <div class="flex flex-row mb-2">
+                            <span class="font-semibold text-gray-800 mr-2">Completado:</span>
+                            <span>{{ $order->paymentDetail->completed_at ?? 'Sin registro' }}</span>
+                        </div>
                     </div>
                 </div>
                 <div class="flex flex-col mt-4">

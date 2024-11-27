@@ -84,9 +84,6 @@ class CheckoutController extends Controller
 
         if($orderDetail){
             if ($status === 'approved') {
-                $orderDetail->status = 'completed';
-                $orderDetail->completed_at = now();
-                $orderDetail->save();
                 PaymentDetail::create([
                     'order_id' => $orderDetail->id,
                     'payment_method' => $paymentType,
