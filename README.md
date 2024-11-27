@@ -32,7 +32,18 @@ En el caso del proveedor de mails, para pruebas puede crear una cuenta en https:
 php artisan key:generate
 ```
 
-5. Migrar la base de datos y ejecutar los seeders
+5. Para configurar el almacenamiento de archivos en tu proyecto, sigue estos pasos:
+    1. Crea un vínculo simbólico en el directorio `public` ejecutando el siguiente comando:
+   ```bash
+   php artisan storage:link
+   ```
+   
+   2. Este comando creará un directorio llamado storage dentro del directorio public. Dentro del directorio public/storage, crea las siguientes carpetas:
+   - categories
+   - products
+   - avatars
+
+6. Migrar la base de datos y ejecutar los seeders
 ```bash
 php artisan migrate --seed
 ```
@@ -40,7 +51,7 @@ Los seeders crean 3 categorias y 2 productos en cada como también los usuarios:
 
 admin@gmail.com:admin123 y user@gmail.com:user123
 
-6. Iniciar el servidor local y compilar los assets
+7. Iniciar el servidor local y compilar los assets
 ```bash
 npm run build
 php artisan serve
