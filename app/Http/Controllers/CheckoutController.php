@@ -20,21 +20,21 @@ class CheckoutController extends Controller
     {
         $data = session()->get('checkout');
 
+        session()->forget('checkout');
+
+        if (!$data) {
+            return redirect()->route('cart.index');
+        }
+        
         $user = Auth::user();
         $address = $user->addresses->first();
 
-        if (!$address) {
-            $address = new Address();
-            $address->user_id = $user->id;
-            // Asignar otros campos necesarios para la dirección
-            $address->save();
-        }
-
-        $orderDetail = new OrderDetail();
-        $orderDetail->user_id = $user->id;
-        $orderDetail->address_id = $address ? $address->id : $user->id; // Usar la dirección por defecto o el id del usuario
-        $orderDetail->total_price = 0;
-        $orderDetail->save();
+        $orderDetail = OrderDetail::create([
+            'user_id' => $user->id,
+            'total_price' => 0,
+            'status' => 'pending',
+            'address_id' => $address->id,
+        ]);
 
         $totalPrice = 0;
         $orderItems = [];

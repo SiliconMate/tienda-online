@@ -50,7 +50,7 @@
                 <x-input-error :messages="$errors->get('phone')" class="mt-2" />
             </div>
             <div class="mt-4">
-                <x-textarea id="comment" class="block w-full" name="comment" required>
+                <x-textarea id="comment" class="block w-full" name="comment" :value="old('comment') ?? ''">
                     Comentario
                 </x-textarea>
                 <x-input-error :messages="$errors->get('comment')" class="mt-2" />
