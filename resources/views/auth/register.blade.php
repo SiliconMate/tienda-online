@@ -39,19 +39,59 @@
         </div>
 
         <!-- Password -->
-        <div class="">
-            <x-input type="password" name="password" aria-placeholder="Password" required autofocus autocomplete="new-password">
-                {{ __('Password') }}
-            </x-input>
-            <x-input-error :messages="$errors->get('password')" class="mt-2" />
+        <div class="grid grid-cols-2 gap-4">
+            <div class="">
+                <x-input type="password" name="password" aria-placeholder="Password" required autofocus autocomplete="new-password">
+                    {{ __('Password') }}
+                </x-input>
+                <x-input-error :messages="$errors->get('password')" class="mt-2" />
+            </div>
+    
+            <!-- Confirm Password -->
+            <div class="">
+                <x-input type="password" name="password_confirmation" aria-placeholder="Confirm Password" required autofocus autocomplete="new-password">
+                    {{ __('Confirm Password') }}
+                </x-input>
+                <x-input-error :messages="$errors->get('password_confirmation')" class="mt-2" />
+            </div>
         </div>
 
-        <!-- Confirm Password -->
-        <div class="">
-            <x-input type="password" name="password_confirmation" aria-placeholder="Confirm Password" required autofocus autocomplete="new-password">
-                {{ __('Confirm Password') }}
+        <div>
+            <x-input type="text" name="address_line" :value="old('address_line')" aria-placeholder="Address Line" required autofocus autocomplete="address_line">
+                Dirección
             </x-input>
-            <x-input-error :messages="$errors->get('password_confirmation')" class="mt-2" />
+            <x-input-error :messages="$errors->get('address_line')" class="mt-2" />
+        </div>
+
+        <div class="grid grid-cols-3 gap-4">
+            <x-input type="text" name="country" :value="old('country')" aria-placeholder="Country" required autofocus autocomplete="country">
+                Pais
+            </x-input>
+            <x-input-error :messages="$errors->get('country')" class="mt-2" />
+            
+             <x-input type="text" name="state" :value="old('state')" aria-placeholder="State" required autofocus autocomplete="state">
+                Provincia
+            </x-input>
+            <x-input-error :messages="$errors->get('state')" class="mt-2" />
+                
+            <x-input type="text" name="city" :value="old('city')" aria-placeholder="City" required autofocus autocomplete="city">
+                Ciudad
+            </x-input>
+            <x-input-error :messages="$errors->get('city')" class="mt-2" />
+        </div>
+            
+        <div class="grid grid-cols-3 gap-4">
+            <x-input type="text" name="postal_code" :value="old('postal_code')" aria-placeholder="Postal Code" required autofocus autocomplete="postal_code">
+                Código Postal
+            </x-input>
+            <x-input-error :messages="$errors->get('postal_code')" class="mt-2" />
+        </div>
+           
+        <div class="">
+            <x-textarea name="comment" :value="old('comment') ?? ''" aria-placeholder="Comment" autofocus autocomplete="comment">
+                Comentario (opcional)
+            </x-textarea>
+            <x-input-error :messages="$errors->get('comment')" class="mt-2" />
         </div>
 
         <div class="flex items-center justify-end mt-4">
