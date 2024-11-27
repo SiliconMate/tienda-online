@@ -20,9 +20,13 @@
             </div>
             <div class="flex space-x-4 ml-2" x-data="cart">
                 <a href="{{route('cart.index')}}" class="text-gray-700 hover:text-gray-900 flex flex-col items-center">
-                    <i class="ti ti-shopping-cart text-3xl"></i>
+                    <div class="relative py-2">
+                        <i class="ti ti-shopping-cart text-3xl"></i>
+                        <div class="top-0 absolute left-4">
+                            <p x-text="totalItems" class="flex h-2 w-2 items-center justify-center rounded-full bg-red-500 p-[9px] text-xs text-white"></p>
+                        </div>
+                    </div>
                     <span class="text-sm">Carrito</span>
-                    <span x-text="totalItems" class="absolute top-50 right-[315px] text-xs text-white bg-red-500 rounded-full w-5 h-5 flex items-center justify-center"></span>
                 </a>
                 <a href="{{ route('login') }}" class="text-gray-700 hover:text-gray-900 flex flex-col items-center">
                     <i class="ti ti-user text-3xl"></i>

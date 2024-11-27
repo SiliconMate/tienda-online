@@ -24,7 +24,10 @@ class ProductController extends Controller
             'price' => 'required|numeric',
             'code' => 'required|numeric|unique:products',
             'category_id' => 'required|exists:categories,name',
-            'image.*' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            'image.*' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg,webp|max:2048',
+            'quantity' => 'required|numeric',
+            'min_quantity' => 'required|numeric',
+            'max_quantity' => 'required|numeric',
         ]);
 
         $category_id = Category::where('name', $request->category_id)->first();
@@ -46,9 +49,9 @@ class ProductController extends Controller
         }
 
         $product->inventory()->create([
-            'quantity' => 0,
-            'min_quantity' => 0,
-            'max_quantity' => 0,
+            'quantity' => $request->quantity,
+            'min_quantity' => $request->min_quantity,
+            'max_quantity' => $request->max_quantity,
             'storage_location' => '',
         ]);
 

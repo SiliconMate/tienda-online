@@ -28,7 +28,12 @@
                 <tbody>
                     @foreach ($products as $product)
                         <tr class="odd:bg-white odd:dark:bg-gray-900 even:bg-gray-50 even:dark:bg-gray-800 border-b dark:border-gray-700">
-                            <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">{{ $product->id }}</th>
+                            <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                                @if($product->inventory->quantity <= 0)
+                                    <span class="inline-block w-2 h-2 bg-red-500 rounded-full mr-2"></span>
+                                @endif
+                                {{ $product->id }}
+                            </th>
                             <td class="px-6 py-4">{{ $product->name }}</td>
                             <td class="px-6 py-4">{{ $product->price }}</td>
                             <td class="px-6 py-4">{{ $product->category->name ?? 'Sin categoría' }}</td>

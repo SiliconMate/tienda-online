@@ -35,6 +35,7 @@ Route::middleware('auth')->group(function () {
 
     Route::get('/profile', [ProfileController::class, 'edit'])->name('dashboard.profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('dashboard.profile.update');
+    Route::put('/profile/avatar', [ProfileController::class, 'updateAvatar'])->name('dashboard.profile.updateavatar');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('dashboard.profile.destroy');
 
     Route::resource('admin-permissions', PermissionController::class)

@@ -14,6 +14,11 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
+        $this->call([
+            CategorySeeder::class,
+            ProductSeeder::class,
+        ]);
+
         $role = Role::create(['name' => 'admin']);
         $role->save();
         $role = Role::create(['name' => 'user']);
@@ -23,10 +28,36 @@ class DatabaseSeeder extends Seeder
             'firstname' => 'admin',
             'lastname' => 'admin',
             'username' => 'admin',
-            'email' => 'admin@admin.com',
+            'email' => 'admin@gmail.com',
             'password' => bcrypt('admin123'),
         ]);
 
         $user->assignRole('admin');
+
+        $user->addresses()->create([
+            'address_line' => 'Calle 123',
+            'country' => 'Argentina',
+            'state' => 'Corrientes',
+            'city' => 'Goya',
+            'postal_code' => '3450',
+        ]);
+
+        $user = User::factory()->create([
+            'firstname' => 'user',
+            'lastname' => 'user',
+            'username' => 'user',
+            'email' => 'user@gmail.com',
+            'password' => bcrypt('user123'),
+        ]);
+
+        $user->addresses()->create([
+            'address_line' => 'Calle 123',
+            'country' => 'Argentina',
+            'state' => 'Corrientes',
+            'city' => 'Goya',
+            'postal_code' => '3450',
+        ]);
+
+        $user->assignRole('user');
     }
 }
