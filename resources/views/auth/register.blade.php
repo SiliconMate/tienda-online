@@ -88,7 +88,7 @@
         </div>
            
         <div class="">
-            <x-textarea name="comment" :value="old('comment') ?? ''" aria-placeholder="Comment" autofocus autocomplete="comment">
+            <x-textarea name="comment" :value="old('comment') ?? ''" aria-placeholder="Comment" :required="false" autofocus autocomplete="comment">
                 Comentario (opcional)
             </x-textarea>
             <x-input-error :messages="$errors->get('comment')" class="mt-2" />
