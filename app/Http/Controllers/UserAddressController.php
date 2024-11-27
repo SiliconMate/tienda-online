@@ -72,6 +72,6 @@ class UserAddressController extends Controller
      */
     public function destroy(string $id)
     {
-
+        //
     }
 }
