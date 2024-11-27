@@ -89,11 +89,11 @@
                         @include('dashboard.orders.partials.accept-order-modal', ['order' => $order])
                     @endif
                     
-                    @if (!$order->status === 'completed')
-                    <x-button style='danger' x-data="" x-on:click.prevent="$dispatch('open-modal', 'reject-order-{{ $order->id }}')">
-                        Rechazar
-                    </x-button>
-                    @include('dashboard.orders.partials.reject-order-modal', ['order' => $order])
+                    @if ($order->status === 'processing' || $order->status === 'pending')
+                        <x-button style='danger' x-data="" x-on:click.prevent="$dispatch('open-modal', 'reject-order-{{ $order->id }}')">
+                            Rechazar
+                        </x-button>
+                        @include('dashboard.orders.partials.reject-order-modal', ['order' => $order])
                     @endif
                 </div>
             </div>
