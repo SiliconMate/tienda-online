@@ -23,20 +23,25 @@ class OpinionController extends Controller
     }
 
     public function store(Request $request)
-    {
+    {     
         $request->validate([
-            'product_id' => 'required|exists:products,id',
+            'product_id' => 'required|array',
+            'product_id.*' => 'exists:products,id',
             'user_id' => 'required|exists:users,id',
-            'content' => 'required|string',
-            'rating' => 'required|integer|min=1|max=5',
+            'content' => 'required|array',
+            'content.*' => 'string',
+            'rating' => 'required|array',
+            'rating.*' => 'integer|min:1|max:5',
         ]);
 
-        Opinion::create([
-            'product_id' => $request->product_id,
-            'user_id' => $request->user_id,
-            'content' => $request->content,
-            'rating' => $request->rating,
-        ]);
+        foreach ($request->product_id as $index => $productId) {
+            Opinion::create([
+                'product_id' => $productId,
+                'user_id' => $request->user_id,
+                'content' => $request->content[$index],
+                'rating' => $request->rating[$productId],
+            ]);
+        }
 
         return redirect()->back()->with('success', '¡Gracias por tu opinión!');
     }

@@ -26,38 +26,36 @@ namespace App\Services;
                     "id" => $item->product->id,
                     "title" => $item->product->name,
                     "quantity" => $item->quantity,
+                    "currency_id" => "ARS",
                     "unit_price" => (float) $item->product->price, // Forzar a float
                 ];
             }
         }
         
         $total = 0;
+        $shipping = 0;
         foreach ($items as $item) {
             $total += $item['unit_price'] * $item['quantity'];
         }
-        if ($total > 60000) {
-            $shipping = 0;
-        } else {
+        if ($total < 60000) {
             $shipping = 10000;
         }
 
-        $items[] = [
-            "id" => "shipping-" . uniqid(),
-            "title" => "Envio",
-            "quantity" => 1,
-            "unit_price" => (float) $shipping,
-        ];    
-        
         $client = new PreferenceClient();
         try{
             $preference = $client->create([
                 "items" => $items,
                 "statement_descriptor" => "Tienda-test",
-                "external_reference" => "Silicon Mate",
+                "external_reference" => $orderItems[0]->order_id,
                 "back_urls" => [
                     "success" => "http://127.0.0.1:8000/checkout/completed",
-                    "failure" => "http://127.0.0.1:8000/checkout/completed",
-                    "pending" => "http://127.0.0.1:8000/checkout/completed"
+                    "failure" => "http://127.0.0.1:8000/checkout/failed"
+                ],
+                "auto_return" => "approved",
+                "binary_mode" => true,
+                "shipments" => [
+                    "mode" => "not_specified",
+                    "cost" => $shipping,
                 ],
             ]);
         return $preference;
