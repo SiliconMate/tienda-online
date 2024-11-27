@@ -39,7 +39,6 @@
                             <span class="font-semibold text-gray-800 mr-2">Método:</span>
                             <span>{{ $order->paymentDetail->payment_method ?? 'Sin registro' }}</span>
                         </div>
-                        {{-- resto: provider, status, total_paid, completed_at --}}
                         <div class="flex flex-row mb-2">
                             <span class="font-semibold text-gray-800 mr-2">Proveedor:</span>
                             <span>{{ $order->paymentDetail->provider ?? 'Sin registro' }}</span>

@@ -49,13 +49,20 @@ php artisan migrate --seed
 ```
 Los seeders crean 3 categorias y 2 productos en cada como también los usuarios:
 
-admin@gmail.com:admin123 y user@gmail.com:user123
+admin@gmail.com : admin123 y user@gmail.com : user123
 
 7. Iniciar el servidor local y compilar los assets
 ```bash
 npm run build
 php artisan serve
 ```
+
+8. Cuenta comprador para probar Mercado Pago
+
+TESTUSER1205457698 : KRPwWBFKLy
+
+Vencimiento y código: 11/25 - 123
+DNI: 12.345.678
 
 ## About Laravel
 
