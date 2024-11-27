@@ -62,14 +62,14 @@
                 </p>
             </div>
 
-            <div class="flex items-baseline mb-1 space-x-2 font-roboto mt-4">
+            {{-- <div class="flex items-baseline mb-1 space-x-2 font-roboto mt-4">
                 @if (isset($discountedPrice))
                     <p class="text-xl text-primary font-semibold">${{ number_format($discountedPrice, 2) }}</p>
                     <p class="text-base text-gray-400 line-through">${{ number_format($product->price, 2) }}</p>
                 @else
                     <p class="text-xl text-primary font-semibold">${{ number_format($product->price, 2) }}</p>
                 @endif
-            </div>
+            </div> --}}
 
             {{-- <form method="POST" action="{{ route('apply.discount', $product->id) }}" class="mt-4">
                 @csrf
