@@ -18,51 +18,53 @@ class UserAddressController extends Controller
         return view('dashboard.user-addresses.index', compact('addresses'));
     }
 
+    /**
+     * Show the form for creating a new resource.
+     */
     public function create()
     {
-
+        //
     }
 
-    public function store(Request $request)
-    {
-        $request->validate([
-            'address_line' => 'required|string',
-            'postal_code' => 'required|string',
-            'country' => 'required|string',
-            'city' => 'required|string',
-            'state' => 'required|string',
-            'phone' => 'string',
-            'comment' => 'required|string',
-        ]);
-        
-        $user = Auth::user();
-        $user->addresses()->create($request->all());
+    /**
+     * Store a newly created resource in storage.
+     */
+    public function store(Request $request){
+        $address = new UserAddress();
+        $address->user_id = Auth::id();
+        $address->address_line = $request->address;
+        $address->city = $request->city;
+        $address->postal_code = $request->postal_code;
+        $address->country = $request->country;
+        $address->state = $request->state;
+        $address->comment = $request->comment;
+        $address->save();
 
-        return redirect()->route('dashboard.useraddresses.index');
+        return redirect()->back()->with('success', 'Direccion guardada correctamente');
     }
 
+    /**
+     * Display the specified resource.
+     */
     public function show(string $id)
     {
-
+        //
     }
 
+    /**
+     * Show the form for editing the specified resource.
+     */
+    public function edit(string $id)
+    {
+        //
+    }
+
+    /**
+     * Update the specified resource in storage.
+     */
     public function update(Request $request, string $id)
     {
-        $request->validate([
-            'address_line' => 'required|string',
-            'postal_code' => 'required|string',
-            'country' => 'required|string',
-            'city' => 'required|string',
-            'state' => 'required|string',
-            'phone' => 'string',
-            'comment' => 'required|string',
-        ]);
-
-        $user = Auth::user();
-        $address = $user->addresses()->findOrFail($id);
-        $address->update($request->all());
-
-        return redirect()->route('dashboard.useraddresses.index');
+        //
     }
 
     /**
@@ -70,10 +72,6 @@ class UserAddressController extends Controller
      */
     public function destroy(string $id)
     {
-        $user = Auth::user();
-        $address = $user->addresses()->findOrFail($id);
-        $address->delete();
 
-        return redirect()->route('dashboard.useraddresses.index');
     }
 }
