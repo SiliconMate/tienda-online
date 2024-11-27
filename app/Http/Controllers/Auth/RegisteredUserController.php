@@ -37,6 +37,12 @@ class RegisteredUserController extends Controller
             'email' => ['required', 'string', 'lowercase', 'email', 'max:255', 'unique:'.User::class],
             'phone' => ['integer'],
             'password' => ['required', 'confirmed', Rules\Password::defaults()],
+            'address_line' => ['required', 'string', 'max:255'],
+            'country' => ['required', 'string', 'max:255'],
+            'state' => ['required', 'string', 'max:255'],
+            'city' => ['required', 'string', 'max:255'],
+            'postal_code' => ['required', 'string', 'max:255'],
+            'comment' => ['nullable', 'string', 'max:255'],
         ]);
 
         $user = User::create([
@@ -48,6 +54,16 @@ class RegisteredUserController extends Controller
             'password' => Hash::make($request->password),
         ]);
 
+        $user->addresses()->create([
+            'address_line' => $request->address_line,
+            'country' => $request->country,
+            'state' => $request->state,
+            'city' => $request->city,
+            'postal_code' => $request->postal_code,
+            'comment' => $request->comment,
+            'phone' => $request->phone,
+        ]);
+
         $role = Role::where('name', 'user')->first();
         $user->assignRole($role);
 
@@ -55,6 +71,6 @@ class RegisteredUserController extends Controller
 
         Auth::login($user);
 
-        return redirect(route('dashboard', absolute: false));
+        return redirect(route('home', absolute: false));
     }
 }
