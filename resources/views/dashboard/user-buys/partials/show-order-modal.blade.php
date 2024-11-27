@@ -41,33 +41,45 @@
                 <div>
                     <p class="text-gray-800">{{ $paymentDetail->payment_method ?? 'Sin registro' }}</p>
                 </div>
-                <li class="flex justify-between items-center py-2 border-b border-gray-200">
-                    <div>
-                        <p class="text-gray-800">Proveedor</p>
-                    </div>
-                    <div>
-                        <p class="text-gray-800">{{ $paymentDetail->provider ?? 'Sin registro' }}</p>
-                    </div>
-                </li>
-                <li class="flex justify-between items-center py-2 border-b border-gray-200">
-                    <div>
-                        <p class="text-gray-800">Estado</p>
-                    </div>
-                    <div>
-                        <p class="text-gray-800">{{ $paymentDetail->status ?? 'Sin registro' }}</p>
-                    </div>
-                </li>
-                <li class="flex justify-between items-center py-2 border-b border-gray-200">
-                    <div>
-                        <p class="text-gray-800">Total Pagado</p>
-                    </div>
-                    <div>
-                        <p class="text-gray-800">${{ $paymentDetail->total_paid ?? 'Sin registro' }}</p>
-                    </div>
-                </li>
-
+            </li>
+            <li class="flex justify-between items-center py-2 border-b border-gray-200">
+                <div>
+                    <p class="text-gray-800">Proveedor</p>
+                </div>
+                <div>
+                    <p class="text-gray-800">{{ $paymentDetail->provider ?? 'Sin registro' }}</p>
+                </div>
+            </li>
+            <li class="flex justify-between items-center py-2 border-b border-gray-200">
+                <div>
+                    <p class="text-gray-800">Estado</p>
+                </div>
+                <div>
+                    <p class="text-gray-800">{{ $paymentDetail->status ?? 'Sin registro' }}</p>
+                </div>
+            </li>
+            <li class="flex justify-between items-center py-2 border-b border-gray-200">
+                <div>
+                    <p class="text-gray-800">Total Pagado</p>
+                </div>
+                <div>
+                    <p class="text-gray-800">${{ $paymentDetail->total_paid ?? 'Sin registro' }}</p>
+                </div>
             </li>
         </ul>
     </div>
 
+    {{-- Confirmar Recepción --}}
+    @if ($order->status === 'processing')
+    <div class="mt-4 px-6 pb-6 flex justify-end">
+        <form action="{{ route('dashboard.orders.complete', $order->id) }}" method="POST">
+            @csrf
+            @method('PUT')
+            <x-button type="submit" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
+                Confirmar Recepción
+            </x-button>
+        </form>
+    </div>
+    @endif
+    
 </x-modal>

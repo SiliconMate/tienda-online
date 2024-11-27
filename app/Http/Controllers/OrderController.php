@@ -55,20 +55,26 @@ class OrderController extends Controller
         //
     }
 
-    public function cancel(string $id)
+    public function cancel(Request $request, string $id)
     {
         $order = OrderDetail::findOrFail($id);
         $order->status = 'cancelled';
         $order->save();
 
+        // agregar lo del envio del mail
+
         return redirect()->route('dashboard.orders.index');
     }
 
-    public function accept(string $id)
+    public function accept(Request $request, string $id)
     {
         $order = OrderDetail::findOrFail($id);
         $order->status = 'processing';
         $order->save();
+
+        $order = OrderDetail::findOrFail($id);
+
+        // enviar mail
 
         return redirect()->route('dashboard.orders.index');
     }
@@ -80,7 +86,7 @@ class OrderController extends Controller
         $order->completed_at = now();
         $order->save();
 
-        return redirect()->route('dashboard.orders.index');
+        return redirect()->route('dashboard.userbuys.index');
     }
 
 

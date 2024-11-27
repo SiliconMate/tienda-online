@@ -2,12 +2,11 @@
     <x-section>
         <x-slot name="title">
             <div class="flex items-center justify-between">
-                <h2 class="font-semibold text-xl text-gray-800 leading-tight">Orden #{{ $order->id }}</h2>
+                <h2 class="font-semibold text-xl text-gray-800 leading-tight">Orden #{{ $order->id . ' - ' . $order->status}} </h2>
             </div>
         </x-slot>
 
         <div class="relative overflow-x-auto">
-            {{-- mostrar infgormación como el usuario, dirección, cuando fue hecho, imagenes de los itemd e la orden --}}
             <div class="flex flex-col">
                 <div class="flex flex-col md:flex-row md:justify-between">
                     <div class="flex flex-col mb-2">
@@ -19,7 +18,7 @@
                         </div>
                         <div class="flex flex-row mb-2">
                             <span class="font-semibold text-gray-800 mr-2">Dirección:</span>
-                            <span>{{ $order->address->address_line }}</span>
+                            <span>{{ $order->address->address_line . " - " . $order->address->city . ", " . $order->address->state . " " . " - " . $order->address->postal_code }}</span>
                         </div>
                         <div class="flex flex-row mb-2">
                             <span class="font-semibold text-gray-800 mr-2">Fecha:</span>
@@ -31,10 +30,16 @@
                             <span class="font-semibold text-gray-800 mr-2">Total:</span>
                             <span>${{ $order->total_price }}</span>
                         </div>
+                    </div>
+                </div>
+                <div class="flex flex-col mt-4">
+                    <span class="font-semibold text-gray-800">Detalles de Pago:</span>
+                    <div class="flex flex-col mt-2">
                         <div class="flex flex-row mb-2">
-                            <span class="font-semibold text-gray-800 mr-2">Estado:</span>
-                            <span>{{ $order->status }}</span>
+                            <span class="font-semibold text-gray-800 mr-2">Método:</span>
+                            <span>{{ $order->paymentDetail->payment_method }}</span>
                         </div>
+                        {{-- resto --}}
                     </div>
                 </div>
                 <div class="flex flex-col mt-4">
@@ -60,20 +65,21 @@
                         </tbody>
                     </table>
                 </div>
-                @if($order->status == 'pending')
-                    <div class="flex flex-row mt-4 justify-end">
-                        <form action="{{ route('dashboard.orders.accept', $order->id) }}" method="POST" class="mr-2">
-                            @csrf
-                            @method('PUT')
-                            <x-button type="submit" style="primary">Aceptar</x-button>
-                        </form>
-                        <form action="{{ route('dashboard.orders.cancel', $order->id) }}" method="POST">
-                            @csrf
-                            @method('PUT')
-                            <x-button type="submit" style="danger">Rechazar</x-button>
-                        </form>
-                    </div>
-                @endif
+                <div class="flex flex-row mt-4 justify-end">
+                    @if ($order->status === 'pending')
+                        <x-button x-data="" x-on:click.prevent="$dispatch('open-modal', 'accept-order-{{ $order->id }}')">
+                            Confirmar Envio
+                        </x-button>
+                        @include('dashboard.orders.partials.accept-order-modal', ['order' => $order])
+                    @endif
+                    
+                    @if (!$order->status === 'completed')
+                    <x-button style='danger' x-data="" x-on:click.prevent="$dispatch('open-modal', 'reject-order-{{ $order->id }}')">
+                        Rechazar
+                    </x-button>
+                    @include('dashboard.orders.partials.reject-order-modal', ['order' => $order])
+                    @endif
+                </div>
             </div>
         </div>
     </x-section>

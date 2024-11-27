@@ -71,7 +71,7 @@
                                 Ordenes
                             </div>
                             <span class="bg-red-500 text-white rounded-full px-2 py-1 text-xs flex items-center justify-center w-6 h-6 font-black">
-                                {{ App\Models\OrderDetail::where('status', 'pending')->count() }}
+                                {{ App\Models\OrderDetail::whereIn('status', ['pending', 'processing'])->count() }}
                             </span>
                         </div>
                     </x-sidebar-section-link>
