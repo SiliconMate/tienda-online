@@ -20,22 +20,27 @@ composer install
 npm install
 ```
 
-3. Copiar archivo de configuración y configurarlo.
+3. Copiar archivo de configuración y vincular la base de datos como el proveedor de mail.
 ```bash
 cp .env.example .env
 ```
+
+En el caso del proveedor de mails, para pruebas puede crear una cuenta en https://mailtrap.io/home y seleccionar la opción de email testing, en la parte de inboxes se le proporicona una bandeja que cuenta con las credenciales que debe usar en el `.env`
 
 4. Generar clave de aplicación
 ```bash
 php artisan key:generate
 ```
 
-5. Migrar la base de datos
+5. Migrar la base de datos y ejecutar los seeders
 ```bash
-php artisan migrate
+php artisan migrate --seed
 ```
+Los seeders crean 3 categorias y 2 productos en cada como también los usuarios:
 
-6. Iniciar el servidor local
+admin@gmail.com:admin123 y user@gmail.com:user123
+
+6. Iniciar el servidor local y compilar los assets
 ```bash
 php artisan serve
 npm run dev
