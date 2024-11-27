@@ -112,10 +112,10 @@ Route::get('/cart', [CartController::class, 'index'])
     ->name('cart.index');
 
 Route::get('/checkout', [CheckoutController::class, 'index'])
-    ->name('checkout.index');
+    ->name('checkout.index')->middleware('auth');
 
 Route::post('/checkout-store', [CheckoutController::class, 'store'])
-    ->name('checkout.store');
+    ->name('checkout.store')->middleware('auth');
 
 Route::get('/checkout/completed', [CheckoutController::class, 'completed'])
     ->name('checkout.completed');

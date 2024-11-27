@@ -50,7 +50,15 @@
                 </div>
                 <div class="mt-4 flex justify-end gap-4">
                     <button @click="clearCart" class="bg-red-500 text-white py-2 px-4 rounded-md hover:bg-red-600">Vaciar carrito</button>
-                    <button @click="processCheckout" class="bg-blue-500 text-white py-2 px-4 rounded-md hover:bg-blue-600">Proceder al pago</button>
+                    <button @click="processCheckout" class="bg-blue-500 text-white py-2 px-4 rounded-md hover:bg-blue-600"
+                        @disabled(Auth::guest())>
+                        Proceder al pago
+                    </button>
+                </div>
+                <div class="mt-4 flex justify-end">
+                    @if (Auth::guest())
+                        <p class="text-sm text-gray-500">Debes iniciar sesión para proceder al pago.</p>
+                    @endif
                 </div>
             </div>
         </template>
