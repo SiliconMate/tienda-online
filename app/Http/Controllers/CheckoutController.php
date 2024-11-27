@@ -9,6 +9,7 @@ use App\Models\Product;
 use Illuminate\Http\Request;
 use App\Models\Address;
 use Illuminate\Support\Facades\Auth;
+use App\Models\PaymentDetail;
 
 class CheckoutController extends Controller
 {
@@ -72,9 +73,38 @@ class CheckoutController extends Controller
         ], 200);
     }
 
-    public function completed()
+    public function completed(Request $request)
     {
-        return view('shop.checkouts.checkout-completed');
+        $status = $request->input('status');
+        $paymentType = $request->input('payment_type');
+        $externalReference = $request->input('external_reference');
+        $totalPaid = $request->input('total_amount');
+
+        $orderDetail = OrderDetail::where('id', $externalReference)->first();
+
+        if($orderDetail){
+            if ($status === 'approved') {
+                $orderDetail->status = 'completed';
+                $orderDetail->completed_at = now();
+                $orderDetail->save();
+                PaymentDetail::create([
+                    'order_id' => $orderDetail->id,
+                    'payment_method' => $paymentType,
+                    'provider' => 'MercadoPago',
+                    'status' => 'completed',
+                    'completed_at' => now(),
+                    'total_paid' => $orderDetail->total_price,
+                ]);
+            }
+        }
+        $user = Auth::user();
+
+        return view('shop.checkouts.checkout-completed', compact('orderDetail', 'user'));
+    }
+
+    public function failed()
+    {
+        return view('shop.checkouts.checkout-failed');
     }
 
 

@@ -120,7 +120,11 @@ Route::post('/checkout-store', [CheckoutController::class, 'store'])
 Route::get('/checkout/completed', [CheckoutController::class, 'completed'])
     ->name('checkout.completed');
 
-Route::post('/opinions', [OpinionController::class, 'store'])->name('opinions.store');
+Route::get('/checkout/failed', [CheckoutController::class, 'failed'])
+    ->name('checkout.failed');
+
+Route::post('/opinions', [OpinionController::class, 'store'])
+->name('opinions.store');
 
 Route::post('/addresses/store', [UserAddressController::class, 'store'])->name('addresses.store');
 

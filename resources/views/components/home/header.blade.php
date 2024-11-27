@@ -29,7 +29,7 @@
                     <span class="text-sm">Carrito</span>
                 </a>
                 <a href="{{ route('login') }}" class="text-gray-700 hover:text-gray-900 flex flex-col items-center">
-                    <i class="ti ti-user text-3xl"></i>
+                    <i class="ti ti-user text-3xl pt-2 pb-2"></i>
                     <span class="text-sm">Cuenta</span>
                 </a>
             </div>
