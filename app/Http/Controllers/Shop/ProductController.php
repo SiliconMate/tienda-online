@@ -5,7 +5,6 @@ namespace App\Http\Controllers\Shop;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Product;
-use App\Models\Discount;
 
 class ProductController extends Controller
 {
@@ -49,8 +48,7 @@ class ProductController extends Controller
 
         $product = Product::findOrFail($product);
         $relatedProducts = Product::where('category_id', $product->category_id)->where('id', '!=', $product->id)->take(4)->get();
-        $discountedPrice = session('discountedPrice');
 
-        return view('shop.products.show', compact('product', 'relatedProducts', 'discountedPrice'));
+        return view('shop.products.show', compact('product', 'relatedProducts'));
     }
 }

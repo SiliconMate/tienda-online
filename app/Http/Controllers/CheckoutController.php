@@ -72,27 +72,6 @@ class CheckoutController extends Controller
         ], 200);
     }
 
-    public function applyDiscount(Request $request){
-        // $request->validate([
-        //     'discount_code' => 'required|string',
-        // ]);
-
-        // $discountCode = $request->input('discount_code');
-        // $discountPercentage = 0;
-
-        // // Aquí puedes agregar la lógica para verificar el código de descuento
-        // if ($discountCode === 'DESCUENTO20') {
-        //     $discountPercentage = 20;
-        // }
-
-        // $cartItems = \Cart::getContent();
-        // $subtotal = \Cart::getSubTotal();
-        // $discountAmount = ($subtotal * $discountPercentage) / 100;
-        // $total = $subtotal - $discountAmount;
-
-        // return view('shop.checkouts.checkout', compact('cartItems', 'subtotal', 'discountAmount', 'total', 'discountPercentage', 'discountCode'));
-    }
-
     public function completed()
     {
         return view('shop.checkouts.checkout-completed');

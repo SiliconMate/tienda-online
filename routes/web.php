@@ -2,7 +2,6 @@
 
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\CategoryController;
-use App\Http\Controllers\DiscountController;
 use App\Http\Controllers\PermissionController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ProfileController;
@@ -70,16 +69,6 @@ Route::middleware('auth')->group(function () {
     Route::put('admin-products/{product}/updateInventory', [ProductController::class, 'updateInventory'])
         ->name('dashboard.products.updateInventory');
 
-    Route::resource('admin-discounts', DiscountController::class)
-        ->only(['index', 'store', 'update', 'destroy'])
-        ->names('dashboard.discounts');
-
-    // Route::post('admin-discounts/{discount}/addproduct', [DiscountController::class, 'addProduct'])
-    //     ->name('dashboard.discounts.addproduct');
-
-    // Route::delete('admin-discounts/{discount}/removeproduct/{product}', [DiscountController::class, 'removeProduct'])
-    //     ->name('dashboard.discounts.removeproduct');
-
     Route::resource('admin-opinions', OpinionController::class)
         ->only(['index', 'destroy'])
         ->names('dashboard.opinions');
@@ -115,9 +104,6 @@ Route::middleware('auth')->group(function () {
 Route::resource('products', ShopProductController::class)
     ->only(['index', 'show'])
     ->names('products');
-
-Route::post('/apply-discount', [CheckoutController::class, 'applyDiscount'])
-    ->name('apply.discount');
 
 Route::resource('categories', ShopCategoryController::class)->only(['index', 'show'])
     ->names('categories');

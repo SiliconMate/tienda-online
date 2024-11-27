@@ -62,10 +62,6 @@
                         <i class="ti ti-message text-xl"></i> Opiniones
                     </x-sidebar-section-link>
 
-                    <x-sidebar-section-link href="{{ route('dashboard.discounts.index') }}">
-                        <i class="ti ti-scan text-xl"></i> Descuentos
-                    </x-sidebar-section-link>
-
                     <x-sidebar-section-title> VENTAS </x-sidebar-section-title>
 
                     <x-sidebar-section-link href="{{ route('dashboard.orders.index') }}">

@@ -12,7 +12,6 @@
                     <tr>
                         <th scope="col" class="px-6 py-3">ID Orden</th>
                         <th scope="col" class="px-6 py-3">Total</th>
-                        <th scope="col" class="px-6 py-3">Descuento</th>
                         <th scope="col" class="px-6 py-3">Estado</th>
                         <th scope="col" class="px-6 py-3">Fecha</th>
                         <th scope="col" class="px-6 py-3">Completado</th>
@@ -26,7 +25,6 @@
                                 {{ $order->id }}
                             </th>
                             <td class="px-6 py-4">${{ $order->total_price }}</td>
-                            <td class="px-6 py-4">{{ $order->discount ? $order->discount : '0' }}%</td>
                             <td class="px-6 py-4">{{ $order->status }}</td>
                             <td class="px-6 py-4">{{ $order->created_at }}</td>
                             <td class="px-6 py-4">{{ $order->completed_at }}</td>

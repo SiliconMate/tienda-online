@@ -62,27 +62,6 @@
                 </p>
             </div>
 
-            {{-- <div class="flex items-baseline mb-1 space-x-2 font-roboto mt-4">
-                @if (isset($discountedPrice))
-                    <p class="text-xl text-primary font-semibold">${{ number_format($discountedPrice, 2) }}</p>
-                    <p class="text-base text-gray-400 line-through">${{ number_format($product->price, 2) }}</p>
-                @else
-                    <p class="text-xl text-primary font-semibold">${{ number_format($product->price, 2) }}</p>
-                @endif
-            </div> --}}
-
-            {{-- <form method="POST" action="{{ route('apply.discount', $product->id) }}" class="mt-4">
-                @csrf
-                <div class="flex items-center space-x-3">
-                    <input type="text" id="discount_code" name="discount_code" placeholder="Código de descuento"
-                        required
-                        class="border border-gray-300 rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-primary">
-                        <x-input-error :messages="$errors->get('discount_code')" class="mt-2" />
-                    <button type="submit"
-                        class="bg-blue-800 text-white px-4 py-2 rounded-lg hover:bg-blue-900 transition-colors">Aplicar</button>
-                </div>
-            </form> --}}
-
             <p class="mt-4 text-gray-600">{{ $product->description }}</p>
 
             {{-- <div class="mt-4" x-data="{ quantity: 1 }">
@@ -175,10 +154,6 @@
                     <div class="flex items-baseline mb-1 space-x-2">
                     <p class="text-xl text-red-600 font-semibold">
                         ${{ number_format($relatedProduct->price, 2) }}</p>
-                    @if ($relatedProduct->discount)
-                        <p class="text-sm text-gray-400 line-through">
-                        ${{ number_format($relatedProduct->original_price, 2) }}</p>
-                    @endif
                     </div>
                     <div class="flex items-center">
                     <div class="flex gap-1 text-sm text-yellow-400">
