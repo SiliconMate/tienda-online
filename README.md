@@ -42,8 +42,8 @@ admin@gmail.com:admin123 y user@gmail.com:user123
 
 6. Iniciar el servidor local y compilar los assets
 ```bash
+npm run build
 php artisan serve
-npm run dev
 ```
 
 ## About Laravel
